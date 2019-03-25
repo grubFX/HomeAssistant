@@ -1,0 +1,8 @@
+# ignore all the things
+*
+
+# except the following
+!.gitignore
+!configuration.yaml
+!scenes.yaml
+!ui-lovelace.yaml

@@ -1,0 +1,327 @@
+homeassistant:
+  name: Home
+  latitude: !secret lat
+  longitude: !secret long
+  elevation: 350
+  unit_system: metric
+  time_zone: Europe/Vienna
+  customize: !include customize.yaml
+  auth_mfa_modules:
+    - type: totp
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+zone: !include zones.yaml
+scene: !include scenes.yaml
+
+frontend:
+  javascript_version: auto
+
+config:
+
+lovelace:
+  mode: yaml
+
+api:
+
+system_health:
+
+auth:
+
+updater:
+
+custom_updater:
+  track:
+    - cards
+    - components
+
+discovery:
+
+conversation:
+
+sun:
+  elevation: 350
+
+device_sun_light_trigger:
+  light_group: light.living_room
+  device_group: group.people
+        
+history:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.internet_time
+      - sensor.owm_wind_speed
+      - sensor.owm_pressure
+      - sensor.yweather_pressure
+      - sensor.sys_load_1
+      - sensor.sys_load_5
+      - sensor.sys_load_15
+
+recorder:
+  purge_keep_days: 7
+  purge_interval: 1
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.internet_time
+      - sensor.owm_wind_speed
+      - sensor.owm_pressure
+      - sensor.yweather_pressure
+      - sensor.sys_load_1
+      - sensor.sys_load_5
+      - sensor.sys_load_15
+
+logbook:
+
+map:
+
+tts:
+  - platform: google
+
+device_tracker:
+  - platform: google_maps
+    username: !secret google_email
+    password: !secret google_pw
+    new_device_defaults:
+        track_new_devices: true
+        hide_if_away: true
+  - platform: nmap_tracker
+    hosts: !secret ip_range
+    exclude:
+      - !secret raspi_ip
+    home_interval: 1
+    new_device_defaults:
+        track_new_devices: true
+        hide_if_away: true
+ 
+binary_sensor:
+  - platform: workday
+    country: AT
+    province: ST
+  - platform: uptimerobot
+    api_key: !secret uptimerobot_api_key
+  - platform: apcupsd
+
+weather:
+  - platform: openweathermap
+    api_key: !secret owm_api_key
+  - platform: darksky
+    api_key: !secret darksky_api_key
+  - platform: zamg
+
+apcupsd:
+
+sensor:
+  - platform: zamg
+    name: Graz
+    monitored_conditions:
+      - pressure
+      - humidity
+      - wind_speed
+      - temperature
+      - precipitation
+      - dewpoint
+
+  - platform: openweathermap
+    api_key: !secret owm_api_key
+    forecast: true
+    monitored_conditions:
+      - weather
+      - temperature
+      - wind_speed
+      - humidity
+      - pressure
+      - clouds
+      - rain
+      - snow
+
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - summary
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - precip_accumulation
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - temperature_high
+      - temperature_low
+      - precip_intensity_max
+      - uv_index
+      - moon_phase
+
+  - platform: template
+    sensors:
+      owm_wind_speed_kmh:
+        unit_of_measurement: 'km/h'
+        value_template: "{{ states('sensor.owm_wind_speed')| float * 3.6 | round(1) }}"
+      owm_pressure_hpa:
+        unit_of_measurement: 'hPa'
+        value_template: "{{ states('sensor.owm_pressure') }}"
+      dark_sky_wind_speed_kmh:
+        unit_of_measurement: 'km/h'
+        value_template: "{{ states('sensor.dark_sky_wind_speed')| float * 3.6 | round(1) }}"
+      dark_sky_pressure_hpa:
+        unit_of_measurement: 'hPa'
+        value_template: "{{ states('sensor.dark_sky_pressure') }}"
+      sys_load_1:
+        value_template: "{{ states('sensor.load_1m') | round(2) }}"
+      sys_load_5:
+        value_template: "{{ states('sensor.load_5m') | round(2) }}"
+      sys_load_15:
+        value_template: "{{ states('sensor.load_15m') | round(2) }}"
+      roobert_status:
+        value_template: "{{ state_attr('vacuum.roobert', 'status') }}"
+      roobert_battery:
+        unit_of_measurement: '%'
+        friendly_name: "Battery Level"
+        value_template: "{{ state_attr('vacuum.roobert', 'battery_level') | int }}"
+        icon_template: "{{ state_attr('vacuum.roobert', 'battery_icon') }}"
+      dew_point_combined:
+        value_template: "{{ (states('sensor.graz_dewpoint')| float * 0.5 + states('sensor.dark_sky_dew_point')| float * 0.5) | round(1) }}"
+        unit_of_measurement: "°C"
+      wind_speed_combined:
+        value_template: "{{ (states('sensor.dark_sky_wind_speed_kmh')| float * 0.3 + states('sensor.owm_wind_speed_kmh')| float * 0.3 + states('sensor.graz_wind_speed')| float * 0.4) | round(1) }}"
+        unit_of_measurement: 'km/h'
+      temperature_combined:
+        value_template: "{{ (states('sensor.graz_temperature')| float * 0.4 + states('sensor.owm_temperature')| float * 0.3 + states('sensor.dark_sky_temperature')| float * 0.3) | round(1) }}"
+        unit_of_measurement: "°C"
+      humidity_combined:
+        value_template: "{{ (states('sensor.graz_humidity')| float * 0.4 + states('sensor.owm_humidity')| float * 0.3 + states('sensor.dark_sky_humidity')| float * 0.3) | round(0) }}"
+        unit_of_measurement: '%'
+      pressure_combined:
+        value_template: "{{ (states('sensor.graz_pressure')| float * 0.8 + states('sensor.owm_pressure')| float * 0.1 + states('sensor.sensor.dark_sky_pressure')| float * 0.1) | round(0) }}"
+        unit_of_measurement: 'hPa'
+# TODO replace _combined sensors with min_max type mean (same units strictly required)
+
+  - platform: statistics
+    entity_id: sensor.miflora_light_intensity
+    sampling_size: 120
+    max_age:
+      hours: 72
+  - platform: statistics
+    entity_id: sensor.miflora_moisture
+    sampling_size: 120
+    max_age:
+      hours: 72
+  - platform: statistics
+    entity_id: sensor.miflora_conductivity
+    sampling_size: 120
+    max_age:
+      hours: 72
+
+  - platform: pi_hole
+    host: !secret pihole_ip
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
+      - clients_ever_seen
+
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    scan_interval: 10
+    value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'beat'
+
+  - platform: apcupsd
+    resources:
+      - linev
+      - bcharge
+      - battv
+      - loadpct
+      - timeleft
+
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+
+  - platform: launch_library
+
+  - platform: miflora
+    mac: !secret miflora_mac
+    name: MiFlora
+    force_update: true
+    median: 1
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+
+  - platform: aftership
+    api_key: !secret aftership_api_key
+
+media_player:
+  - platform: androidtv
+    name: Fire TV Stick
+    host: !secret firetv_ip
+         
+vacuum:
+  - platform: roomba
+    host: !secret roomba_ip
+    username: !secret roomba_blid
+    password: !secret roomba_pw
+    name: Roobert
+
+netatmo:
+  api_key: !secret netatmo_api_key
+  secret_key: !secret netatmo_secret_key
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
+shopping_list:
+
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_bot_api_key 
+    allowed_chat_ids:
+      - !secret chat_id_0
+      - !secret chat_id_1
+
+plant:
+  Camellia Sinensis:
+    sensors:
+      moisture: sensor.miflora_moisture
+      battery: sensor.miflora_battery
+      temperature: sensor.miflora_temperature
+      conductivity: sensor.miflora_conductivity
+      brightness: sensor.miflora_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 20
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_temperature: 5
+    max_temperature: 32
+    min_brightness: 4000
+    max_brightness: 20000
+

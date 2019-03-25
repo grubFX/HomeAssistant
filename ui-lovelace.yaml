@@ -1,0 +1,495 @@
+title: Home
+
+resources:
+  - url: /local/monster-card.js?v=0.2.3
+    type: js
+  - url: /local/button-card.js?v=0.0.6
+    type: module
+  - url: /local/entity-attributes-card.js?v=0.1.1
+    type: js
+  - url: /local/slider-entity-row.js?v=be80ff
+    type: js
+  - url: /local/vertical-stack-in-card.js?v=v0.1.1
+    type: js
+  - url: /local/layout-card.js?v=e0ec2f
+    type: js
+  - url: /local/card-tools.js?v=5fbed4
+    type: js
+  - url: /local/aftership-card.js?v=0.0.1
+    type: js
+  - url: /local/tracker-card.js?v=1.2.6
+    type: js
+
+views:
+  - id: home
+    title: Home
+    icon: mdi:home
+    cards:
+      - id: time
+        type: entities
+        show_header_toggle: false
+        title: Date & Time
+        entities:
+          - sensor.date
+          - sensor.time
+          - sensor.internet_time
+          - binary_sensor.workday_sensor
+
+      - id: devices
+        type: custom:monster-card
+        card:
+          type: glance
+          title: Active Devices
+          show_state: false
+        filter:
+          include:
+            - domain: device_tracker
+            - state: home
+          exclude:
+            - domain: group
+            - entity_id: '*google*'
+            - state: not_home
+            - attributes:
+                source_type: bluetooth
+
+      - type: plant-status
+        entity: plant.camellia_sinensis
+
+      - id: shopping
+        type: vertical-stack
+        cards:
+          - type: shopping-list
+            title: Shopping List
+
+      - id: map
+        type: vertical-stack
+        cards:
+          - type: map
+            entities:
+              - zone.home
+              - zone.cf
+              - zone.uni
+              - !secret tracker_0
+
+      - id: roobert
+        type: custom:vertical-stack-in-card
+        title: Roobert
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: vacuum.roobert
+                name: run/pause
+                tap_action: call-service
+                service: vacuum.start_pause
+                icon: mdi:play-pause
+
+              - type: entity-button
+                entity: vacuum.roobert
+                name: stop
+                tap_action: call-service
+                service: vacuum.stop
+                icon: mdi:stop
+
+              - type: entity-button
+                entity: vacuum.roobert
+                name: go home
+                tap_action: call-service
+                service: vacuum.return_to_base
+                icon: mdi:home-map-marker
+
+          - type: entities
+            entities:
+              - entity: sensor.roobert_status
+                name: Status
+              - entity: sensor.roobert_battery
+                name: Battery level
+
+          - type: history-graph
+            hours_to_show: 72
+            entities:
+              - entity: sensor.roobert_battery
+                name: Battery level
+
+#########################################
+
+  - id: lights
+    title: Lights
+    icon: mdi:lightbulb
+    panel: true
+    cards:
+      - type: custom:layout-card
+        layout: auto
+        cards:
+          - type: custom:layout-card
+            layout: horizontal
+            column_num: 5
+            cards:
+              - type: entity-button
+                name: Dimmed
+                icon: mdi:brightness-6
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.dim_all
+                entity: scene.dim_all
+
+              - type: entity-button
+                name: Futter
+                icon: mdi:silverware-variant
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.futter 
+                entity: scene.futter
+
+              - type: entity-button
+                name: Movie
+                icon: mdi:movie
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.movie_time
+                entity: scene.movie_time
+
+              - type: entity-button
+                name: Night
+                icon: mdi:bed-empty
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.nightlight
+                entity: scene.nightlight
+
+              - type: entity-button
+                name: Puff
+                icon: mdi:heart-multiple
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.sexy_time
+                entity: scene.sexy_time
+
+
+          - type: custom:vertical-stack-in-card
+            title: Table
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.hue_1
+                    toggle: true
+                    min: 1
+                  - type: custom:slider-entity-row
+                    entity: light.hue_2
+                    toggle: true
+                    min: 1
+              - type: light
+                entity: light.table
+                name: Table
+
+          - type: custom:vertical-stack-in-card
+            title: Couch
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.color_temperature_light_1
+                    name: Tint Candle 1
+                    toggle: true
+                    min: 1
+              - type: light
+                entity: light.color_temperature_light_1
+                name: Couch
+
+          - type: custom:vertical-stack-in-card
+            title: Bedroom
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.hue_3
+                    toggle: true
+                    min: 1
+                  - type: custom:slider-entity-row
+                    entity: light.color_temperature_light_1_2
+                    name: Tint Candle 2
+                    toggle: true
+                    min: 1
+              - type: light
+                entity: light.bedroom
+                name: Bedroom
+
+#########################################
+
+  - id: weather
+    title: Weather
+    icon: mdi:weather-partlycloudy
+    cards:
+      - type: entities
+        title: Graz 
+        show_header_toggle: false
+        entities:
+          - entity: sensor.dark_sky_summary
+            name: Summary (DarkSky)
+          - entity: sensor.owm_forecast
+            name: Forecast (OWM)
+          - entity: sensor.graz_temperature
+            name: Temperature (ZAMG)
+          - entity: sensor.dark_sky_apparent_temperature
+            name: Feels like (DarSky)
+          - entity: sensor.graz_wind_speed
+            name: Wind Speed (ZAMG)
+            icon: mdi:weather-windy
+          - entity: sensor.owm_rain
+            name: Rain (OWM)
+            icon: mdi:weather-rainy
+          - entity: sensor.graz_precipitation
+            name: Precipitation (ZAMG)
+            icon: mdi:water
+          - entity: sensor.graz_humidity
+            name: Humidity (ZAMG)
+            icon: mdi:water-percent
+          - entity: sensor.owm_snow
+            name: Snow (OWM)
+            icon: mdi:weather-snowy
+          - entity: sensor.graz_pressure
+            name: Pressure (ZAMG)
+            icon: mdi:gauge
+          - entity: sensor.luftdaten_22841_p1
+            name: Particulates P1 (<10µm)
+          - entity: sensor.luftdaten_22841_p2
+            name: Particulates P2 (<2.5µm)    
+
+      - type: weather-forecast
+        entity: weather.dark_sky
+
+      - type: weather-forecast
+        entity: weather.openweathermap
+
+      - type: history-graph
+        title: Temperature
+        hours_to_show: 72 
+        refresh_interval: 10
+        entities:
+          - entity: sensor.temperature_combined
+            name: Combined (ZAMG, DarkSky, OWM)
+#          - entity: sensor.graz_temperature
+#            name: ZAMG
+#          - entity: sensor.owm_temperature
+#            name: OWM
+#          - entity: sensor.dark_sky_temperature
+#            name: DarkSky
+
+      - type: history-graph
+        title: Humidity 
+        hours_to_show: 72 
+        refresh_interval: 10
+        entities:
+          - entity: sensor.humidity_combined
+            name: Combined (ZAMG, DarkSky, OWM)
+#          - entity: sensor.graz_humidity
+#            name: ZAMG
+#          - entity: sensor.owm_humidity
+#            name: OWM
+#          - entity: sensor.dark_sky_humidity
+#            name: DarkSky
+
+      - type: history-graph
+        title: Wind
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.wind_speed_combined
+            name: Combined (ZAMG, DarkSky, OWM)
+#          - entity: sensor.graz_wind_speed
+#            name: ZAMG
+#          - entity: sensor.owm_wind_speed_kmh
+#            name: OWM
+#          - entity: sensor.dark_sky_wind_speed_kmh
+#            name: DarkSky
+
+      - type: history-graph
+        title: Pressure
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.pressure_combined
+            name: Combined (ZAMG, DarkSky, OWM)
+#          - entity: sensor.graz_pressure
+#            name: ZAMG
+#          - entity: sensor.owm_pressure_hpa
+#            name: OWM (sea level)
+#          - entity: sensor.dark_sky_pressure_hpa
+#            name: DarkSky (sea level)
+
+      - type: history-graph
+        title: Precipitation
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.graz_precipitation 
+            name: Intensity (ZAMG)
+          - entity: sensor.dark_sky_precip_probabilty
+            name: Probability (DarkSky)
+          - entity: sensor.dark_sky_precip_intensity
+            name: Intensity (DarkSky)
+
+      - type: history-graph
+        title: Visibility
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.dark_sky_visibility
+            name: DarkSky
+
+      - type: history-graph
+        title: Dew point
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.dew_point_combined
+            name: Combined (ZAMG & DarkSky)
+#          - entity: sensor.graz_dewpoint
+#            name: ZAMG
+#          - entity: sensor.dark_sky_dew_point
+#            name: DarkSky
+
+      - type: history-graph
+        title: Particulates
+        hours_to_show: 72
+        refresh_interval: 10
+        entities:
+          - entity: sensor.luftdaten_22841_p1
+            name: P1 (<10µm)
+          - entity: sensor.luftdaten_22841_p2
+            name: P2 (<2.5µm)
+
+#########################################
+
+  - id: system
+    title: System
+    icon: mdi:chip
+    cards:
+      - id: pihole 
+        type: custom:monster-card
+        card:
+          title: PiHole
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: '*pi_hole*'
+            - entity_id: '*pihole*'
+
+      - id: uptime 
+        type: entities
+        title: UptimeRobot
+        show_header_toggle: false
+        entities:
+          - binary_sensor.nas
+          - binary_sensor.vserv
+          - binary_sensor.raspi
+
+      - id: ups
+        type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:monster-card
+            card:
+              title: UPS
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: '*sensor.ups*'
+              exclude:
+                - entity_id: sensor.ups_battery
+                - entity_id: sensor.ups_load
+
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.ups_battery
+                title: UPS Battery
+                severity:
+                  red: 0
+                  yellow: 50
+                  green: 75
+
+              - type: gauge
+                entity: sensor.ups_load
+                title: UPS Load
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+
+      - id: stats
+        type: custom:vertical-stack-in-card
+        title: System Stats
+        cards:
+          - type: horizontal-stack
+            cards:
+            - type: gauge
+              entity: sensor.processor_use
+              title: CPU Usage
+              severity:
+                green: 0
+                yellow: 50
+                red: 80
+
+            - type: gauge
+              entity: sensor.cpu_temperature
+              title: CPU Temp
+              severity:
+                green: 0
+                yellow: 60
+                red: 70
+
+          - type: horizontal-stack
+            cards:
+            - type: gauge
+              entity: sensor.sys_load_1
+              title: load 1
+              min: 0
+              max: 3
+              severity:
+                green: 0
+                yellow: 1
+                red: 2
+
+            - type: gauge
+              entity: sensor.sys_load_5
+              title: load 5
+              min: 0
+              max: 3
+              severity:
+                green: 0
+                yellow: 1
+                red: 2
+
+            - type: gauge
+              entity: sensor.sys_load_15
+              title: load 15
+              min: 0
+              max: 3
+              severity:
+                green: 0
+                yellow: 1
+                red: 2
+
+          - type: history-graph
+            hours_to_show: 72
+            refresh_interval: 1
+            entities:
+              - entity: sensor.cpu_temperature
+                name: CPU
+
+      - type: custom:tracker-card
+        title:
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
