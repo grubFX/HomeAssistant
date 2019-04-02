@@ -52,6 +52,9 @@ views:
             - attributes:
                 source_type: bluetooth
 
+      - type: media-control
+        entity: media_player.mibox
+
       - type: plant-status
         entity: plant.camellia_sinensis
 
@@ -277,56 +280,32 @@ views:
         hours_to_show: 72 
         refresh_interval: 10
         entities:
-          - entity: sensor.temperature_combined
+          - entity: sensor.mean_temperature
             name: Combined (ZAMG, DarkSky, OWM)
-#          - entity: sensor.graz_temperature
-#            name: ZAMG
-#          - entity: sensor.owm_temperature
-#            name: OWM
-#          - entity: sensor.dark_sky_temperature
-#            name: DarkSky
 
       - type: history-graph
         title: Humidity 
         hours_to_show: 72 
         refresh_interval: 10
         entities:
-          - entity: sensor.humidity_combined
+          - entity: sensor.mean_humidity
             name: Combined (ZAMG, DarkSky, OWM)
-#          - entity: sensor.graz_humidity
-#            name: ZAMG
-#          - entity: sensor.owm_humidity
-#            name: OWM
-#          - entity: sensor.dark_sky_humidity
-#            name: DarkSky
 
       - type: history-graph
         title: Wind
         hours_to_show: 72
         refresh_interval: 10
         entities:
-          - entity: sensor.wind_speed_combined
+          - entity: sensor.mean_wind_speed
             name: Combined (ZAMG, DarkSky, OWM)
-#          - entity: sensor.graz_wind_speed
-#            name: ZAMG
-#          - entity: sensor.owm_wind_speed_kmh
-#            name: OWM
-#          - entity: sensor.dark_sky_wind_speed_kmh
-#            name: DarkSky
 
       - type: history-graph
         title: Pressure
         hours_to_show: 72
         refresh_interval: 10
         entities:
-          - entity: sensor.pressure_combined
+          - entity: sensor.mean_pressure
             name: Combined (ZAMG, DarkSky, OWM)
-#          - entity: sensor.graz_pressure
-#            name: ZAMG
-#          - entity: sensor.owm_pressure_hpa
-#            name: OWM (sea level)
-#          - entity: sensor.dark_sky_pressure_hpa
-#            name: DarkSky (sea level)
 
       - type: history-graph
         title: Precipitation
@@ -353,12 +332,8 @@ views:
         hours_to_show: 72
         refresh_interval: 10
         entities:
-          - entity: sensor.dew_point_combined
+          - entity: sensor.mean_dewpoint
             name: Combined (ZAMG & DarkSky)
-#          - entity: sensor.graz_dewpoint
-#            name: ZAMG
-#          - entity: sensor.dark_sky_dew_point
-#            name: DarkSky
 
       - type: history-graph
         title: Particulates
