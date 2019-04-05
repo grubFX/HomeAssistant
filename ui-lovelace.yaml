@@ -202,12 +202,12 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.color_temperature_light_1
+                    entity: light.tint_candle_1
                     name: Tint Candle 1
                     toggle: true
                     min: 1
               - type: light
-                entity: light.color_temperature_light_1
+                entity: light.tint_candle_1
                 name: Couch
 
           - type: custom:vertical-stack-in-card
@@ -220,7 +220,7 @@ views:
                     toggle: true
                     min: 1
                   - type: custom:slider-entity-row
-                    entity: light.color_temperature_light_1_2
+                    entity: light.tint_candle_2
                     name: Tint Candle 2
                     toggle: true
                     min: 1

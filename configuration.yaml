@@ -303,24 +303,13 @@ sensor:
 
   - platform: aftership
     api_key: !secret aftership_api_key
-
-media_player:
-  - platform: androidtv
-    name: Fire TV Stick
-    host: !secret firetv_ip
-         
+        
 vacuum:
   - platform: roomba
     host: !secret roomba_ip
     username: !secret roomba_blid
     password: !secret roomba_pw
     name: Roobert
-
-netatmo:
-  api_key: !secret netatmo_api_key
-  secret_key: !secret netatmo_secret_key
-  username: !secret netatmo_username
-  password: !secret netatmo_password
 
 shopping_list:
 
@@ -329,7 +318,12 @@ telegram_bot:
     api_key: !secret telegram_bot_api_key 
     allowed_chat_ids:
       - !secret chat_id_0
-      - !secret chat_id_1
+#      - !secret chat_id_1
+
+notify:
+  - name: grubFX Notifier
+    platform: telegram
+    chat_id: !secret chat_id_0
 
 plant:
   Camellia Sinensis:
@@ -349,3 +343,13 @@ plant:
     min_brightness: 4000
     max_brightness: 20000
 
+proximity:
+  home:
+    devices:
+      - !secret tracker_0
+    tolerance: 50
+
+  cf:
+    devices:
+      - !secret tracker_0
+    tolerance: 50
