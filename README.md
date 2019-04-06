@@ -1,4 +1,4 @@
-# grubfx Home Assistant
+# grubFX Home Assistant
 
 work in progress, changing stuff all the time
 

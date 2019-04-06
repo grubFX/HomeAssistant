@@ -9,3 +9,7 @@
 !README.md
 !pics
 !pics/*
+!www
+!www/*.js
+!custom_components
+!custom_components/*.py
