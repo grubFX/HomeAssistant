@@ -1,0 +1,176 @@
+- platform: zamg
+  name: Graz
+  monitored_conditions:
+    - pressure
+    - humidity
+    - wind_speed
+    - temperature
+    - precipitation
+    - dewpoint
+- platform: openweathermap
+  api_key: !secret owm_api_key
+  forecast: true
+  monitored_conditions:
+    - weather
+    - temperature
+    - wind_speed
+    - humidity
+    - pressure
+    - clouds
+    - rain
+    - snow
+- platform: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - precip_accumulation
+    - temperature
+    - apparent_temperature
+    - dew_point
+    - wind_speed
+    - wind_gust
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+    - temperature_high
+    - temperature_low
+    - precip_intensity_max
+    - uv_index
+    - moon_phase
+- platform: template
+  sensors:
+    owm_wind_speed_kmh:
+      unit_of_measurement: 'km/h'
+      value_template: "{{ states('sensor.owm_wind_speed')| float * 3.6 | round(1) }}"
+    owm_pressure_hpa:
+      unit_of_measurement: 'hPa'
+      value_template: "{{ states('sensor.owm_pressure') }}"
+    dark_sky_wind_speed_kmh:
+      unit_of_measurement: 'km/h'
+      value_template: "{{ states('sensor.dark_sky_wind_speed')| float * 3.6 | round(1) }}"
+    dark_sky_pressure_hpa:
+      unit_of_measurement: 'hPa'
+      value_template: "{{ states('sensor.dark_sky_pressure') }}"
+    sys_load_1:
+      value_template: "{{ states('sensor.load_1m') | round(2) }}"
+    sys_load_5:
+      value_template: "{{ states('sensor.load_5m') | round(2) }}"
+    sys_load_15:
+      value_template: "{{ states('sensor.load_15m') | round(2) }}"
+    roobert_status:
+      value_template: "{{ state_attr('vacuum.roobert', 'status') }}"
+    roobert_battery:
+      unit_of_measurement: '%'
+      friendly_name: "Battery Level"
+      value_template: "{{ state_attr('vacuum.roobert', 'battery_level') | int }}"
+      icon_template: "{{ state_attr('vacuum.roobert', 'battery_icon') }}"
+- platform: min_max
+  type: mean
+  name: mean_dewpoint
+  entity_ids:
+    - sensor.graz_dewpoint
+    - sensor.dark_sky_dew_point
+  round_digits: 1
+- platform: min_max
+  type: mean
+  name: mean_wind_speed
+  entity_ids:
+    - sensor.dark_sky_wind_speed_kmh
+    - sensor.owm_wind_speed_kmh
+    - sensor.graz_wind_speed
+  round_digits: 1
+- platform: min_max
+  type: mean
+  name: mean_temperature
+  entity_ids:
+    - sensor.graz_temperature
+    - sensor.owm_temperature
+    - sensor.dark_sky_temperature
+  round_digits: 1
+- platform: min_max
+  type: mean
+  name: mean_humidity
+  entity_ids:
+    - sensor.graz_humidity
+    - sensor.owm_humidity
+    - sensor.dark_sky_humidity
+  round_digits: 0
+- platform: min_max
+  type: mean
+  name: mean_pressure
+  entity_ids:
+    - sensor.graz_pressure
+    - sensor.owm_pressure_hpa
+    - sensor.dark_sky_pressure_hpa
+  round_digits: 0
+- platform: statistics
+  entity_id: sensor.miflora_light_intensity
+  sampling_size: 120
+  max_age:
+    hours: 72
+- platform: statistics
+  entity_id: sensor.miflora_moisture
+  sampling_size: 120
+  max_age:
+    hours: 72
+- platform: statistics
+  entity_id: sensor.miflora_conductivity
+  sampling_size: 120
+  max_age:
+    hours: 72
+- platform: pi_hole
+  host: !secret pihole_ip
+  monitored_conditions:
+    - ads_blocked_today
+    - ads_percentage_today
+    - dns_queries_today
+    - domains_being_blocked
+    - queries_cached
+    - queries_forwarded
+    - unique_clients
+    - unique_domains
+    - clients_ever_seen
+- platform: command_line
+  name: CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  scan_interval: 10
+  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'beat'
+- platform: apcupsd
+  resources:
+    - linev
+    - bcharge
+    - battv
+    - loadpct
+    - timeleft
+- platform: systemmonitor
+  resources:
+    - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+- platform: launch_library
+- platform: miflora
+  mac: !secret miflora_mac
+  name: MiFlora
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - conductivity
+    - battery
+- platform: aftership
+  api_key: !secret aftership_api_key

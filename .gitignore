@@ -13,3 +13,5 @@
 !www/*.js
 !custom_components
 !custom_components/*.py
+!plants.yaml
+!sensors.yaml
