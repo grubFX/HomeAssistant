@@ -43,24 +43,17 @@ discovery:
 
 conversation:
 
+light:
+
 sun:
   elevation: 350
 
-device_sun_light_trigger:
-  light_group: light.living_room
-  device_group: group.people
+  #device_sun_light_trigger:
+  #  light_group: group.main_lights
+  #  device_group: group.people
+  #  disable_turn_off: 1
         
 history:
-  exclude:
-    entities:
-      - sensor.time
-      - sensor.internet_time
-      - sensor.owm_wind_speed
-      - sensor.owm_pressure
-      - sensor.yweather_pressure
-      - sensor.sys_load_1
-      - sensor.sys_load_5
-      - sensor.sys_load_15
 
 recorder:
   purge_keep_days: 7
@@ -69,24 +62,23 @@ recorder:
     entities:
       - sensor.time
       - sensor.internet_time
-      - sensor.owm_wind_speed
-      - sensor.owm_pressure
-      - sensor.yweather_pressure
-      - sensor.sys_load_1
-      - sensor.sys_load_5
-      - sensor.sys_load_15
+      - sensor.dark_sky_wind_gust # m/s
+      - sensor.dark_sky_wind_speed # m/s
+      - sensor.owm_wind_speed # m/s
+      - sensor.dark_sky_pressure # mbar
+      - sensor.owm_pressure # mbar
 
 logbook:
 
 map:
 
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 device_tracker:
   - platform: google_maps
     username: !secret google_email
-    password: !secret google_pw
     new_device_defaults:
         track_new_devices: true
         hide_if_away: true
@@ -98,6 +90,7 @@ device_tracker:
     new_device_defaults:
         track_new_devices: true
         hide_if_away: true
+  - platform: bluetooth_tracker
  
 binary_sensor:
   - platform: workday
@@ -136,6 +129,10 @@ notify:
   - name: grubFX Notifier
     platform: telegram
     chat_id: !secret chat_id_0
+
+pi_hole:
+  host: !secret pihole_host 
+  api_key: !secret pihole_api_key
 
 proximity:
   home:

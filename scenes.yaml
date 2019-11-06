@@ -7,7 +7,8 @@
       light.couch:
         state: true
         brightness: 10
-        xy_color: [0.52, 0.41]
+        #xy_color: [0.52, 0.41]
+        color_temp: 326
 
   - name: Sexy Time
     entities:
@@ -46,3 +47,7 @@
         state: true
         brightness: 1
         xy_color: [0.56, 0.4]
+
+  - name: All Off
+    entities:
+      group.all_lights: false

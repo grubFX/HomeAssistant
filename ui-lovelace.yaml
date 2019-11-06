@@ -83,22 +83,31 @@ views:
               - type: entity-button
                 entity: vacuum.roobert
                 name: run/pause
-                tap_action: call-service
-                service: vacuum.start_pause
+                tap_action: 
+                  action: call-service
+                  service: vacuum.start_pause
+                  #service_data: 
+                  #  entity_id: vaccum.roobert
                 icon: mdi:play-pause
 
               - type: entity-button
                 entity: vacuum.roobert
                 name: stop
-                tap_action: call-service
-                service: vacuum.stop
+                tap_action: 
+                  action: call-service
+                  service: vacuum.stop
+                  #service_data: 
+                  #  entity_id: vacuum.roobert
                 icon: mdi:stop
 
               - type: entity-button
                 entity: vacuum.roobert
                 name: go home
-                tap_action: call-service
-                service: vacuum.return_to_base
+                tap_action:
+                  action: call-service
+                  service: vacuum.return_to_base
+                  #service_data:
+                  #  entity_id: vacuum.roobert
                 icon: mdi:home-map-marker
 
           - type: entities
@@ -126,7 +135,7 @@ views:
         cards:
           - type: custom:layout-card
             layout: horizontal
-            column_num: 5
+            column_num: 6  
             cards:
               - type: entity-button
                 name: Dimmed
@@ -178,6 +187,15 @@ views:
                     entity_id: scene.sexy_time
                 entity: scene.sexy_time
 
+              - type: entity-button
+                name: All Off
+                icon: mdi:lightbulb-off
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.all_off
+                entity: scene.all_off
 
           - type: custom:vertical-stack-in-card
             title: Table
@@ -232,7 +250,7 @@ views:
 
   - id: weather
     title: Weather
-    icon: mdi:weather-partlycloudy
+    icon: mdi:weather-partly-cloudy
     cards:
       - type: entities
         title: Graz 
@@ -351,6 +369,15 @@ views:
     title: System
     icon: mdi:chip
     cards:
+      - id: plex
+        type: custom:monster-card
+        card:
+          title: Plex
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: '*plex*'
+
       - id: pihole 
         type: custom:monster-card
         card:
@@ -410,25 +437,52 @@ views:
             cards:
             - type: gauge
               entity: sensor.processor_use
-              title: CPU Usage
+              name: CPU Usage
+              severity:
+                green: 0
+                yellow: 50
+                red: 80
+            - type: gauge
+              entity: sensor.memory_use_percent
+              name: Memory Usage
               severity:
                 green: 0
                 yellow: 50
                 red: 80
 
-            - type: gauge
-              entity: sensor.cpu_temperature
-              title: CPU Temp
-              severity:
-                green: 0
-                yellow: 60
-                red: 70
-
+          - type: history-graph
+            hours_to_show: 72
+            refresh_interval: 1
+            entities:
+              - entity: sensor.load_1m
+                name: Load1
+              - entity: sensor.load_5m
+                name: Load5
+              - entity: sensor.load_15m
+                name: Load15
           - type: horizontal-stack
             cards:
             - type: gauge
-              entity: sensor.sys_load_1
-              title: load 1
+              entity: sensor.load_1m
+              name: load 1
+              min: 0
+              max: 3
+              severity:
+                green: 0
+                yellow: 1
+                red: 2
+            - type: gauge
+              entity: sensor.load_5m
+              name: load 5
+              min: 0
+              max: 3
+              severity:
+                green: 0
+                yellow: 1
+                red: 2
+            - type: gauge
+              entity: sensor.load_15m
+              name: load 15
               min: 0
               max: 3
               severity:
@@ -436,32 +490,46 @@ views:
                 yellow: 1
                 red: 2
 
-            - type: gauge
-              entity: sensor.sys_load_5
-              title: load 5
-              min: 0
-              max: 3
-              severity:
-                green: 0
-                yellow: 1
-                red: 2
-
-            - type: gauge
-              entity: sensor.sys_load_15
-              title: load 15
-              min: 0
-              max: 3
-              severity:
-                green: 0
-                yellow: 1
-                red: 2
 
           - type: history-graph
             hours_to_show: 72
             refresh_interval: 1
             entities:
-              - entity: sensor.cpu_temperature
+              - entity: sensor.temperature_zone0
+                name: In
+              - entity: sensor.temperature_zone1
+                name: Mainboard
+              - entity: sensor.temperature_zone2
                 name: CPU
+          - type: horizontal-stack
+            cards:
+            - type: gauge
+              entity: sensor.temperature_zone0
+              name: Temp 0
+              min: 0
+              max: 70
+              severity:
+                green: 50
+                yellow: 60
+                red: 70
+            - type: gauge
+              entity: sensor.temperature_zone1
+              name: Temp 1
+              min: 0
+              max: 70
+              severity:
+                green: 50
+                yellow: 60
+                red: 70
+            - type: gauge
+              entity: sensor.temperature_zone2
+              name: Temp 2
+              min: 0
+              max: 70
+              severity:
+                green: 50
+                yellow: 60
+                red: 70
 
       - type: custom:tracker-card
         title:

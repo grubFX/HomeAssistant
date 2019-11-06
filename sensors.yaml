@@ -57,12 +57,6 @@
     dark_sky_pressure_hpa:
       unit_of_measurement: 'hPa'
       value_template: "{{ states('sensor.dark_sky_pressure') }}"
-    sys_load_1:
-      value_template: "{{ states('sensor.load_1m') | round(2) }}"
-    sys_load_5:
-      value_template: "{{ states('sensor.load_5m') | round(2) }}"
-    sys_load_15:
-      value_template: "{{ states('sensor.load_15m') | round(2) }}"
     roobert_status:
       value_template: "{{ state_attr('vacuum.roobert', 'status') }}"
     roobert_battery:
@@ -124,21 +118,21 @@
   sampling_size: 120
   max_age:
     hours: 72
-- platform: pi_hole
-  host: !secret pihole_ip
-  monitored_conditions:
-    - ads_blocked_today
-    - ads_percentage_today
-    - dns_queries_today
-    - domains_being_blocked
-    - queries_cached
-    - queries_forwarded
-    - unique_clients
-    - unique_domains
-    - clients_ever_seen
 - platform: command_line
-  name: CPU Temperature
+  name: Temperature Zone0
   command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  scan_interval: 10
+  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+- platform: command_line
+  name: Temperature Zone1
+  command: "cat /sys/class/thermal/thermal_zone1/temp"
+  unit_of_measurement: "°C"
+  scan_interval: 10
+  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+- platform: command_line
+  name: Temperature Zone2
+  command: "cat /sys/class/thermal/thermal_zone2/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
@@ -157,6 +151,7 @@
 - platform: systemmonitor
   resources:
     - type: processor_use
+    - type: memory_use_percent
     - type: load_1m
     - type: load_5m
     - type: load_15m
