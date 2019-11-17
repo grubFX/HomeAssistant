@@ -1,6 +1,6 @@
   - name: Movie Time
     entities:
-      light.table:
+      group.lights_table:
         state: true
         brightness: 50 
         xy_color: [0.52, 0.41]
@@ -13,7 +13,7 @@
   - name: Sexy Time
     entities:
       light.table: false
-      light.bedroom:
+      group.lights_bedroom:
         state: true
         brightness: 10
         xy_color: [0.69, 0.3]
@@ -21,7 +21,7 @@
 
   - name: Futter
     entities:
-      light.table:
+      group.lights_table:
         state: true
         brightness: 255
         xy_color: [0.45, 0.41]
@@ -32,7 +32,7 @@
 
   - name: Dim All
     entities:
-      light.table:
+      group.lights_table:
         state: true
         brightness: 100
         xy_color: [0.5, 0.414]
@@ -43,10 +43,11 @@
 
   - name: Nightlight
     entities:
-      light.bedroom:
+      light.tradfri_candle:
         state: true
         brightness: 1
         xy_color: [0.56, 0.4]
+      light.hue_3: false
 
   - name: All Off
     entities:
