@@ -7,7 +7,6 @@
       light.couch:
         state: true
         brightness: 10
-        #xy_color: [0.52, 0.41]
         color_temp: 326
 
   - name: Sexy Time
@@ -25,18 +24,14 @@
         state: true
         brightness: 255
         xy_color: [0.45, 0.41]
-      light.couch:
+      group.lights_couch:
         state: true
         brightness: 100 
         xy_color: [0.52, 0.41]
 
   - name: Dim All
     entities:
-      group.lights_table:
-        state: true
-        brightness: 100
-        xy_color: [0.5, 0.414]
-      light.couch:
+      group.lights_main:
         state: true
         brightness: 100
         xy_color: [0.5, 0.414]

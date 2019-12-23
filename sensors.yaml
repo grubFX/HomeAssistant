@@ -7,6 +7,7 @@
     - temperature
     - precipitation
     - dewpoint
+
 - platform: openweathermap
   api_key: !secret owm_api_key
   forecast: true
@@ -19,6 +20,7 @@
     - clouds
     - rain
     - snow
+
 - platform: darksky
   api_key: !secret darksky_api_key
   monitored_conditions:
@@ -43,6 +45,7 @@
     - precip_intensity_max
     - uv_index
     - moon_phase
+
 - platform: template
   sensors:
     owm_wind_speed_kmh:
@@ -64,6 +67,7 @@
       friendly_name: "Battery Level"
       value_template: "{{ state_attr('vacuum.roobert', 'battery_level') | int }}"
       icon_template: "{{ state_attr('vacuum.roobert', 'battery_icon') }}"
+
 - platform: min_max
   type: mean
   name: mean_dewpoint
@@ -71,6 +75,7 @@
     - sensor.graz_dewpoint
     - sensor.dark_sky_dew_point
   round_digits: 1
+
 - platform: min_max
   type: mean
   name: mean_wind_speed
@@ -79,6 +84,7 @@
     - sensor.owm_wind_speed_kmh
     - sensor.graz_wind_speed
   round_digits: 1
+
 - platform: min_max
   type: mean
   name: mean_temperature
@@ -87,6 +93,7 @@
     - sensor.owm_temperature
     - sensor.dark_sky_temperature
   round_digits: 1
+
 - platform: min_max
   type: mean
   name: mean_humidity
@@ -95,6 +102,7 @@
     - sensor.owm_humidity
     - sensor.dark_sky_humidity
   round_digits: 0
+
 - platform: min_max
   type: mean
   name: mean_pressure
@@ -103,44 +111,52 @@
     - sensor.owm_pressure_hpa
     - sensor.dark_sky_pressure_hpa
   round_digits: 0
+
 - platform: statistics
   entity_id: sensor.miflora_light_intensity
   sampling_size: 120
   max_age:
     hours: 72
+
 - platform: statistics
   entity_id: sensor.miflora_moisture
   sampling_size: 120
   max_age:
     hours: 72
+
 - platform: statistics
   entity_id: sensor.miflora_conductivity
   sampling_size: 120
   max_age:
     hours: 72
+
 - platform: command_line
   name: Temperature Zone0
   command: "cat /sys/class/thermal/thermal_zone0/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+
 - platform: command_line
   name: Temperature Zone1
   command: "cat /sys/class/thermal/thermal_zone1/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+
 - platform: command_line
   name: Temperature Zone2
   command: "cat /sys/class/thermal/thermal_zone2/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+
 - platform: time_date
   display_options:
     - 'time'
     - 'date'
     - 'beat'
+
 - platform: apcupsd
   resources:
     - linev
@@ -148,6 +164,7 @@
     - battv
     - loadpct
     - timeleft
+
 - platform: systemmonitor
   resources:
     - type: processor_use
@@ -155,7 +172,9 @@
     - type: load_1m
     - type: load_5m
     - type: load_15m
+
 - platform: launch_library
+
 - platform: miflora
   mac: !secret miflora_mac
   name: MiFlora
@@ -167,6 +186,7 @@
     - temperature
     - conductivity
     - battery
+
 - platform: aftership
   api_key: !secret aftership_api_key
 

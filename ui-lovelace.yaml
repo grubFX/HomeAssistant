@@ -76,6 +76,10 @@ views:
               - zone.uni
               - !secret tracker_0
 
+      - id: bathroom  
+        type: thermostat
+        entity: climate.bathroom_heater_heat
+
       - id: roobert
         type: custom:vertical-stack-in-card
         title: Roobert
@@ -205,15 +209,15 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.hue_1
+                    entity: light.hue_1_light
                     toggle: true
                     min: 1
                   - type: custom:slider-entity-row
-                    entity: light.hue_2
+                    entity: light.hue_2_light
                     toggle: true
                     min: 1
               - type: light
-                entity: light.table
+                entity: group.lights_table
                 name: Table
 
           - type: custom:vertical-stack-in-card
@@ -222,12 +226,12 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.couch
+                    entity: light.mueller_2_light
                     name: Couch
                     toggle: true
                     min: 1
               - type: light
-                entity: light.couch
+                entity: group.lights_couch
                 name: Couch
 
           - type: custom:vertical-stack-in-card
@@ -236,16 +240,15 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.hue_3
+                    entity: light.hue_3_light
                     toggle: true
                     min: 1
                   - type: custom:slider-entity-row
-                    entity: light.tradfri_candle
-                    name: Tradfri Candle
+                    entity: light.tradfri_candle_light
                     toggle: true
                     min: 1
               - type: light
-                entity: light.bedroom
+                entity: group.lights_bedroom
                 name: Bedroom
 
   #########################################
