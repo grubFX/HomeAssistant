@@ -11,7 +11,8 @@
 !pics/*
 !www
 !www/*.js
-!custom_components
-!custom_components/*.py
 !plants.yaml
 !sensors.yaml
+!.storage
+!.storage/custom_updater.cards 
+# this last one is just for storing versions of custom cards from time to time

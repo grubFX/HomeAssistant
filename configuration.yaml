@@ -18,6 +18,7 @@ sensor: !include sensors.yaml
 plant: !include plants.yaml
 person: !include persons.yaml
 
+mobile_app:
 frontend:
   javascript_version: auto
 
@@ -33,11 +34,6 @@ system_health:
 auth:
 
 updater:
-
-custom_updater:
-  track:
-    - cards
-    - components
 
 discovery:
 
@@ -78,11 +74,6 @@ tts:
     service_name: google_say
 
 device_tracker:
-  - platform: google_maps
-    username: !secret google_email
-    new_device_defaults:
-        track_new_devices: true
-        hide_if_away: true
   - platform: nmap_tracker
     hosts: !secret ip_range
     exclude:
@@ -91,8 +82,7 @@ device_tracker:
     new_device_defaults:
         track_new_devices: true
         hide_if_away: true
-  # - platform: bluetooth_tracker
- 
+
 binary_sensor:
   - platform: workday
     country: AT
@@ -124,7 +114,6 @@ telegram_bot:
     api_key: !secret telegram_bot_api_key 
     allowed_chat_ids:
       - !secret chat_id_0
-#      - !secret chat_id_1
 
 notify:
   - name: grubFX Notifier
@@ -156,7 +145,38 @@ mqtt:
   broker: !secret nas_ip
 
 zwave:
-  usb_path: /dev/ttyACM1
+  usb_path: /dev/ttyACM2
 
 climate:
   - platform: zwave
+
+hue:
+  bridges:
+    - host: !secret hue_bridge_ip
+      allow_unreachable: true
+      allow_hue_groups: true
+
+media_player:
+  - platform: androidtv
+    host: !secret mibox_ip
+    apps:
+      tv.arte.plus7: "Arte"
+      com.nousguide.android.orftvthek: "ORF TVthek"
+      com.amazon.amazonvideo.livingroom: "Amazon Prime Video"
+      com.nousguide.android.rbtv: "Red Bull TV"
+      com.zdf.android.mediathek: "ZDFmediathek"
+      com.zppntv: "ZAPPN TV"
+      com.codingbuffalo.aerialdream: "Screensaver"
+      de.prosiebensat1digital.sat1: "SAT.1"
+    state_detection_rules:
+      'com.netflix.ninja':
+        - 'media_session_state'
+      'com.plexapp.android':
+        - 'paused':
+            'media_session_state': 3  # this indentation is important!
+            'wake_lock_size': 1       # this indentation is important!
+        - 'playing':
+            'media_session_state': 3  # this indentation is important!
+        - 'standby'
+
+wake_on_lan:

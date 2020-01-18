@@ -75,7 +75,6 @@
     - sensor.graz_dewpoint
     - sensor.dark_sky_dew_point
   round_digits: 1
-
 - platform: min_max
   type: mean
   name: mean_wind_speed

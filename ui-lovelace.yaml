@@ -3,23 +3,29 @@ title: Home
 resources:
   - url: /local/monster-card.js?v=0.2.3
     type: js
-  - url: /local/button-card.js?v=0.0.6
-    type: module
-  - url: /local/entity-attributes-card.js?v=0.1.1
-    type: js
-  - url: /local/slider-entity-row.js?v=be80ff
-    type: js
-  - url: /local/vertical-stack-in-card.js?v=v0.1.1
-    type: js
-  - url: /local/layout-card.js?v=e0ec2f
-    type: js
-  - url: /local/card-tools.js?v=5fbed4
-    type: js
-  - url: /local/aftership-card.js?v=0.0.1
-    type: js
   - url: /local/tracker-card.js?v=1.2.6
     type: js
-  - url: /local/zigbee2mqtt-networkmap.js?v=0.5.0
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  - url: /community_plugin/entity-attributes-card/entity-attributes-card.js
+    type: null
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: module
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: module
+  - url: /community_plugin/aftership-card/aftership-card.js
+    type: module
+  - url: /community_plugin/zigbee2mqtt-networkmap/zigbee2mqtt-networkmap.js
+    type: module
+  - url: /community_plugin/miflora-card/miflora-card.js
+    type: js
+  - url: /community_plugin/light-entity-card/light-entity-card.js
+    type: js
+  - url: /community_plugin/weather-card/weather-card.js
     type: module
 
 views:
@@ -55,7 +61,7 @@ views:
                 source_type: bluetooth
 
       - type: media-control
-        entity: media_player.mibox
+        entity: media_player.xiaomi_mi_box_s
 
       - type: plant-status
         entity: plant.camellia_sinensis
@@ -78,7 +84,7 @@ views:
 
       - id: bathroom  
         type: thermostat
-        entity: climate.bathroom_heater_heat
+        entity: climate.bathroom_radiator
 
       - id: roobert
         type: custom:vertical-stack-in-card
@@ -209,15 +215,15 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.hue_1_light
+                    entity: light.hue_table_1
                     toggle: true
                     min: 1
                   - type: custom:slider-entity-row
-                    entity: light.hue_2_light
+                    entity: light.hue_table_2
                     toggle: true
                     min: 1
               - type: light
-                entity: group.lights_table
+                entity: light.table
                 name: Table
 
           - type: custom:vertical-stack-in-card
@@ -226,12 +232,12 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.mueller_2_light
+                    entity: light.couch_muller_candle
                     name: Couch
                     toggle: true
                     min: 1
               - type: light
-                entity: group.lights_couch
+                entity: light.couch
                 name: Couch
 
           - type: custom:vertical-stack-in-card
@@ -240,15 +246,15 @@ views:
               - type: entities
                 entities:
                   - type: custom:slider-entity-row
-                    entity: light.hue_3_light
+                    entity: light.bedrom_hue
                     toggle: true
                     min: 1
                   - type: custom:slider-entity-row
-                    entity: light.tradfri_candle_light
+                    entity: light.bedroom_tradfri_candle
                     toggle: true
                     min: 1
               - type: light
-                entity: group.lights_bedroom
+                entity: light.bedroom
                 name: Bedroom
 
   #########################################
@@ -257,46 +263,19 @@ views:
     title: Weather
     icon: mdi:weather-partly-cloudy
     cards:
-      - type: entities
-        title: Graz
-        show_header_toggle: false
-        entities:
-          - entity: sensor.dark_sky_summary
-            name: Summary (DarkSky)
-          - entity: sensor.owm_forecast
-            name: Forecast (OWM)
-          - entity: sensor.graz_temperature
-            name: Temperature (ZAMG)
-          - entity: sensor.dark_sky_apparent_temperature
-            name: Feels like (DarSky)
-          - entity: sensor.graz_wind_speed
-            name: Wind Speed (ZAMG)
-            icon: mdi:weather-windy
-          - entity: sensor.owm_rain
-            name: Rain (OWM)
-            icon: mdi:weather-rainy
-          - entity: sensor.graz_precipitation
-            name: Precipitation (ZAMG)
-            icon: mdi:water
-          - entity: sensor.graz_humidity
-            name: Humidity (ZAMG)
-            icon: mdi:water-percent
-          - entity: sensor.owm_snow
-            name: Snow (OWM)
-            icon: mdi:weather-snowy
-          - entity: sensor.graz_pressure
-            name: Pressure (ZAMG)
-            icon: mdi:gauge
-          - entity: sensor.luftdaten_22841_p1
-            name: Particulates P1 (<10µm)
-          - entity: sensor.luftdaten_22841_p2
-            name: Particulates P2 (<2.5µm)
-
-      - type: weather-forecast
+      - type: custom:weather-card
         entity: weather.dark_sky
+        name: DS
+        current: true
+        details: true
+        forecast: true
 
-      - type: weather-forecast
+      - type: custom:weather-card
         entity: weather.openweathermap
+        name: OWM
+        current: true
+        details: true
+        forecast: true
 
       - type: history-graph
         title: Temperature
@@ -382,6 +361,8 @@ views:
         filter:
           include:
             - entity_id: "*plex*"
+          exclude:
+            - status: "unavailable"
 
       - id: pihole
         type: custom:monster-card
@@ -534,12 +515,6 @@ views:
                   green: 50
                   yellow: 60
                   red: 70
-
-      - type: custom:tracker-card
-        title:
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
 
       - type: custom:zigbee2mqtt-networkmap
         entity: sensor.zigbee2mqtt_networkmap
