@@ -18,6 +18,8 @@
 !www/**
 # ... but ignore gz files
 **.gz
+!.storage
+!.storage/custom_updater.cards 
 
 # and finally make sure to exclude pycache folders
 *__pycache__*

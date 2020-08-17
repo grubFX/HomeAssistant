@@ -1,0 +1,38 @@
+{
+    "aftership-card": {
+        "dir": "/config/www/",
+        "version": "1.1.0"
+    },
+    "button-card": {
+        "dir": "/config/www/",
+        "version": "1.11.1"
+    },
+    "card-tools": {
+        "dir": "/config/www/",
+        "version": "0efed8"
+    },
+    "entity-attributes-card": {
+        "dir": "/config/www/",
+        "version": "0.1.1"
+    },
+    "layout-card": {
+        "dir": "/config/www/",
+        "version": "83e2b1"
+    },
+    "monster-card": {
+        "dir": "/config/www/",
+        "version": "0.2.3"
+    },
+    "slider-entity-row": {
+        "dir": "/config/www/",
+        "version": "93fe89"
+    },
+    "tracker-card": {
+        "dir": "/config/www/",
+        "version": "1.2.6"
+    },
+    "vertical-stack-in-card": {
+        "dir": "/config/www/",
+        "version": "v0.1.3"
+    }
+}
