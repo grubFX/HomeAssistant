@@ -69,39 +69,41 @@
   name: mean_dewpoint
   entity_ids:
     - sensor.graz_dewpoint
-    - sensor.dark_sky_dew_point
+#    - sensor.dark_sky_dew_point
   round_digits: 1
 - platform: min_max
   type: mean
   name: mean_wind_speed
   entity_ids:
-    - sensor.dark_sky_wind_speed_kmh
-    - sensor.owm_wind_speed_kmh
+#    - sensor.dark_sky_wind_speed_kmh
+#    - sensor.owm_wind_speed_kmh
     - sensor.graz_wind_speed
   round_digits: 1
 - platform: min_max
   type: mean
   name: mean_temperature
   entity_ids:
+    - sensor.netatmo_balkon_temperature
     - sensor.graz_temperature
-    - sensor.owm_temperature
-    - sensor.dark_sky_temperature
+#    - sensor.owm_temperature
+#    - sensor.dark_sky_temperature
   round_digits: 1
 - platform: min_max
   type: mean
   name: mean_humidity
   entity_ids:
+    - sensor.netatmo_balkon_humidity
     - sensor.graz_humidity
-    - sensor.owm_humidity
-    - sensor.dark_sky_humidity
+#    - sensor.owm_humidity
+#    - sensor.dark_sky_humidity
   round_digits: 0
 - platform: min_max
   type: mean
   name: mean_pressure
   entity_ids:
     - sensor.graz_pressure
-    - sensor.owm_pressure_hpa
-    - sensor.dark_sky_pressure_hpa
+#    - sensor.owm_pressure_hpa
+#    - sensor.dark_sky_pressure_hpa
   round_digits: 0
 - platform: statistics
   entity_id: sensor.miflora_light_intensity
@@ -121,18 +123,6 @@
 - platform: command_line
   name: Temperature Zone0
   command: "cat /sys/class/thermal/thermal_zone0/temp"
-  unit_of_measurement: "°C"
-  scan_interval: 10
-  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
-- platform: command_line
-  name: Temperature Zone1
-  command: "cat /sys/class/thermal/thermal_zone1/temp"
-  unit_of_measurement: "°C"
-  scan_interval: 10
-  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
-- platform: command_line
-  name: Temperature Zone2
-  command: "cat /sys/class/thermal/thermal_zone2/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
@@ -176,3 +166,10 @@
   value_template: >-
     {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
   json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+
+- platform: rest
+  name: Timeular
+  resource: https://api.timeular.com/api/v2/tracking
+  value_template: '{{ value_json.currentTracking.activity.name }}'
+  headers:
+    Authorization: !secret timeular_token

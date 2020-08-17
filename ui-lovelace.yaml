@@ -1,542 +1,614 @@
-title: Home
-
 resources:
-  - url: /local/monster-card.js?v=0.2.3
-    type: js
-  - url: /local/button-card.js?v=0.0.6
-    type: module
-  - url: /local/entity-attributes-card.js?v=0.1.1
-    type: js
-  - url: /local/slider-entity-row.js?v=be80ff
-    type: js
-  - url: /local/vertical-stack-in-card.js?v=v0.1.1
-    type: js
-  - url: /local/layout-card.js?v=e0ec2f
-    type: js
-  - url: /local/card-tools.js?v=5fbed4
-    type: js
-  - url: /local/aftership-card.js?v=0.0.1
-    type: js
-  - url: /local/tracker-card.js?v=1.2.6
-    type: js
-  - url: /local/zigbee2mqtt-networkmap.js?v=0.5.0
-    type: module
-
+  - type: js
+    url: /local/monster-card.js?v=0.2.3
+  - type: js
+    url: /local/tracker-card.js?v=1.2.6
+  - type: module
+    url: /community_plugin/button-card/button-card.js
+  - type: null
+    url: /community_plugin/entity-attributes-card/entity-attributes-card.js
+  - type: module
+    url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+  - type: js
+    url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+  - type: module
+    url: /community_plugin/lovelace-layout-card/layout-card.js
+  - type: module
+    url: /community_plugin/lovelace-card-tools/card-tools.js
+  - type: module
+    url: /community_plugin/aftership-card/aftership-card.js
+  - type: module
+    url: /community_plugin/zigbee2mqtt-networkmap/zigbee2mqtt-networkmap.js
+  - type: js
+    url: /community_plugin/miflora-card/miflora-card.js
+  - type: js
+    url: /community_plugin/light-entity-card/light-entity-card.js
+  - type: module
+    url: /community_plugin/weather-card/weather-card.js
+  - type: null
+    url: /community_plugin/gauge-card/gauge-card.js
+  - type: null
+    url: /community_plugin/light-entity-row/light-entity-row.js
+  - type: module
+    url: /community_plugin/button-entity-row/button-entity-row.js
+  - type: js
+    url: /community_plugin/rgb-light-card/card.js
+  - type: module
+    url: /community_plugin/simple-thermostat/simple-thermostat.js
+title: Home
 views:
-  - id: home
-    title: Home
-    icon: mdi:home
+  - badges: []
     cards:
-      - id: time
-        type: entities
-        show_header_toggle: false
-        title: Date & Time
-        entities:
+      - cards:
+          - color_thresholds:
+              - color: blue
+                value: 15
+              - color: green
+                value: 22
+              - color: orange
+                value: 30
+              - color: red
+                value: 35
+            height: 200
+            entities:
+              - entity: sensor.netatmo_luftstange_temperature
+            hours_to_show: 72
+            lower_bound: ~20
+            refresh_interval: 10
+            show:
+              average: true
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~30
+          - color_thresholds:
+              - color: blue
+                value: 80
+              - color: green
+                value: 50
+              - color: green
+                value: 40
+              - color: gray
+                value: 20
+            entities:
+              - entity: sensor.netatmo_luftstange_humidity
+            hours_to_show: 72
+            lower_bound: ~0
+            refresh_interval: 10
+            show:
+              average: true
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            height: 200
+            upper_bound: ~100
+          - cards:
+              - entity: sensor.netatmo_luftstange_co2
+                max: 2000
+                severity:
+                  green: 0
+                  red: 1000
+                  yellow: 500
+                title: CO2
+                type: gauge
+              - entity: sensor.netatmo_luftstange_noise
+                severity:
+                  green: 0
+                  red: 50
+                  yellow: 40
+                title: CO2
+                type: gauge
+            type: horizontal-stack
+          - entities:
+              - entity: sensor.netatmo_luftstange_pressure
+              - entity: sensor.netatmo_luftstange_wifi
+            show_header_toggle: false
+            type: entities
+        title: Luftstange
+        type: 'custom:vertical-stack-in-card'
+      - entities:
           - sensor.date
           - sensor.time
           - sensor.internet_time
           - binary_sensor.workday_sensor
-
-      - id: devices
-        type: custom:monster-card
-        card:
+        id: time
+        show_header_toggle: false
+        title: Date & Time
+        type: entities
+      - card:
+          show_state: true
+          title: People
           type: glance
-          title: Active Devices
-          show_state: false
         filter:
           include:
-            - domain: device_tracker
-            - state: home
-          exclude:
-            - domain: group
-            - entity_id: "*google*"
-            - state: not_home
-            - attributes:
-                source_type: bluetooth
-
-      - type: media-control
-        entity: media_player.mibox
-
-      - type: plant-status
-        entity: plant.camellia_sinensis
-
-      - id: shopping
+            - domain: person
+        id: people
+        type: 'custom:auto-entities'
+      - entity: climate.thermostat_thermostat
+        type: 'custom:simple-thermostat'
+      - entity: media_player.xiaomi_mi_box_s
+        type: media-control
+      - dark_mode: false
+        entities:
+          - entity: zone.home
+          - entity: zone.cf
+          - entity: zone.lab
+          - entity: person.felix
+          - entity: person.anna
+        hours_to_show: 0
+        type: map
+      - cards:
+          - title: Shopping List
+            type: shopping-list
+        id: shopping
         type: vertical-stack
-        cards:
-          - type: shopping-list
-            title: Shopping List
-
-      - id: map
-        type: vertical-stack
-        cards:
-          - type: map
-            entities:
-              - zone.home
-              - zone.cf
-              - zone.uni
-              - !secret tracker_0
-
-      - id: roobert
-        type: custom:vertical-stack-in-card
-        title: Roobert
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                entity: vacuum.roobert
+      - cards:
+          - cards:
+              - entity: vacuum.roobert
+                icon: 'mdi:play-pause'
                 name: run/pause
                 tap_action:
                   action: call-service
                   service: vacuum.start_pause
-                  #service_data:
-                  #  entity_id: vaccum.roobert
-                icon: mdi:play-pause
-
-              - type: entity-button
-                entity: vacuum.roobert
+                type: entity-button
+              - entity: vacuum.roobert
+                icon: 'mdi:stop'
                 name: stop
                 tap_action:
                   action: call-service
                   service: vacuum.stop
-                  #service_data:
-                  #  entity_id: vacuum.roobert
-                icon: mdi:stop
-
-              - type: entity-button
-                entity: vacuum.roobert
+                type: entity-button
+              - entity: vacuum.roobert
+                icon: 'mdi:home-map-marker'
                 name: go home
                 tap_action:
                   action: call-service
                   service: vacuum.return_to_base
-                  #service_data:
-                  #  entity_id: vacuum.roobert
-                icon: mdi:home-map-marker
-
-          - type: entities
-            entities:
+                type: entity-button
+            type: horizontal-stack
+          - entities:
               - entity: sensor.roobert_status
                 name: Status
-              - entity: sensor.roobert_battery
-                name: Battery level
-
-          - type: history-graph
-            hours_to_show: 72
+              - entity: binary_sensor.roobert_bin_full
+                name: Bin full?
+            type: entities
+          - color_thresholds:
+              - color: green
+                value: 100
+              - color: orange
+                value: 50
+              - color: red
+                value: 0
             entities:
               - entity: sensor.roobert_battery
-                name: Battery level
-
-  #########################################
-
-  - id: lights
-    title: Lights
-    icon: mdi:lightbulb
-    panel: true
-    cards:
-      - type: custom:layout-card
-        layout: auto
-        cards:
-          - type: custom:layout-card
-            layout: horizontal
-            column_num: 6
-            cards:
-              - type: entity-button
-                name: Dimmed
-                icon: mdi:brightness-6
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.dim_all
-                entity: scene.dim_all
-
-              - type: entity-button
-                name: Futter
-                icon: mdi:silverware-variant
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.futter
-                entity: scene.futter
-
-              - type: entity-button
-                name: Movie
-                icon: mdi:movie
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.movie_time
-                entity: scene.movie_time
-
-              - type: entity-button
-                name: Night
-                icon: mdi:bed-empty
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.nightlight
-                entity: scene.nightlight
-
-              - type: entity-button
-                name: Puff
-                icon: mdi:heart-multiple
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.sexy_time
-                entity: scene.sexy_time
-
-              - type: entity-button
-                name: All Off
-                icon: mdi:lightbulb-off
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.all_off
-                entity: scene.all_off
-
-          - type: custom:vertical-stack-in-card
-            title: Table
-            cards:
-              - type: entities
-                entities:
-                  - type: custom:slider-entity-row
-                    entity: light.hue_1
-                    toggle: true
-                    min: 1
-                  - type: custom:slider-entity-row
-                    entity: light.hue_2
-                    toggle: true
-                    min: 1
-              - type: light
-                entity: light.table
-                name: Table
-
-          - type: custom:vertical-stack-in-card
-            title: Couch
-            cards:
-              - type: entities
-                entities:
-                  - type: custom:slider-entity-row
-                    entity: light.couch
-                    name: Couch
-                    toggle: true
-                    min: 1
-              - type: light
-                entity: light.couch
+            hours_to_show: 72
+            lower_bound: 0
+            show:
+              labels: true
+              points: false
+            type: 'custom:mini-graph-card'
+            upper_bound: 100
+        id: roobert
+        title: Roobert
+        type: 'custom:vertical-stack-in-card'
+      - card:
+          show_state: false
+          title: Active Devices
+          type: glance
+        filter:
+          exclude:
+            - domain: group
+            - domain: person
+            - state: not_home
+            - state: unavailable
+            - attributes:
+                source_type: bluetooth
+          include:
+            - domain: device_tracker
+            - state: home
+        id: devices
+        type: 'custom:auto-entities'
+    icon: 'mdi:home'
+    id: home
+    path: home
+    theme: Backend-selected
+    title: Home
+  - cards:
+      - cards:
+          - entity: scene.dim_all
+            icon: 'mdi:brightness-6'
+            name: Dimmed
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.dim_all
+            type: entity-button
+          - entity: scene.futter
+            icon: 'mdi:silverware-variant'
+            name: Futter
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.futter
+            type: entity-button
+          - entity: scene.movie_time
+            icon: 'mdi:movie'
+            name: Movie
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.movie_time
+            type: entity-button
+          - entity: scene.nightlight
+            icon: 'mdi:bed-empty'
+            name: Night
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.nightlight
+            type: entity-button
+          - entity: scene.sexy_time
+            icon: 'mdi:heart-multiple'
+            name: Puff
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.sexy_time
+            type: entity-button
+          - entity: scene.all_off
+            icon: 'mdi:lightbulb-off'
+            name: All Off
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.all_off
+            type: entity-button
+        column_num: 6
+        layout: horizontal
+        type: 'custom:layout-card'
+      - cards:
+          - entities:
+              - entity: light.hue_table_1
+                min: 1
+                toggle: true
+                type: 'custom:slider-entity-row'
+              - entity: light.hue_table_2
+                min: 1
+                toggle: true
+                type: 'custom:slider-entity-row'
+            type: entities
+          - entity: light.table
+            name: Table
+            type: light
+        title: Table
+        type: 'custom:vertical-stack-in-card'
+      - cards:
+          - entities:
+              - entity: light.couch_muller_candle
+                min: 1
                 name: Couch
-
-          - type: custom:vertical-stack-in-card
-            title: Bedroom
-            cards:
-              - type: entities
-                entities:
-                  - type: custom:slider-entity-row
-                    entity: light.hue_3
-                    toggle: true
-                    min: 1
-                  - type: custom:slider-entity-row
-                    entity: light.tradfri_candle
-                    name: Tradfri Candle
-                    toggle: true
-                    min: 1
-              - type: light
-                entity: light.bedroom
-                name: Bedroom
-
-  #########################################
-
-  - id: weather
-    title: Weather
-    icon: mdi:weather-partly-cloudy
+                toggle: true
+                type: 'custom:slider-entity-row'
+            type: entities
+          - entity: light.couch
+            name: Couch
+            type: light
+        title: Couch
+        type: 'custom:vertical-stack-in-card'
+      - cards:
+          - entities:
+              - entity: light.ikea_tradfri_bulb
+                min: 1
+                toggle: true
+                type: 'custom:slider-entity-row'
+              - entity: light.bedroom_tradfri_candle
+                min: 1
+                toggle: true
+                type: 'custom:slider-entity-row'
+            type: entities
+          - entity: light.bedroom
+            name: Bedroom
+            type: light
+        title: Bedroom
+        type: 'custom:vertical-stack-in-card'
+    icon: 'mdi:lightbulb'
+    id: lights
+    panel: false
+    path: lights
+    title: Lights
+  - badges: []
     cards:
-      - type: entities
-        title: Graz
-        show_header_toggle: false
-        entities:
-          - entity: sensor.dark_sky_summary
-            name: Summary (DarkSky)
-          - entity: sensor.owm_forecast
-            name: Forecast (OWM)
-          - entity: sensor.graz_temperature
-            name: Temperature (ZAMG)
-          - entity: sensor.dark_sky_apparent_temperature
-            name: Feels like (DarSky)
-          - entity: sensor.graz_wind_speed
-            name: Wind Speed (ZAMG)
-            icon: mdi:weather-windy
-          - entity: sensor.owm_rain
-            name: Rain (OWM)
-            icon: mdi:weather-rainy
-          - entity: sensor.graz_precipitation
-            name: Precipitation (ZAMG)
-            icon: mdi:water
-          - entity: sensor.graz_humidity
-            name: Humidity (ZAMG)
-            icon: mdi:water-percent
-          - entity: sensor.owm_snow
-            name: Snow (OWM)
-            icon: mdi:weather-snowy
-          - entity: sensor.graz_pressure
-            name: Pressure (ZAMG)
-            icon: mdi:gauge
-          - entity: sensor.luftdaten_22841_p1
-            name: Particulates P1 (<10µm)
-          - entity: sensor.luftdaten_22841_p2
-            name: Particulates P2 (<2.5µm)
-
-      - type: weather-forecast
-        entity: weather.dark_sky
-
-      - type: weather-forecast
-        entity: weather.openweathermap
-
-      - type: history-graph
-        title: Temperature
-        hours_to_show: 72
-        refresh_interval: 10
+      - cards:
+          - color_thresholds:
+              - color: blue
+                value: 10
+              - color: green
+                value: 20
+              - color: orange
+                value: 30
+              - color: red
+                value: 40
+            height: 200
+            entities:
+              - entity: sensor.netatmo_balkon_temperature
+            hours_to_show: 72
+            lower_bound: ~10
+            refresh_interval: 10
+            show:
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~40
+          - color_thresholds:
+              - color: blue
+                value: 90
+              - color: green
+                value: 60
+              - color: green
+                value: 40
+              - color: gray
+                value: 20
+            height: 200
+            entities:
+              - entity: sensor.netatmo_balkon_humidity
+            hours_to_show: 72
+            lower_bound: ~0
+            refresh_interval: 10
+            show:
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~100
+          - entities:
+              - entity: sensor.netatmo_balkon_battery_percent
+              - entity: sensor.netatmo_balkon_radio
+            show_header_toggle: false
+            type: entities
+        title: Balkon
+        type: 'custom:vertical-stack-in-card'
+      - entity: weather.zamg_unknown_station
+        name: ZAMG
+        type: 'custom:weather-card'
+      - color_thresholds:
+          - color: red
+            value: 40
+          - color: orange
+            value: 30
+          - color: green
+            value: 20
+          - color: blue
+            value: 10
         entities:
           - entity: sensor.mean_temperature
-            name: Combined (ZAMG, DarkSky, OWM)
-
-      - type: history-graph
-        title: Humidity
+        height: 200
         hours_to_show: 72
+        icon: 'mdi:thermometer'
+        lower_bound: ~10
+        name: 'Mean Temeprature (Netatmo, ZAMG)'
         refresh_interval: 10
-        entities:
+        show:
+          extrema: true
+          labels: true
+        type: 'custom:mini-graph-card'
+        upper_bound: ~40
+      - entities:
           - entity: sensor.mean_humidity
-            name: Combined (ZAMG, DarkSky, OWM)
-
-      - type: history-graph
-        title: Wind
         hours_to_show: 72
+        icon: 'mdi:water-percent'
+        lower_bound: ~0
+        name: 'Mean Humidity (Netatmo, ZAMG)'
         refresh_interval: 10
-        entities:
+        type: 'custom:mini-graph-card'
+        upper_bound: ~100
+      - entities:
           - entity: sensor.mean_wind_speed
-            name: Combined (ZAMG, DarkSky, OWM)
-
-      - type: history-graph
-        title: Pressure
         hours_to_show: 72
+        icon: 'mdi:weather-windy'
+        lower_bound: 0
+        name: Wind (ZAMG)
         refresh_interval: 10
-        entities:
+        type: 'custom:mini-graph-card'
+      - entities:
           - entity: sensor.mean_pressure
-            name: Combined (ZAMG, DarkSky, OWM)
-
-      - type: history-graph
-        title: Precipitation
         hours_to_show: 72
+        icon: 'mdi:gauge'
+        name: Pressure (ZAMG)
         refresh_interval: 10
-        entities:
+        show:
+          extrema: true
+          labels: true
+        title: Pressure
+        type: 'custom:mini-graph-card'
+      - entities:
           - entity: sensor.graz_precipitation
-            name: Intensity (ZAMG)
-          - entity: sensor.dark_sky_precip_probabilty
-            name: Probability (DarkSky)
+            name: Precipitation
           - entity: sensor.dark_sky_precip_intensity
-            name: Intensity (DarkSky)
-
-      - type: history-graph
-        title: Visibility
+            name: Intensity
+            y_axis: secondary
         hours_to_show: 72
         refresh_interval: 10
-        entities:
-          - entity: sensor.dark_sky_visibility
-            name: DarkSky
-
-      - type: history-graph
-        title: Dew point
-        hours_to_show: 72
-        refresh_interval: 10
-        entities:
+        show:
+          labels: true
+          labels_secondary: true
+        height: 200
+        type: 'custom:mini-graph-card'
+      - entities:
           - entity: sensor.mean_dewpoint
-            name: Combined (ZAMG & DarkSky)
-
-      - type: history-graph
-        title: Particulates
         hours_to_show: 72
+        icon: 'mdi:coolant-temperature'
+        name: Dew Point (ZAMG)
         refresh_interval: 10
-        entities:
-          - entity: sensor.luftdaten_22841_p1
-            name: P1 (<10µm)
-          - entity: sensor.luftdaten_22841_p2
-            name: P2 (<2.5µm)
-
-  #########################################
-
-  - id: system
-    title: System
-    icon: mdi:chip
+        show:
+          extrema: true
+          labels: true
+        type: 'custom:mini-graph-card'
+    icon: 'mdi:weather-partly-cloudy'
+    id: weather
+    path: weather
+    title: Weather
+  - badges: []
     cards:
-      - id: plex
-        type: custom:monster-card
-        card:
+      - card:
+          show_header_toggle: false
           title: Plex
-          show_header_toggle: false
+          type: entities
         filter:
+          exclude:
+            - state: unavailable
           include:
-            - entity_id: "*plex*"
-
-      - id: pihole
-        type: custom:monster-card
-        card:
+            - entity_id: '*plex*'
+        id: plex
+        type: 'custom:auto-entities'
+      - card:
+          show_header_toggle: false
           title: PiHole
-          show_header_toggle: false
+          type: entities
         filter:
           include:
-            - entity_id: "*pi_hole*"
-            - entity_id: "*pihole*"
-
-      - id: uptime
-        type: entities
-        title: UptimeRobot
-        show_header_toggle: false
-        entities:
+            - entity_id: '*pi_hole*'
+            - entity_id: '*pihole*'
+        id: pihole
+        type: 'custom:auto-entities'
+      - entities:
           - binary_sensor.nas
           - binary_sensor.vserv
           - binary_sensor.raspi
-
-      - id: ups
-        type: custom:vertical-stack-in-card
-        cards:
-          - type: custom:monster-card
-            card:
-              title: UPS
+        id: uptime
+        show_header_toggle: false
+        title: UptimeRobot
+        type: entities
+      - cards:
+          - card:
               show_header_toggle: false
+              title: UPS
+              type: entities
             filter:
-              include:
-                - entity_id: "*sensor.ups*"
               exclude:
                 - entity_id: sensor.ups_battery
                 - entity_id: sensor.ups_load
-
-          - type: horizontal-stack
-            cards:
-              - type: gauge
-                entity: sensor.ups_battery
-                title: UPS Battery
+              include:
+                - entity_id: '*sensor.ups*'
+            type: 'custom:auto-entities'
+          - cards:
+              - entity: sensor.ups_battery
                 severity:
+                  green: 75
                   red: 0
                   yellow: 50
-                  green: 75
-
-              - type: gauge
-                entity: sensor.ups_load
-                title: UPS Load
+                title: UPS Battery
+                type: gauge
+              - entity: sensor.ups_load
                 severity:
                   green: 0
-                  yellow: 50
                   red: 75
-
-      - id: stats
-        type: custom:vertical-stack-in-card
-        title: System Stats
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: gauge
-                entity: sensor.processor_use
+                  yellow: 50
+                title: UPS Load
+                type: gauge
+            type: horizontal-stack
+        id: ups
+        type: 'custom:vertical-stack-in-card'
+      - cards:
+          - cards:
+              - entity: sensor.processor_use
                 name: CPU Usage
                 severity:
                   green: 0
-                  yellow: 50
                   red: 80
-              - type: gauge
-                entity: sensor.memory_use_percent
+                  yellow: 50
+                type: gauge
+              - entity: sensor.memory_use_percent
                 name: Memory Usage
                 severity:
                   green: 0
-                  yellow: 50
                   red: 80
-
-          - type: history-graph
-            hours_to_show: 72
-            refresh_interval: 1
+                  yellow: 50
+                type: gauge
+            type: horizontal-stack
+          - color_thresholds:
+              - color: blue
+                value: 20
+              - color: green
+                value: 30
+              - color: orange
+                value: 40
+              - color: red
+                value: 60
             entities:
+              - entity: sensor.temperature_zone0
+                name: CPU Temperature
+            hours_to_show: 24
+            height: 200
+            lower_bound: ~20
+            points_per_hour: 6
+            refresh_interval: 1
+            show:
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~50
+          - cards:
+              - entity: sensor.load_1m
+                max: 3
+                min: 0
+                name: load 1
+                severity:
+                  green: 0
+                  red: 2
+                  yellow: 1
+                type: gauge
+              - entity: sensor.load_5m
+                max: 3
+                min: 0
+                name: load 5
+                severity:
+                  green: 0
+                  red: 2
+                  yellow: 1
+                type: gauge
+              - entity: sensor.load_15m
+                max: 3
+                min: 0
+                name: load 15
+                severity:
+                  green: 0
+                  red: 2
+                  yellow: 1
+                type: gauge
+            type: horizontal-stack
+            title: System Load
+          - entities:
               - entity: sensor.load_1m
                 name: Load1
               - entity: sensor.load_5m
                 name: Load5
               - entity: sensor.load_15m
                 name: Load15
-          - type: horizontal-stack
-            cards:
-              - type: gauge
-                entity: sensor.load_1m
-                name: load 1
-                min: 0
-                max: 3
-                severity:
-                  green: 0
-                  yellow: 1
-                  red: 2
-              - type: gauge
-                entity: sensor.load_5m
-                name: load 5
-                min: 0
-                max: 3
-                severity:
-                  green: 0
-                  yellow: 1
-                  red: 2
-              - type: gauge
-                entity: sensor.load_15m
-                name: load 15
-                min: 0
-                max: 3
-                severity:
-                  green: 0
-                  yellow: 1
-                  red: 2
-
-          - type: history-graph
-            hours_to_show: 72
-            refresh_interval: 1
-            entities:
-              - entity: sensor.temperature_zone0
-                name: In
-              - entity: sensor.temperature_zone1
-                name: Mainboard
-              - entity: sensor.temperature_zone2
-                name: CPU
-          - type: horizontal-stack
-            cards:
-              - type: gauge
-                entity: sensor.temperature_zone0
-                name: Temp 0
-                min: 0
-                max: 70
-                severity:
-                  green: 50
-                  yellow: 60
-                  red: 70
-              - type: gauge
-                entity: sensor.temperature_zone1
-                name: Temp 1
-                min: 0
-                max: 70
-                severity:
-                  green: 50
-                  yellow: 60
-                  red: 70
-              - type: gauge
-                entity: sensor.temperature_zone2
-                name: Temp 2
-                min: 0
-                max: 70
-                severity:
-                  green: 50
-                  yellow: 60
-                  red: 70
-
-      - type: custom:tracker-card
-        title:
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
-
-      - type: custom:zigbee2mqtt-networkmap
-        entity: sensor.zigbee2mqtt_networkmap
+            hours_to_show: 24
+            line_width: 2
+            lower_bound: 0
+            height: 200
+            name: Load
+            points_per_hour: 12
+            show:
+              extrema: true
+              fill: false
+              labels: true
+              points: false
+              state: false
+            type: 'custom:mini-graph-card'
+            update_interval: 1
+            upper_bound: ~8
+        id: stats
+        title: System Stats
+        type: 'custom:vertical-stack-in-card'
+      - entity: sensor.zigbee2mqtt_networkmap
+        type: 'custom:zigbee2mqtt-networkmap'
+    icon: 'mdi:chip'
+    id: system
+    path: system
+    title: System

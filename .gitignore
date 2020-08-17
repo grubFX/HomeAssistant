@@ -8,10 +8,16 @@
 !ui-lovelace.yaml
 !README.md
 !pics
-!pics/*
-!www
-!www/*.js
+!pics/**
 !custom_components
-!custom_components/*.py
+!custom_components/**
 !plants.yaml
 !sensors.yaml
+# also track community addons from HACS
+!www
+!www/**
+# ... but ignore gz files
+**.gz
+
+# and finally make sure to exclude pycache folders
+*__pycache__*

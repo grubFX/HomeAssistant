@@ -18,13 +18,15 @@ sensor: !include sensors.yaml
 plant: !include plants.yaml
 person: !include persons.yaml
 
+mobile_app:
+
 frontend:
   javascript_version: auto
+  themes: !include themes.yaml
 
 config:
 
 lovelace:
-  mode: yaml
 
 api:
 
@@ -33,11 +35,6 @@ system_health:
 auth:
 
 updater:
-
-custom_updater:
-  track:
-    - cards
-    - components
 
 discovery:
 
@@ -56,6 +53,7 @@ sun:
 history:
 
 recorder:
+  db_url: !secret sql_db_url
   purge_keep_days: 7
   purge_interval: 1
   exclude:
@@ -77,25 +75,19 @@ tts:
     service_name: google_say
 
 device_tracker:
-  - platform: google_maps
-    username: !secret google_email
-    new_device_defaults:
-        track_new_devices: true
-        hide_if_away: true
   - platform: nmap_tracker
     hosts: !secret ip_range
     exclude:
       - !secret raspi_ip
+      - !secret nas_ip
     home_interval: 1
     new_device_defaults:
         track_new_devices: true
-        hide_if_away: true
-  - platform: bluetooth_tracker
- 
+
 binary_sensor:
   - platform: workday
     country: AT
-    province: ST
+    province: 8 
   - platform: uptimerobot
     api_key: !secret uptimerobot_api_key
   - platform: apcupsd
@@ -123,7 +115,6 @@ telegram_bot:
     api_key: !secret telegram_bot_api_key 
     allowed_chat_ids:
       - !secret chat_id_0
-#      - !secret chat_id_1
 
 notify:
   - name: grubFX Notifier
@@ -144,3 +135,59 @@ proximity:
     devices:
       - !secret tracker_0
     tolerance: 50
+
+google_assistant:
+  project_id: grubFX-home-assistant
+  service_account: !include SERVICE_ACCOUNT.json
+  report_state: true
+
+
+
+climate:
+  - platform: zwave
+
+hue:
+  bridges:
+    - host: !secret hue_bridge_ip
+      allow_unreachable: true
+      allow_hue_groups: true
+
+media_player:
+  - platform: androidtv
+    host: !secret mibox_ip
+    apps:
+      tv.arte.plus7: "Arte"
+      com.nousguide.android.orftvthek: "ORF TVthek"
+      com.amazon.amazonvideo.livingroom: "Amazon Prime Video"
+      com.nousguide.android.rbtv: "Red Bull TV"
+      com.zdf.android.mediathek: "ZDFmediathek"
+      com.zppntv: "ZAPPN TV"
+      com.codingbuffalo.aerialdream: "Screensaver"
+      de.prosiebensat1digital.sat1: "SAT.1"
+    state_detection_rules:
+      'com.netflix.ninja':
+        - 'media_session_state'
+      'com.plexapp.android':
+        - 'paused':
+            'media_session_state': 3  # this indentation is important!
+            'wake_lock_size': 1       # this indentation is important!
+        - 'playing':
+            'media_session_state': 3  # this indentation is important!
+        - 'standby'
+
+wake_on_lan:
+
+mqtt:
+  discovery: true
+  discovery_prefix: zwave2mqtt
+  broker: !secret mqtt_broker
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+
+netatmo:
+  client_id: !secret netatmo_id
+  client_secret: !secret netatmo_secret
