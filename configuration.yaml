@@ -1,10 +1,4 @@
 homeassistant:
-  name: Home
-  latitude: !secret lat
-  longitude: !secret long
-  elevation: 350
-  unit_system: metric
-  time_zone: Europe/Vienna
   customize: !include customize.yaml
   auth_mfa_modules:
     - type: totp
@@ -12,16 +6,20 @@ homeassistant:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
-zone: !include zones.yaml
 scene: !include scenes.yaml
 sensor: !include sensors.yaml
 plant: !include plants.yaml
 person: !include persons.yaml
 
+zone:
+  - name: Home
+    latitude: !secret lat
+    longitude: !secret long
+    radius: 50
+
 mobile_app:
 
 frontend:
-  javascript_version: auto
   themes: !include themes.yaml
 
 config:
@@ -44,12 +42,11 @@ light:
 
 sun:
   elevation: 350
-
   #device_sun_light_trigger:
   #  light_group: group.main_lights
   #  device_group: group.people
   #  disable_turn_off: 1
-        
+
 history:
 
 recorder:
@@ -82,37 +79,28 @@ device_tracker:
       - !secret nas_ip
     home_interval: 1
     new_device_defaults:
-        track_new_devices: true
+      track_new_devices: true
 
 binary_sensor:
   - platform: workday
     country: AT
-    province: 8 
+    province: 8
   - platform: uptimerobot
     api_key: !secret uptimerobot_api_key
   - platform: apcupsd
 
 weather:
-  - platform: openweathermap
-    api_key: !secret owm_api_key
   - platform: darksky
     api_key: !secret darksky_api_key
   - platform: zamg
 
 apcupsd:
 
-vacuum:
-  - platform: roomba
-    host: !secret roomba_ip
-    username: !secret roomba_blid
-    password: !secret roomba_pw
-    name: Roobert
-
 shopping_list:
 
 telegram_bot:
   - platform: broadcast
-    api_key: !secret telegram_bot_api_key 
+    api_key: !secret telegram_bot_api_key
     allowed_chat_ids:
       - !secret chat_id_0
 
@@ -122,7 +110,7 @@ notify:
     chat_id: !secret chat_id_0
 
 pi_hole:
-  host: !secret pihole_host 
+  host: !secret pihole_host
   api_key: !secret pihole_api_key
 
 proximity:
@@ -140,11 +128,6 @@ google_assistant:
   project_id: grubFX-home-assistant
   service_account: !include SERVICE_ACCOUNT.json
   report_state: true
-
-
-
-climate:
-  - platform: zwave
 
 hue:
   bridges:
@@ -165,15 +148,15 @@ media_player:
       com.codingbuffalo.aerialdream: "Screensaver"
       de.prosiebensat1digital.sat1: "SAT.1"
     state_detection_rules:
-      'com.netflix.ninja':
-        - 'media_session_state'
-      'com.plexapp.android':
-        - 'paused':
-            'media_session_state': 3  # this indentation is important!
-            'wake_lock_size': 1       # this indentation is important!
-        - 'playing':
-            'media_session_state': 3  # this indentation is important!
-        - 'standby'
+      "com.netflix.ninja":
+        - "media_session_state"
+      "com.plexapp.android":
+        - "paused":
+            "media_session_state": 3 # this indentation is important!
+            "wake_lock_size": 1 # this indentation is important!
+        - "playing":
+            "media_session_state": 3 # this indentation is important!
+        - "standby"
 
 wake_on_lan:
 
@@ -182,11 +165,11 @@ mqtt:
   discovery_prefix: zwave2mqtt
   broker: !secret mqtt_broker
   birth_message:
-    topic: 'hass/status'
-    payload: 'online'
+    topic: "hass/status"
+    payload: "online"
   will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+    topic: "hass/status"
+    payload: "offline"
 
 netatmo:
   client_id: !secret netatmo_id

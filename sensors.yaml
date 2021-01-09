@@ -7,18 +7,6 @@
     - temperature
     - precipitation
     - dewpoint
-- platform: openweathermap
-  api_key: !secret owm_api_key
-  forecast: true
-  monitored_conditions:
-    - weather
-    - temperature
-    - wind_speed
-    - humidity
-    - pressure
-    - clouds
-    - rain
-    - snow
 - platform: darksky
   api_key: !secret darksky_api_key
   monitored_conditions:
@@ -130,6 +118,7 @@
   display_options:
     - 'time'
     - 'date'
+    - 'date_time_iso'
     - 'beat'
 - platform: apcupsd
   resources:
@@ -173,3 +162,19 @@
   value_template: '{{ value_json.currentTracking.activity.name }}'
   headers:
     Authorization: !secret timeular_token
+
+- platform: radarr_upcoming_media
+  api_key: !secret radarr_api_key
+  host: !secret nas_ip
+  port: 7878
+  days: 14
+  ssl: false
+  max: 10
+
+- platform: sonarr_upcoming_media
+  api_key: !secret sonarr_api_key
+  host: !secret nas_ip
+  port: 8989
+  days: 14
+  ssl: false
+  max: 10

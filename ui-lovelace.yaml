@@ -35,10 +35,97 @@ resources:
     url: /community_plugin/rgb-light-card/card.js
   - type: module
     url: /community_plugin/simple-thermostat/simple-thermostat.js
+  - type: js
+    url: /community_plugin/upcoming-media-card/upcoming-media-card.js
 title: Home
 views:
-  - badges: []
+  - icon: 'mdi:home'
+    id: home
+    path: home
+    theme: Backend-selected
+    title: Home
+    panel: false
+    badges: []
     cards:
+      - show_header_toggle: false
+        title: Date & Time
+        state_color: false
+        type: entities
+        entities:
+          - entity: sensor.date_time_iso
+            format: date
+          - entity: sensor.internet_time
+          - entity: binary_sensor.workday_sensor
+          - type: divider
+          - entity: sensor.anniversary_jahrestag
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - type: divider
+          - entity: sensor.birthday_karl
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_eva
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_bernhard
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_michaela
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_felix
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_anna
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_mimi
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_theresa
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_franziska
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+          - entity: sensor.birthday_sebastian
+            type: 'custom:multiple-entity-row'
+            secondary_info:
+              attribute: years_at_next_anniversary
+      - card:
+          show_state: true
+          title: People
+          type: glance
+        filter:
+          include:
+            - domain: person
+        id: people
+        type: 'custom:auto-entities'
+      - card:
+          show_state: false
+          title: Active Devices
+          type: glance
+        filter:
+          exclude:
+            - domain: group
+            - domain: person
+            - state: not_home
+            - state: unavailable
+          include:
+            - state: home
+            - domain: device_tracker
+        unique: true
+        type: 'custom:auto-entities'
       - cards:
           - color_thresholds:
               - color: blue
@@ -49,9 +136,9 @@ views:
                 value: 30
               - color: red
                 value: 35
-            height: 200
             entities:
-              - entity: sensor.netatmo_luftstange_temperature
+              - entity: sensor.netatmo_netatmo_temperature
+            height: 100
             hours_to_show: 72
             lower_bound: ~20
             refresh_interval: 10
@@ -71,7 +158,8 @@ views:
               - color: gray
                 value: 20
             entities:
-              - entity: sensor.netatmo_luftstange_humidity
+              - entity: sensor.netatmo_netatmo_humidity
+            height: 100
             hours_to_show: 72
             lower_bound: ~0
             refresh_interval: 10
@@ -80,10 +168,9 @@ views:
               extrema: true
               labels: true
             type: 'custom:mini-graph-card'
-            height: 200
             upper_bound: ~100
           - cards:
-              - entity: sensor.netatmo_luftstange_co2
+              - entity: sensor.netatmo_netatmo_co2
                 max: 2000
                 severity:
                   green: 0
@@ -91,7 +178,7 @@ views:
                   yellow: 500
                 title: CO2
                 type: gauge
-              - entity: sensor.netatmo_luftstange_noise
+              - entity: sensor.netatmo_netatmo_noise
                 severity:
                   green: 0
                   red: 50
@@ -100,34 +187,12 @@ views:
                 type: gauge
             type: horizontal-stack
           - entities:
-              - entity: sensor.netatmo_luftstange_pressure
-              - entity: sensor.netatmo_luftstange_wifi
+              - entity: sensor.netatmo_netatmo_pressure
+              - entity: sensor.netatmo_netatmo_wifi
             show_header_toggle: false
             type: entities
-        title: Luftstange
+            title: Luftstange
         type: 'custom:vertical-stack-in-card'
-      - entities:
-          - sensor.date
-          - sensor.time
-          - sensor.internet_time
-          - binary_sensor.workday_sensor
-        id: time
-        show_header_toggle: false
-        title: Date & Time
-        type: entities
-      - card:
-          show_state: true
-          title: People
-          type: glance
-        filter:
-          include:
-            - domain: person
-        id: people
-        type: 'custom:auto-entities'
-      - entity: climate.thermostat_thermostat
-        type: 'custom:simple-thermostat'
-      - entity: media_player.xiaomi_mi_box_s
-        type: media-control
       - dark_mode: false
         entities:
           - entity: zone.home
@@ -138,37 +203,7 @@ views:
         hours_to_show: 0
         type: map
       - cards:
-          - title: Shopping List
-            type: shopping-list
-        id: shopping
-        type: vertical-stack
-      - cards:
-          - cards:
-              - entity: vacuum.roobert
-                icon: 'mdi:play-pause'
-                name: run/pause
-                tap_action:
-                  action: call-service
-                  service: vacuum.start_pause
-                type: entity-button
-              - entity: vacuum.roobert
-                icon: 'mdi:stop'
-                name: stop
-                tap_action:
-                  action: call-service
-                  service: vacuum.stop
-                type: entity-button
-              - entity: vacuum.roobert
-                icon: 'mdi:home-map-marker'
-                name: go home
-                tap_action:
-                  action: call-service
-                  service: vacuum.return_to_base
-                type: entity-button
-            type: horizontal-stack
           - entities:
-              - entity: sensor.roobert_status
-                name: Status
               - entity: binary_sensor.roobert_bin_full
                 name: Bin full?
             type: entities
@@ -184,35 +219,16 @@ views:
             hours_to_show: 72
             lower_bound: 0
             show:
+              state: false
+              icon: false
               labels: true
               points: false
             type: 'custom:mini-graph-card'
             upper_bound: 100
-        id: roobert
+          - type: 'custom:vacuum-card'
+            entity: vacuum.roobert
         title: Roobert
         type: 'custom:vertical-stack-in-card'
-      - card:
-          show_state: false
-          title: Active Devices
-          type: glance
-        filter:
-          exclude:
-            - domain: group
-            - domain: person
-            - state: not_home
-            - state: unavailable
-            - attributes:
-                source_type: bluetooth
-          include:
-            - domain: device_tracker
-            - state: home
-        id: devices
-        type: 'custom:auto-entities'
-    icon: 'mdi:home'
-    id: home
-    path: home
-    theme: Backend-selected
-    title: Home
   - cards:
       - cards:
           - entity: scene.dim_all
@@ -322,59 +338,50 @@ views:
     panel: false
     path: lights
     title: Lights
+  - title: Media
+    icon: 'mdi:movie'
+    badges: []
+    cards:
+      - type: 'custom:upcoming-media-card'
+        entity: sensor.sonarr_upcoming_media
+        title: Upcoming TV
+      - type: 'custom:upcoming-media-card'
+        entity: sensor.radarr_upcoming_media
+        title: Upcoming Movies
+      - card:
+          show_header_toggle: false
+          title: Plex
+          type: entities
+        filter:
+          exclude:
+            - state: unavailable
+          include:
+            - entity_id: '*plex*'
+        id: plex
+        type: 'custom:auto-entities'
+      - entity: media_player.mibox
+        type: media-control
+      - type: media-control
+        entity: media_player.bedroom
+      - type: media-control
+        entity: media_player.gerauschkiste
+      - type: media-control
+        entity: media_player.all_speakers
+      - type: media-control
+        entity: media_player.bathroom
+      - type: media-control
+        entity: media_player.table
   - badges: []
     cards:
-      - cards:
-          - color_thresholds:
-              - color: blue
-                value: 10
-              - color: green
-                value: 20
-              - color: orange
-                value: 30
-              - color: red
-                value: 40
-            height: 200
-            entities:
-              - entity: sensor.netatmo_balkon_temperature
-            hours_to_show: 72
-            lower_bound: ~10
-            refresh_interval: 10
-            show:
-              extrema: true
-              labels: true
-            type: 'custom:mini-graph-card'
-            upper_bound: ~40
-          - color_thresholds:
-              - color: blue
-                value: 90
-              - color: green
-                value: 60
-              - color: green
-                value: 40
-              - color: gray
-                value: 20
-            height: 200
-            entities:
-              - entity: sensor.netatmo_balkon_humidity
-            hours_to_show: 72
-            lower_bound: ~0
-            refresh_interval: 10
-            show:
-              extrema: true
-              labels: true
-            type: 'custom:mini-graph-card'
-            upper_bound: ~100
-          - entities:
-              - entity: sensor.netatmo_balkon_battery_percent
-              - entity: sensor.netatmo_balkon_radio
-            show_header_toggle: false
-            type: entities
-        title: Balkon
-        type: 'custom:vertical-stack-in-card'
+      - type: iframe
+        url: >-
+          https://embed.windy.com/embed2.html?lat=47.06388&lon=15.440933&zoom=16&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=47.06388&detailLon=15.440933&metricWind=default&metricTemp=default&radarRange=-1
       - entity: weather.zamg_unknown_station
         name: ZAMG
         type: 'custom:weather-card'
+        number_of_forecasts: '7'
+        hourly_forecast: true
+        forecast: true
       - color_thresholds:
           - color: red
             value: 40
@@ -395,8 +402,59 @@ views:
         show:
           extrema: true
           labels: true
+          average: true
         type: 'custom:mini-graph-card'
         upper_bound: ~40
+      - cards:
+          - color_thresholds:
+              - color: blue
+                value: 10
+              - color: green
+                value: 20
+              - color: orange
+                value: 30
+              - color: red
+                value: 40
+            entities:
+              - entity: sensor.netatmo_netatmo_balkon_temperature
+            height: 200
+            hours_to_show: 72
+            lower_bound: ~10
+            refresh_interval: 10
+            show:
+              average: true
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~40
+          - color_thresholds:
+              - color: blue
+                value: 90
+              - color: green
+                value: 60
+              - color: green
+                value: 40
+              - color: gray
+                value: 20
+            entities:
+              - entity: sensor.netatmo_netatmo_balkon_humidity
+            height: 200
+            hours_to_show: 72
+            lower_bound: ~0
+            refresh_interval: 10
+            show:
+              average: true
+              extrema: true
+              labels: true
+            type: 'custom:mini-graph-card'
+            upper_bound: ~100
+          - entities:
+              - entity: sensor.netatmo_netatmo_balkon_battery_percent
+              - entity: sensor.netatmo_netatmo_balkon_radio
+            show_header_toggle: false
+            type: entities
+        title: Balkon
+        type: 'custom:vertical-stack-in-card'
       - entities:
           - entity: sensor.mean_humidity
         hours_to_show: 72
@@ -406,14 +464,15 @@ views:
         refresh_interval: 10
         type: 'custom:mini-graph-card'
         upper_bound: ~100
-      - entities:
-          - entity: sensor.mean_wind_speed
-        hours_to_show: 72
-        icon: 'mdi:weather-windy'
-        lower_bound: 0
-        name: Wind (ZAMG)
-        refresh_interval: 10
-        type: 'custom:mini-graph-card'
+        color_thresholds:
+          - color: blue
+            value: 90
+          - color: green
+            value: 60
+          - color: green
+            value: 40
+          - color: gray
+            value: 20
       - entities:
           - entity: sensor.mean_pressure
         hours_to_show: 72
@@ -423,7 +482,16 @@ views:
         show:
           extrema: true
           labels: true
+          average: true
         title: Pressure
+        type: 'custom:mini-graph-card'
+      - entities:
+          - entity: sensor.mean_wind_speed
+        hours_to_show: 72
+        icon: 'mdi:weather-windy'
+        lower_bound: 0
+        name: Wind (ZAMG)
+        refresh_interval: 10
         type: 'custom:mini-graph-card'
       - entities:
           - entity: sensor.graz_precipitation
@@ -431,12 +499,12 @@ views:
           - entity: sensor.dark_sky_precip_intensity
             name: Intensity
             y_axis: secondary
+        height: 200
         hours_to_show: 72
         refresh_interval: 10
         show:
           labels: true
           labels_secondary: true
-        height: 200
         type: 'custom:mini-graph-card'
       - entities:
           - entity: sensor.mean_dewpoint
@@ -447,6 +515,7 @@ views:
         show:
           extrema: true
           labels: true
+          average: true
         type: 'custom:mini-graph-card'
     icon: 'mdi:weather-partly-cloudy'
     id: weather
@@ -454,35 +523,6 @@ views:
     title: Weather
   - badges: []
     cards:
-      - card:
-          show_header_toggle: false
-          title: Plex
-          type: entities
-        filter:
-          exclude:
-            - state: unavailable
-          include:
-            - entity_id: '*plex*'
-        id: plex
-        type: 'custom:auto-entities'
-      - card:
-          show_header_toggle: false
-          title: PiHole
-          type: entities
-        filter:
-          include:
-            - entity_id: '*pi_hole*'
-            - entity_id: '*pihole*'
-        id: pihole
-        type: 'custom:auto-entities'
-      - entities:
-          - binary_sensor.nas
-          - binary_sensor.vserv
-          - binary_sensor.raspi
-        id: uptime
-        show_header_toggle: false
-        title: UptimeRobot
-        type: entities
       - cards:
           - card:
               show_header_toggle: false
@@ -513,9 +553,27 @@ views:
             type: horizontal-stack
         id: ups
         type: 'custom:vertical-stack-in-card'
+      - entities:
+          - binary_sensor.nas
+          - binary_sensor.vserv
+          - binary_sensor.raspi
+        id: uptime
+        show_header_toggle: false
+        title: UptimeRobot
+        type: entities
+      - card:
+          show_header_toggle: false
+          title: PiHole
+          type: entities
+        filter:
+          include:
+            - entity_id: '*pi_hole*'
+            - entity_id: '*pihole*'
+        id: pihole
+        type: 'custom:auto-entities'
       - cards:
           - cards:
-              - entity: sensor.processor_use
+              - entity: sensor.processor_use_percent
                 name: CPU Usage
                 severity:
                   green: 0
@@ -542,8 +600,8 @@ views:
             entities:
               - entity: sensor.temperature_zone0
                 name: CPU Temperature
-            hours_to_show: 24
             height: 200
+            hours_to_show: 24
             lower_bound: ~20
             points_per_hour: 6
             refresh_interval: 1
@@ -579,8 +637,8 @@ views:
                   red: 2
                   yellow: 1
                 type: gauge
-            type: horizontal-stack
             title: System Load
+            type: horizontal-stack
           - entities:
               - entity: sensor.load_1m
                 name: Load1
@@ -588,10 +646,10 @@ views:
                 name: Load5
               - entity: sensor.load_15m
                 name: Load15
+            height: 200
             hours_to_show: 24
             line_width: 2
             lower_bound: 0
-            height: 200
             name: Load
             points_per_hour: 12
             show:
@@ -602,12 +660,17 @@ views:
               state: false
             type: 'custom:mini-graph-card'
             update_interval: 1
-            upper_bound: ~8
+            upper_bound: ~1
         id: stats
         title: System Stats
         type: 'custom:vertical-stack-in-card'
-      - entity: sensor.zigbee2mqtt_networkmap
-        type: 'custom:zigbee2mqtt-networkmap'
+      - type: sensor
+        entity: sensor.test_humidity
+        graph: line
+      - type: sensor
+        entity: sensor.test_temperature
+        graph: line
+        detail: 1
     icon: 'mdi:chip'
     id: system
     path: system
