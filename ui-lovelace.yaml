@@ -299,7 +299,7 @@ views:
                 toggle: true
                 type: 'custom:slider-entity-row'
             type: entities
-          - entity: light.table
+          - entity: light.kitchen_lights
             name: Table
             type: light
         title: Table
@@ -312,7 +312,7 @@ views:
                 toggle: true
                 type: 'custom:slider-entity-row'
             type: entities
-          - entity: light.couch
+          - entity: light.couch_muller_candle
             name: Couch
             type: light
         title: Couch
@@ -328,7 +328,7 @@ views:
                 toggle: true
                 type: 'custom:slider-entity-row'
             type: entities
-          - entity: light.bedroom
+          - entity: light.bedroom_lights
             name: Bedroom
             type: light
         title: Bedroom

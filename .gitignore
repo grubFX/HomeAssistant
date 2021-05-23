@@ -13,6 +13,7 @@
 !custom_components/**
 !plants.yaml
 !sensors.yaml
+!lights.yaml
 # also track community addons from HACS
 !www
 !www/**

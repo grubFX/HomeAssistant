@@ -10,6 +10,7 @@ scene: !include scenes.yaml
 sensor: !include sensors.yaml
 plant: !include plants.yaml
 person: !include persons.yaml
+light: !include lights.yaml
 
 zone:
   - name: Home
@@ -37,8 +38,6 @@ updater:
 discovery:
 
 conversation:
-
-light:
 
 sun:
   elevation: 350

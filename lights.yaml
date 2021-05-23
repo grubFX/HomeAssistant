@@ -1,0 +1,11 @@
+- platform: group
+  name: Kitchen Lights
+  entities:
+    - light.hue_table_1
+    - light.hue_table_2
+
+- platform: group
+  name: Bedroom Lights
+  entities:
+    - light.ikea_tradfri_bulb
+    - light.bedroom_tradfri_candle
