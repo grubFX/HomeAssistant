@@ -12,12 +12,6 @@ plant: !include plants.yaml
 person: !include persons.yaml
 light: !include lights.yaml
 
-zone:
-  - name: Home
-    latitude: !secret lat
-    longitude: !secret long
-    radius: 50
-
 mobile_app:
 
 frontend:
@@ -173,3 +167,14 @@ mqtt:
 netatmo:
   client_id: !secret netatmo_id
   client_secret: !secret netatmo_secret
+
+home_connect:
+  client_id: !secret homeconnect_client_id
+  client_secret: !secret homeconnect_secret
+
+http:
+  base_url: !secret external_url
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - !secret raspi_ip

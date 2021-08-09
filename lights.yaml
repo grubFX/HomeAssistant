@@ -1,11 +1,14 @@
 - platform: group
-  name: Kitchen Lights
+  name: Couch Lights 
   entities:
-    - light.hue_table_1
-    - light.hue_table_2
+    - light.color_temperature_light_1_2
+    - light.color_temperature_light_2
+    - light.color_temperature_light_3
+    - light.color_temperature_light_4
+    - light.couch_muller_candle
 
 - platform: group
-  name: Bedroom Lights
+  name: Office Lights
   entities:
-    - light.ikea_tradfri_bulb
-    - light.bedroom_tradfri_candle
+    - light.hue_1
+    - light.tradfri_candle
