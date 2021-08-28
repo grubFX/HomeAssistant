@@ -1,49 +1,18 @@
   - name: Movie Time
     entities:
-      light.table:
+      light.couch_lights:
+        state: false
+      light.couch_muller_candle:
         state: true
-        brightness: 50 
+        brightness: 42 
         xy_color: [0.52, 0.41]
-      light.couch:
-        state: true
-        brightness: 10
-        color_temp: 326
-
-  - name: Sexy Time
+  - name: Reading
     entities:
-      light.table: false
-      light.bedroom:
+      light.couch_lights:
         state: true
-        brightness: 10
-        xy_color: [0.69, 0.3]
-      light.couch: false
-
-  - name: Futter
-    entities:
-      light.table:
-        state: true
-        brightness: 255
-        xy_color: [0.45, 0.41]
-      light.couch:
-        state: true
-        brightness: 100 
+        brightness: 42 
         xy_color: [0.52, 0.41]
-
-  - name: Dim All
-    entities:
-      light.main:
+      light.couch_muller_candle:
         state: true
-        brightness: 100
-        xy_color: [0.5, 0.414]
-
-  - name: Nightlight
-    entities:
-      light.bedroom_tradfri_candle:
-        state: true
-        brightness: 1
-        xy_color: [0.56, 0.4]
-      light.bedrom_hue: false
-
-  - name: All Off
-    entities:
-      group.all_lights: false
+        brightness: 80 
+        xy_color: [0.52, 0.41]

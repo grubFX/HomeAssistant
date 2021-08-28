@@ -52,6 +52,9 @@
       friendly_name: "Battery Level"
       value_template: "{{ state_attr('vacuum.roobert', 'battery_level') | int }}"
       icon_template: "{{ state_attr('vacuum.roobert', 'battery_icon') }}"
+    oomi_multisensor_lx:
+      unit_of_measurement: 'lx'
+      value_template: "{{ states('sensor.oomi_multisensor_illuminance') }}"
 - platform: min_max
   type: mean
   name: mean_dewpoint
@@ -178,3 +181,6 @@
   days: 14
   ssl: false
   max: 10
+
+- platform: opensky
+  radius: 10

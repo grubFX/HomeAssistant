@@ -14,6 +14,8 @@ light: !include lights.yaml
 
 mobile_app:
 
+my:
+
 frontend:
   themes: !include themes.yaml
 
@@ -35,10 +37,10 @@ conversation:
 
 sun:
   elevation: 350
-  #device_sun_light_trigger:
-  #  light_group: group.main_lights
-  #  device_group: group.people
-  #  disable_turn_off: 1
+
+device_sun_light_trigger:
+  light_group: light.couch_lights
+  device_group: group.people
 
 history:
 
@@ -65,14 +67,14 @@ tts:
     service_name: google_say
 
 device_tracker:
-  - platform: nmap_tracker
-    hosts: !secret ip_range
-    exclude:
-      - !secret raspi_ip
-      - !secret nas_ip
-    home_interval: 1
-    new_device_defaults:
-      track_new_devices: true
+        #  - platform: nmap_tracker
+        #    hosts: !secret ip_range
+        #    exclude:
+        #      - !secret raspi_ip
+        #      - !secret nas_ip
+        #    home_interval: 1
+        #    new_device_defaults:
+        #      track_new_devices: true
 
 binary_sensor:
   - platform: workday
@@ -81,6 +83,7 @@ binary_sensor:
   - platform: uptimerobot
     api_key: !secret uptimerobot_api_key
   - platform: apcupsd
+  - platform: iss
 
 weather:
   - platform: darksky
@@ -130,16 +133,16 @@ hue:
 
 media_player:
   - platform: androidtv
-    host: !secret mibox_ip
+    host: !secret kagis_tv_ip
     apps:
       tv.arte.plus7: "Arte"
       com.nousguide.android.orftvthek: "ORF TVthek"
       com.amazon.amazonvideo.livingroom: "Amazon Prime Video"
       com.nousguide.android.rbtv: "Red Bull TV"
       com.zdf.android.mediathek: "ZDFmediathek"
-      com.zppntv: "ZAPPN TV"
+      com.zappntv: "ZAPPN TV"
       com.codingbuffalo.aerialdream: "Screensaver"
-      de.prosiebensat1digital.sat1: "SAT.1"
+      de.prosiebensat1digital.sat1: "ProSieben / SAT.1"
     state_detection_rules:
       "com.netflix.ninja":
         - "media_session_state"

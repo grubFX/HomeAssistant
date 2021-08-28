@@ -5,10 +5,9 @@
     - light.color_temperature_light_2
     - light.color_temperature_light_3
     - light.color_temperature_light_4
-    - light.couch_muller_candle
 
 - platform: group
   name: Office Lights
   entities:
     - light.hue_1
-    - light.tradfri_candle
+    - light.extended_color_light_1
