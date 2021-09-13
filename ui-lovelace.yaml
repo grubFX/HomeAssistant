@@ -46,15 +46,6 @@ views:
     title: Home
     badges: []
     cards:
-      - show_header_toggle: false
-        title: Date & Time
-        state_color: false
-        type: entities
-        entities:
-          - entity: sensor.date_time_iso
-            format: date
-          - entity: sensor.internet_time
-          - entity: binary_sensor.workday_sensor
       - card:
           show_state: true
           title: People
@@ -64,22 +55,10 @@ views:
             - domain: person
         id: people
         type: custom:auto-entities
-      - card:
-          show_state: false
-          title: Active Devices
-          type: glance
-        filter:
-          exclude:
-            - domain: group
-            - domain: person
-            - state: not_home
-            - state: unavailable
-          include:
-            - state: home
-            - domain: device_tracker
-        unique: true
-        type: custom:auto-entities
-      - dark_mode: false
+      - show_header_toggle: false
+        title: Date & Time
+        state_color: false
+        type: entities
         entities:
           - entity: zone.home
           - entity: person.felix
@@ -113,6 +92,27 @@ views:
             entity: vacuum.roobert
         title: Roobert
         type: custom:vertical-stack-in-card
+      - dark_mode: true
+        entities:
+          - entity: zone.home
+          - entity: zone.bi
+        hours_to_show: 0
+        type: map
+      - card:
+          show_state: false
+          title: Active Devices
+          type: glance
+        filter:
+          exclude:
+            - domain: group
+            - domain: person
+            - state: not_home
+            - state: unavailable
+          include:
+            - state: home
+            - domain: device_tracker
+        unique: true
+        type: custom:auto-entities
   - icon: mdi:silverware
     id: lights
     path: diningroom
@@ -120,8 +120,24 @@ views:
     badges: []
     cards:
       - type: light
-        entity: light.ikea_tradfri_bulb
-        name: Table Light
+        entity: light.color_temperature_light_5
+        name: Dining Table
+      - card:
+          show_header_toggle: false
+          title: Dishwasher
+          type: entities
+        filter:
+          include:
+            - entity_id: '*dishbert*'
+            - entity_id: '*dishwasher_flood*'
+          exclude:
+            - domain: switch
+            - state: unavailable
+            - entity_id: '*low_battery*'
+            - entity_id: device_tracker.dishbert
+        type: custom:auto-entities
+        sort:
+          method: none
       - type: media-control
         entity: media_player.table
   - title: Living Room
@@ -129,12 +145,44 @@ views:
     path: livingroom
     badges: []
     cards:
+      - type: entities
+        entities:
+          - binary_sensor.balcony_door_access_control_window_door_is_open
+      - cards:
+          - entity: scene.movie_time
+            icon: mdi:movie
+            name: Movie
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.movie_time
+            type: entity-button
+            show_state: false
+          - entity: scene.reading
+            icon: mdi:book-open-variant
+            name: Reading
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+              service_data:
+                entity_id: scene.reading
+            type: entity-button
+        layout: horizontal
+        type: custom:layout-card
       - type: media-control
         entity: media_player.dht_s416_5595
+      - type: media-control
+        entity: media_player.android_tv
       - cards:
           - entities:
+              - entity: light.dimmable_light_1_2
+                name: Shelf Lightbar
+                min: 1
+                toggle: true
+                type: custom:slider-entity-row
               - entity: light.couch_muller_candle
-                name: Shelf Light
+                name: Side Light
                 min: 1
                 toggle: true
                 type: custom:slider-entity-row
@@ -220,9 +268,18 @@ views:
               - entity: light.hue_1
                 min: 1
                 toggle: true
-                name: Office Main
                 type: custom:slider-entity-row
-              - entity: light.tradfri_candle
+              - entity: light.hue_2
+                min: 1
+                toggle: true
+                type: custom:slider-entity-row
+              - entity: light.hue_3
+                min: 1
+                toggle: true
+                type: custom:slider-entity-row
+              - entity: light.extended_color_light_1
+                name: LED Strip
+                icon: mdi:led-strip-variant
                 min: 1
                 toggle: true
                 type: custom:slider-entity-row
@@ -235,6 +292,46 @@ views:
       - type: entities
         entities:
           - sensor.plex_nas
+      - card:
+          show_header_toggle: false
+          title: Z-Wave Multisensor
+          type: entities
+        filter:
+          include:
+            - entity_id: '*oomi_multisensor*'
+          exclude:
+            - entity_id: '*illuminance*'
+        type: custom:auto-entities
+      - cards:
+          - card:
+              show_header_toggle: false
+              title: NAS UPS
+              type: entities
+            filter:
+              exclude:
+                - entity_id: sensor.ups_battery
+                - entity_id: sensor.ups_load
+              include:
+                - entity_id: '*sensor.ups*'
+            type: custom:auto-entities
+          - cards:
+              - entity: sensor.ups_battery
+                severity:
+                  green: 75
+                  red: 0
+                  yellow: 50
+                title: UPS Battery
+                type: gauge
+              - entity: sensor.ups_load
+                severity:
+                  green: 0
+                  red: 75
+                  yellow: 50
+                title: UPS Load
+                type: gauge
+            type: horizontal-stack
+        id: ups
+        type: custom:vertical-stack-in-card
   - icon: mdi:flower
     path: balcony
     title: Balcony
@@ -290,49 +387,14 @@ views:
             type: entities
         title: Balkon
         type: custom:vertical-stack-in-card
-  - title: ''
-    icon: mdi:movie
-    path: media
-    badges: []
-    cards:
-      - type: media-control
-        entity: media_player.all_speakers
-      - cards:
-          - entity: scene.dim_all
-            icon: mdi:brightness-6
-            name: Dimmed
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.dim_all
-            type: entity-button
-          - entity: scene.futter
-            icon: mdi:silverware-variant
-            name: Futter
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.futter
-            type: entity-button
-          - entity: scene.movie_time
-            icon: mdi:movie
-            name: Movie
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.movie_time
-            type: entity-button
-        layout: horizontal
-        type: custom:layout-card
-      - type: custom:upcoming-media-card
-        entity: sensor.radarr_upcoming_media
-        title: Upcoming Movies
-      - type: custom:upcoming-media-card
-        entity: sensor.sonarr_upcoming_media
-        title: Upcoming TV
+      - card:
+          show_header_toggle: false
+          title: Particulates
+          type: entities
+        filter:
+          include:
+            - entity_id: '*luftdaten*'
+        type: custom:auto-entities
   - icon: mdi:weather-partly-cloudy
     id: weather
     path: weather
@@ -433,42 +495,25 @@ views:
           labels: true
           average: true
         type: custom:mini-graph-card
+  - title: ''
+    icon: mdi:movie
+    path: media
+    badges: []
+    cards:
+      - type: media-control
+        entity: media_player.all_speakers
+      - type: custom:upcoming-media-card
+        entity: sensor.radarr_upcoming_media
+        title: Upcoming Movies
+      - type: custom:upcoming-media-card
+        entity: sensor.sonarr_upcoming_media
+        title: Upcoming TV
   - icon: mdi:chip
     id: system
     path: system
     title: System
     badges: []
     cards:
-      - cards:
-          - card:
-              show_header_toggle: false
-              title: UPS
-              type: entities
-            filter:
-              exclude:
-                - entity_id: sensor.ups_battery
-                - entity_id: sensor.ups_load
-              include:
-                - entity_id: '*sensor.ups*'
-            type: custom:auto-entities
-          - cards:
-              - entity: sensor.ups_battery
-                severity:
-                  green: 75
-                  red: 0
-                  yellow: 50
-                title: UPS Battery
-                type: gauge
-              - entity: sensor.ups_load
-                severity:
-                  green: 0
-                  red: 75
-                  yellow: 50
-                title: UPS Load
-                type: gauge
-            type: horizontal-stack
-        id: ups
-        type: custom:vertical-stack-in-card
       - entities:
           - binary_sensor.nas
           - binary_sensor.vserv
@@ -477,16 +522,6 @@ views:
         show_header_toggle: false
         title: UptimeRobot
         type: entities
-      - card:
-          show_header_toggle: false
-          title: PiHole
-          type: entities
-        filter:
-          include:
-            - entity_id: '*pi_hole*'
-            - entity_id: '*pihole*'
-        id: pihole
-        type: custom:auto-entities
       - cards:
           - cards:
               - entity: sensor.processor_use_percent
@@ -580,10 +615,72 @@ views:
         id: stats
         title: System Stats
         type: custom:vertical-stack-in-card
-      - type: sensor
-        entity: sensor.test_humidity
-        graph: line
-      - type: sensor
-        entity: sensor.test_temperature
-        graph: line
-        detail: 1
+      - card:
+          show_header_toggle: false
+          title: PiHole
+          type: entities
+        filter:
+          include:
+            - entity_id: '*pi_hole*'
+            - entity_id: '*pihole*'
+        id: pihole
+        type: custom:auto-entities
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Batteries
+        filter:
+          include:
+            - domain: sensor
+              options:
+                secondary_info: last-changed
+              attributes:
+                device_class: battery
+          exclude:
+            - state: unknown
+            - state: unavailable
+            - entity_id: sensor.ups_battery_voltage
+        show_empty: true
+      - entities:
+          - entity: sensor.wemos18650_temperature
+            name: Temperature
+            y_axis: primary
+          - entity: sensor.wemos18650_humidity
+            name: Humidity
+            y_axis: secondary
+        height: 200
+        hours_to_show: 24
+        line_width: 2
+        name: Wemos 18650
+        points_per_hour: 60
+        lower_bound: ~0
+        lower_bound_secondary: 0
+        upper_bound_secondary: 100
+        show:
+          extrema: true
+          fill: false
+          labels: true
+          labels_secondary: true
+          points: false
+          state: false
+        type: custom:mini-graph-card
+        update_interval: 1
+  - title: space
+    path: space
+    icon: mdi:rocket
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - sensor.next_launch
+      - type: entities
+        entities:
+          - binary_sensor.iss
+        title: ISS overhead?
+        state_color: false
+      - type: entities
+        entities:
+          - entity: sensor.opensky
+            name: Nearby airplanes
+        show_header_toggle: false
+        title: Openksy

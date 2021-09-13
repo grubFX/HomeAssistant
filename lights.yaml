@@ -10,4 +10,6 @@
   name: Office Lights
   entities:
     - light.hue_1
+    - light.hue_2
+    - light.hue_3
     - light.extended_color_light_1
