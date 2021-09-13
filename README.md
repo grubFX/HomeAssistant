@@ -7,8 +7,6 @@
 The files in `custom_components` and `www` are a collection from other repositories such as https://github.com/custom-cards and I do not take any credit or responsibility for them. They're also easily updatable by the `custom_updater` component via the UI which is why I like to have them under version control and therefore linked to the matching version of my configuration.
 
 ## // TODOs
-- Configuration
-  - fix `device_sun_light_trigger` component
 - UI
   - try to integrate weather forecasts graphs
   - try out themes
@@ -17,3 +15,7 @@ The files in `custom_components` and `www` are a collection from other repositor
 ![screenshot0](./pics/01.png)
 ![screenshot0](./pics/02.png)
 ![screenshot0](./pics/03.png)
+![screenshot0](./pics/04.png)
+![screenshot0](./pics/05.png)
+![screenshot0](./pics/06.png)
+
