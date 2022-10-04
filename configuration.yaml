@@ -2,15 +2,15 @@ homeassistant:
   customize: !include customize.yaml
   auth_mfa_modules:
     - type: totp
-
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-sensor: !include sensors.yaml
-plant: !include plants.yaml
+sensor manual: !include_dir_merge_list sensors/
 person: !include persons.yaml
 light: !include lights.yaml
+notify: !include notify.yaml
+input_boolean: !include inputs.yaml
 
 mobile_app:
 
@@ -28,8 +28,6 @@ api:
 system_health:
 
 auth:
-
-updater:
 
 discovery:
 
@@ -57,6 +55,8 @@ recorder:
       - sensor.owm_wind_speed # m/s
       - sensor.dark_sky_pressure # mbar
       - sensor.owm_pressure # mbar
+      - sensor.date_time_iso
+      - sensor.dishbert_remaining_program_time
 
 logbook:
 
@@ -66,16 +66,6 @@ tts:
   - platform: google_translate
     service_name: google_say
 
-device_tracker:
-        #  - platform: nmap_tracker
-        #    hosts: !secret ip_range
-        #    exclude:
-        #      - !secret raspi_ip
-        #      - !secret nas_ip
-        #    home_interval: 1
-        #    new_device_defaults:
-        #      track_new_devices: true
-
 binary_sensor:
   - platform: workday
     country: AT
@@ -83,7 +73,6 @@ binary_sensor:
   - platform: uptimerobot
     api_key: !secret uptimerobot_api_key
   - platform: apcupsd
-  - platform: iss
 
 weather:
   - platform: darksky
@@ -100,11 +89,6 @@ telegram_bot:
     allowed_chat_ids:
       - !secret chat_id_0
 
-notify:
-  - name: grubFX Notifier
-    platform: telegram
-    chat_id: !secret chat_id_0
-
 pi_hole:
   host: !secret pihole_host
   api_key: !secret pihole_api_key
@@ -114,14 +98,13 @@ proximity:
     devices:
       - !secret tracker_0
     tolerance: 50
-
   cf:
     devices:
       - !secret tracker_0
     tolerance: 50
 
 google_assistant:
-  project_id: grubFX-home-assistant
+  project_id: grubfx-home-assistant
   service_account: !include SERVICE_ACCOUNT.json
   report_state: true
 
@@ -166,6 +149,12 @@ mqtt:
   will_message:
     topic: "hass/status"
     payload: "offline"
+  sensor:
+    - state_topic: zigbee2mqtt/bridge/networkmap/raw
+      name: Zigbee2mqtt Networkmap
+      value_template: >-
+        {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+      json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
 netatmo:
   client_id: !secret netatmo_id
@@ -181,5 +170,21 @@ http:
   trusted_proxies:
     - 127.0.0.1
     - !secret raspi_ip
+  cors_allowed_origins:
+    - https://cast.home-assistant.io
+
+websocket_api:
 
 energy:
+
+camera:
+  - platform: mjpeg
+    name: OctoPrint
+    still_image_url: http://octopi.local/webcam/?action=snapshot
+    mjpeg_url: http://octopi.local/webcam/?action=stream
+
+backup:
+
+input_number:
+
+bluetooth:
