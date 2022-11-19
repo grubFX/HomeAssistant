@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "url": "/hacsfiles/vacuum-card/vacuum-card.js?hacstag=261291295263",
+        "type": "module",
+        "id": "cba9a70bd8f940f9ac85766967091b0c"
+      },
+      {
+        "url": "/hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js?hacstag=178921037441",
+        "type": "module",
+        "id": "d59713806e9448f68d956cfd15cc3c76"
+      },
+      {
+        "url": "/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js?hacstag=142051833044",
+        "type": "module",
+        "id": "f295a6a90f434a059ac32c45e5d68b73"
+      },
+      {
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620110",
+        "type": "module",
+        "id": "8eb20a233d594511aa7f1a1cd6e98987"
+      },
+      {
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866244",
+        "type": "module",
+        "id": "c7d470528eb54144a92bc687be6074c5"
+      },
+      {
+        "url": "/hacsfiles/light-entity-row/light-entity-row.js?hacstag=151318225023",
+        "type": "module",
+        "id": "42857faddd7943d0b648f32949e1d4f1"
+      },
+      {
+        "url": "/hacsfiles/lovelace-template-entity-row/template-entity-row.js?hacstag=231674882130",
+        "type": "module",
+        "id": "4fafaa02f4754d92af04245dccca9643"
+      },
+      {
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841101",
+        "type": "module",
+        "id": "992bbf2cde5e4d39bfc6dfc675a34ce4"
+      },
+      {
+        "url": "/hacsfiles/button-card/button-card.js",
+        "type": "module",
+        "id": "3585f4cc4bd4454b84f41788acaeb0e8"
+      },
+      {
+        "url": "/hacsfiles/simple-weather-card/simple-weather-card-bundle.js?hacstag=172998062083",
+        "type": "module",
+        "id": "b8da81336c104d52a86182d11d748ff7"
+      },
+      {
+        "url": "/hacsfiles/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js?hacstag=180229356450",
+        "type": "module",
+        "id": "a1cefb16fee24d938bac0aadf92220ba"
+      },
+      {
+        "url": "/hacsfiles/weather-card/weather-card.js",
+        "type": "module",
+        "id": "7cfc10f40c5a4d12a4d2344b0ab43ed7"
+      },
+      {
+        "url": "/hacsfiles/lovelace-slider-entity-row/slider-entity-row.js?hacstag=1448997001721",
+        "type": "module",
+        "id": "e5049c83e6384abe906f7e67dbebb50c"
+      },
+      {
+        "url": "/hacsfiles/zigbee2mqtt-networkmap/zigbee2mqtt-networkmap.js?hacstag=201292040070",
+        "type": "module",
+        "id": "fe2e62f06d8b4f2db87ac3638d279d0a"
+      },
+      {
+        "url": "/hacsfiles/ozw-network-visualization-card/ozw-network-visualization-card.js?hacstag=287840715054439",
+        "type": "module",
+        "id": "80989cf5c7cf41d78e2944a4c1f1441d"
+      },
+      {
+        "url": "/hacsfiles/battery-state-card/battery-state-card.js?hacstag=256292682211",
+        "type": "module",
+        "id": "8ee7df0f63fa4be0876827dbf57add78"
+      },
+      {
+        "url": "/hacsfiles/threedy/threedy-card.js?hacstag=33288368520211125",
+        "type": "module",
+        "id": "de3a3fd20386415bb3293865d8d5a458"
+      },
+      {
+        "url": "/hacsfiles/ha-floorplan/floorplan.js?hacstag=1883234941034",
+        "type": "module",
+        "id": "8fe233ca42d445afb244ddc1c37aa372"
+      },
+      {
+        "url": "/hacsfiles/person-entity-card/person-entity-card-bundle.js?hacstag=413430860080",
+        "type": "module",
+        "id": "f2703a2d7c57492197d03a62b0d0112f"
+      },
+      {
+        "url": "/hacsfiles/hass-shutter-card/hass-shutter-card.js?hacstag=269011342130",
+        "type": "module",
+        "id": "f095f5b78d544d4f85b08781bca1d2e2"
+      },
+      {
+        "url": "/hacsfiles/google_home_timers_card/googletimers-card.js?hacstag=338779924020",
+        "type": "module",
+        "id": "b628cd736af842ada5dbc21291872c49"
+      },
+      {
+        "url": "/hacsfiles/power-flow-card/power-flow-card.js?hacstag=484538222261",
+        "type": "module",
+        "id": "d3b948a6003343f2ad1365eefd44407e"
+      },
+      {
+        "url": "/hacsfiles/better-thermostat-ui-card/better-thermostat-ui-card.js?hacstag=439367892090",
+        "type": "module",
+        "id": "8e21b5981e50490a996f2be8f1a51624"
+      },
+      {
+        "url": "/hacsfiles/upcoming-media-card/upcoming-media-card.js?hacstag=497322919044",
+        "type": "module",
+        "id": "aa1ef27c9dd14a2ebacd9a28ea2f2ed9"
+      }
+    ]
+  }
+}

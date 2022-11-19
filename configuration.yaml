@@ -33,6 +33,8 @@ discovery:
 
 conversation:
 
+bluetooth:
+
 sun:
   elevation: 350
 
@@ -50,10 +52,7 @@ recorder:
     entities:
       - sensor.time
       - sensor.internet_time
-      - sensor.dark_sky_wind_gust # m/s
-      - sensor.dark_sky_wind_speed # m/s
       - sensor.owm_wind_speed # m/s
-      - sensor.dark_sky_pressure # mbar
       - sensor.owm_pressure # mbar
       - sensor.date_time_iso
       - sensor.dishbert_remaining_program_time
@@ -74,11 +73,6 @@ binary_sensor:
     api_key: !secret uptimerobot_api_key
   - platform: apcupsd
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-  - platform: zamg
-
 apcupsd:
 
 shopping_list:
@@ -98,6 +92,7 @@ proximity:
     devices:
       - !secret tracker_0
     tolerance: 50
+
   cf:
     devices:
       - !secret tracker_0
@@ -139,23 +134,6 @@ media_player:
 
 wake_on_lan:
 
-mqtt:
-  discovery: true
-  discovery_prefix: zwave2mqtt
-  broker: !secret mqtt_broker
-  birth_message:
-    topic: "hass/status"
-    payload: "online"
-  will_message:
-    topic: "hass/status"
-    payload: "offline"
-  sensor:
-    - state_topic: zigbee2mqtt/bridge/networkmap/raw
-      name: Zigbee2mqtt Networkmap
-      value_template: >-
-        {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
-      json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
-
 netatmo:
   client_id: !secret netatmo_id
   client_secret: !secret netatmo_secret
@@ -172,7 +150,6 @@ http:
     - !secret raspi_ip
   cors_allowed_origins:
     - https://cast.home-assistant.io
-
 websocket_api:
 
 energy:
@@ -182,9 +159,3 @@ camera:
     name: OctoPrint
     still_image_url: http://octopi.local/webcam/?action=snapshot
     mjpeg_url: http://octopi.local/webcam/?action=stream
-
-backup:
-
-input_number:
-
-bluetooth:

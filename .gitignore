@@ -5,24 +5,15 @@
 !.gitignore
 !configuration.yaml
 !scenes.yaml
-!ui-lovelace.yaml
 !README.md
-!pics
-!pics/**
-!custom_components
-!custom_components/**
 !plants.yaml
 !sensors/
 !sensors/default.yaml
 !sensors/weather.yaml
 !lights.yaml
-# also track community addons from HACS
-!www
-!www/**
-# ... but ignore gz files
-**.gz
-!.storage
-!.storage/custom_updater.cards 
 
-# and finally make sure to exclude pycache folders
-*__pycache__*
+# "backups" some lovelace dashboards
+!.storage
+!.storage/lovelace_dashboards
+!.storage/lovelace_resources
+!.storage/lovelace.3d_printing

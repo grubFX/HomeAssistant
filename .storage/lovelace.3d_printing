@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.3d_printing",
+  "data": {
+    "config": {
+      "title": "3D printing",
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "icon": "mdi:printer-3d",
+          "path": "3dprinter",
+          "title": "3D Printer",
+          "subview": false,
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:threedy-card",
+              "base_entity": "sensor.octoprint",
+              "monitored": [
+                "Status",
+                "Hotend",
+                "Bed"
+              ],
+              "printer_type": "I3",
+              "name": "Ender 5 Pro",
+              "use_24hr": true
+            },
+            {
+              "show_state": false,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.octoprint"
+            },
+            {
+              "show_state": false,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.esp32_cam",
+              "name": "ESP32-CAM",
+              "hold_action": {
+                "action": "none"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

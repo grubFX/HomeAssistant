@@ -4,7 +4,7 @@
         state: false
       light.dimmable_light_1_2:
         state: false
-      light.couch_muller_candle:
+      light.tradfri_candle:
         state: true
         brightness: 42 
         xy_color: [0.52, 0.41]
@@ -18,7 +18,7 @@
         state: true
         brightness: 60 
         xy_color: [0.52, 0.41]
-      light.couch_muller_candle:
+      light.tradfri_candle:
         state: true
         brightness: 80 
         xy_color: [0.52, 0.41]

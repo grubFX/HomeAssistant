@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_dashboards",
+  "data": {
+    "items": [
+      {
+        "show_in_sidebar": true,
+        "icon": "mdi:printer-3d",
+        "title": "3D printing",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "3d-printing",
+        "id": "3d_printing"
+      },
+      {
+        "show_in_sidebar": true,
+        "icon": "mdi:multimedia",
+        "title": "Media",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "lovelace-media",
+        "id": "lovelace_media"
+      },
+      {
+        "show_in_sidebar": true,
+        "icon": "mdi:weather-partly-cloudy",
+        "title": "Weather",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "lovelace-weather",
+        "id": "lovelace_weather"
+      },
+      {
+        "show_in_sidebar": true,
+        "icon": "mdi:periodic-table",
+        "title": "System info",
+        "require_admin": true,
+        "mode": "storage",
+        "url_path": "system-info",
+        "id": "system_info"
+      }
+    ]
+  }
+}
