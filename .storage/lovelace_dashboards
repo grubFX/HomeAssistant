@@ -15,15 +15,6 @@
       },
       {
         "show_in_sidebar": true,
-        "icon": "mdi:multimedia",
-        "title": "Media",
-        "require_admin": false,
-        "mode": "storage",
-        "url_path": "lovelace-media",
-        "id": "lovelace_media"
-      },
-      {
-        "show_in_sidebar": true,
         "icon": "mdi:weather-partly-cloudy",
         "title": "Weather",
         "require_admin": false,
@@ -34,11 +25,38 @@
       {
         "show_in_sidebar": true,
         "icon": "mdi:periodic-table",
-        "title": "System info",
-        "require_admin": true,
+        "title": "Energy, power & system info",
+        "require_admin": false,
         "mode": "storage",
         "url_path": "system-info",
         "id": "system_info"
+      },
+      {
+        "id": "map",
+        "icon": "mdi:map",
+        "title": "Maps & Transport",
+        "url_path": "map",
+        "require_admin": false,
+        "show_in_sidebar": true,
+        "mode": "storage"
+      },
+      {
+        "id": "dashboard_sport",
+        "show_in_sidebar": true,
+        "icon": "mdi:run-fast",
+        "title": "Sport",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "dashboard-sport"
+      },
+      {
+        "id": "dashboard_temp",
+        "show_in_sidebar": true,
+        "icon": "mdi:account-group",
+        "title": "temp",
+        "require_admin": true,
+        "mode": "storage",
+        "url_path": "dashboard-temp"
       }
     ]
   }

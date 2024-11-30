@@ -8,12 +8,17 @@
 !README.md
 !plants.yaml
 !sensors/
-!sensors/default.yaml
 !sensors/weather.yaml
 !lights.yaml
 
 # "backups" some lovelace dashboards
 !.storage
+!.storage/lovelace
 !.storage/lovelace_dashboards
-!.storage/lovelace_resources
 !.storage/lovelace.3d_printing
+!.storage/lovelace.dashboard_sport
+!.storage/lovelace.system_info
+!.storage/counter
+!.storage/input_number
+!.storage/input_select
+!.storage/timer

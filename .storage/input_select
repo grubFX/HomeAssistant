@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "input_select",
+  "data": {
+    "items": [
+      {
+        "id": "office_scene_selector",
+        "name": "Office: scene selector",
+        "icon": "mdi:palette-swatch",
+        "options": [
+          "scene.office_all_on",
+          "scene.office_lightstrip",
+          "scene.office_lights_off"
+        ]
+      },
+      {
+        "id": "living_room",
+        "name": "Living room: scene select",
+        "icon": "mdi:palette-swatch",
+        "options": [
+          "scene.living_room_all_on",
+          "scene.living_room_reading",
+          "scene.living_room_movie_time",
+          "scene.living_room_all_off"
+        ]
+      },
+      {
+        "id": "home_mode",
+        "name": "Home Mode",
+        "icon": "mdi:state-machine",
+        "options": [
+          "Home",
+          "Away"
+        ]
+      }
+    ]
+  }
+}

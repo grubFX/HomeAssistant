@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "counter",
+  "data": {
+    "items": [
+      {
+        "id": "washing_machine_run_count",
+        "name": "Washing machine run count",
+        "icon": "mdi:counter",
+        "minimum": null,
+        "maximum": null,
+        "restore": true,
+        "step": 1,
+        "initial": 0
+      }
+    ]
+  }
+}

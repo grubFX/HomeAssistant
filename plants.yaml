@@ -1,16 +1,27 @@
-Camellia Sinensis:
+Balkonbaum:
   sensors:
-    moisture: sensor.miflora_moisture
-    battery: sensor.miflora_battery
-    temperature: sensor.miflora_temperature
-    conductivity: sensor.miflora_conductivity
-    brightness: sensor.miflora_light_intensity
-  min_moisture: 15
-  max_moisture: 60
+    moisture: sensor.plant_sensor_2aac_moisture
+    battery: sensor.plant_sensor_2aac_battery
+    temperature: sensor.plant_sensor_2aac_temperature
+    conductivity: sensor.plant_sensor_2aac_conductivity
+    brightness: sensor.plant_sensor_2aac_illuminance
+  min_moisture: 10
+  max_moisture: 50
   min_battery: 20
-  min_conductivity: 350
-  max_conductivity: 2000
   min_temperature: 5
-  max_temperature: 32
+  max_temperature: 40
   min_brightness: 4000
-  max_brightness: 20000
+
+Basilikum:
+  sensors:
+    moisture: sensor.plant_sensor_1ce9_moisture
+    battery: sensor.plant_sensor_1ce9_battery
+    temperature: sensor.plant_sensor_1ce9_temperature
+    conductivity: sensor.plant_sensor_1ce9_conductivity
+    brightness: sensor.plant_sensor_1ce9_illuminance
+  min_moisture: 10
+  max_moisture: 50
+  min_battery: 20
+  min_temperature: 5
+  max_temperature: 40
+  min_brightness: 4000

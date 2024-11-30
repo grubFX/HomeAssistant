@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "timer",
+  "data": {
+    "items": [
+      {
+        "id": "hallway_light_timer",
+        "name": "Hallway: light timer",
+        "duration": "0:03:00",
+        "restore": true
+      }
+    ]
+  }
+}

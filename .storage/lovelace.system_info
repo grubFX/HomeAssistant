@@ -1,0 +1,844 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.system_info",
+  "data": {
+    "config": {
+      "title": "Energy & system information",
+      "views": [
+        {
+          "title": "energy",
+          "path": "energy",
+          "icon": "mdi:chart-multiple",
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "historic energy consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:lightning-bolt"
+                },
+                {
+                  "type": "custom:energy-period-selector-plus",
+                  "card_background": true,
+                  "today_button": true,
+                  "prev_next_buttons": true,
+                  "today_button_type": "text",
+                  "period_buttons": [
+                    "day",
+                    "week",
+                    "month",
+                    "year",
+                    "custom"
+                  ],
+                  "compare_button_label": "compare",
+                  "compare_button_type": "",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "custom:energy-flow-card-plus",
+                  "entities": {
+                    "grid": {
+                      "entity": {
+                        "consumption": "sensor.home_energy_meter_gen5_electric_consumption_kwh"
+                      }
+                    },
+                    "home": {},
+                    "individual1": {
+                      "entity": "sensor.shellyplug_s_80646f82679a_energy",
+                      "name": "NAS",
+                      "icon": "mdi:server-network",
+                      "color_value": true,
+                      "color_icon": false
+                    },
+                    "individual2": {
+                      "entity": "sensor.shellyplug_s_80646f814cbc_energy",
+                      "name": "Network",
+                      "icon": "mdi:router-network-wireless"
+                    },
+                    "fossil_fuel_percentage": {
+                      "show": false,
+                      "entity": "sensor.electricity_maps_grid_fossil_fuel_percentage",
+                      "color_value": true,
+                      "color_icon": false,
+                      "use_metadata": false,
+                      "display_zero": false
+                    }
+                  },
+                  "clickable_entities": true,
+                  "display_zero_lines": true,
+                  "use_new_flow_rate_model": true,
+                  "energy_date_selection": true,
+                  "wh_decimals": 1,
+                  "kwh_decimals": 0,
+                  "min_flow_rate": 1,
+                  "max_flow_rate": 6,
+                  "max_expected_energy": 2000,
+                  "min_expected_energy": 10,
+                  "wh_kwh_threshold": 1000,
+                  "dashboard_link": "/energy"
+                },
+                {
+                  "square": false,
+                  "columns": 3,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "month",
+                          "offset": -1
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "last month"
+                    },
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "week",
+                          "offset": -1
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "last week"
+                    },
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "day",
+                          "offset": -1
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "yesterday"
+                    },
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "month"
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "this month"
+                    },
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "week"
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "this week"
+                    },
+                    {
+                      "type": "statistic",
+                      "entity": "sensor.home_energy_meter_gen5_electric_consumption_kwh",
+                      "period": {
+                        "calendar": {
+                          "period": "day"
+                        }
+                      },
+                      "stat_type": "change",
+                      "name": "today"
+                    }
+                  ]
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "overall power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "custom:power-flow-card-plus",
+                  "entities": {
+                    "grid": {
+                      "entity": {
+                        "consumption": "sensor.home_energy_meter_gen5_electric_consumption_w"
+                      },
+                      "color_value": true
+                    },
+                    "individual": [
+                      {
+                        "entity": "sensor.kitchen_combined_power",
+                        "secondary_info": {},
+                        "display_zero": true,
+                        "display_zero_state": true,
+                        "name": "Kitchen",
+                        "icon": "mdi:countertop",
+                        "color_value": true,
+                        "color_icon": false,
+                        "calculate_flow_rate": false,
+                        "show_direction": false,
+                        "use_metadata": false
+                      },
+                      {
+                        "secondary_info": {},
+                        "name": "Living room",
+                        "icon": "mdi:sofa",
+                        "color_value": true,
+                        "color_icon": false,
+                        "entity": "sensor.living_room_combined_power",
+                        "display_zero_state": true,
+                        "display_zero": true
+                      },
+                      {
+                        "entity": "sensor.office_combined_power",
+                        "secondary_info": {},
+                        "name": "Office",
+                        "icon": "mdi:desk",
+                        "color_value": true,
+                        "color_icon": false,
+                        "display_zero_state": false,
+                        "display_zero": true
+                      },
+                      {
+                        "entity": "sensor.server_room_combined_power",
+                        "secondary_info": {},
+                        "color_value": true,
+                        "color_icon": false,
+                        "display_zero": true,
+                        "display_zero_state": true,
+                        "name": "Server room",
+                        "icon": "mdi:server-network"
+                      }
+                    ]
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 6
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.home_energy_meter_gen5_electric_consumption_w",
+                  "needle": true,
+                  "min": 0,
+                  "max": 11000,
+                  "name": " ",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                },
+                {
+                  "type": "custom:energy-overview-card",
+                  "entities": [
+                    {
+                      "power": "sensor.home_energy_meter_gen5_electric_consumption_w_2",
+                      "voltage": "sensor.home_energy_meter_gen5_electric_consumption_v_2",
+                      "current": "sensor.home_energy_meter_gen5_electric_consumption_a_2",
+                      "label_trailing": "L1"
+                    },
+                    {
+                      "power": "sensor.home_energy_meter_gen5_electric_consumption_w_2_2",
+                      "voltage": "sensor.home_energy_meter_gen5_electric_consumption_v_2_2",
+                      "current": "sensor.home_energy_meter_gen5_electric_consumption_a_2_2",
+                      "label_trailing": "L2"
+                    },
+                    {
+                      "power": "sensor.home_energy_meter_gen5_electric_consumption_w_3",
+                      "voltage": "sensor.home_energy_meter_gen5_electric_consumption_v_3",
+                      "current": "sensor.home_energy_meter_gen5_electric_consumption_a_3",
+                      "label_trailing": "L3"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.home_energy_meter_gen5_electric_consumption_w"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.home_energy_meter_gen5_electric_consumption_w"
+                  ],
+                  "stat_types": [
+                    "max",
+                    "min",
+                    "mean"
+                  ],
+                  "hide_legend": true,
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ],
+              "column_span": 2
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "power",
+          "path": "power",
+          "icon": "mdi:chart-multiple",
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "network power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shellyplug_s_80646f814cbc_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 250,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 50,
+                    "red": 100
+                  },
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellyplug_s_80646f814cbc_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellyplug_s_80646f814cbc_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "NAS power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shellyplug_s_80646f82679a_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 650,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 100,
+                    "red": 200
+                  },
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellyplug_s_80646f82679a_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellyplug_s_80646f82679a_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "office desk sockets",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shellypmminig3_ecda3bc5ef20_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 3500,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_ecda3bc5ef20_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_ecda3bc5ef20_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "TV + soundbar sockets",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shellypmminig3_84fce63e9c90_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 3500,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_84fce63e9c90_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_84fce63e9c90_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "kitchen sockets",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shellypmminig3_ecda3bc32e24_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 3500,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_ecda3bc32e24_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shellypmminig3_ecda3bc32e24_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "icon": "mdi:flash",
+                  "heading": "bathroom heater socket"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 2200,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Batteries",
+          "path": "batteries",
+          "icon": "mdi:battery-charging-100",
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Batteries",
+                  "heading_style": "title",
+                  "icon": "mdi:battery-charging"
+                },
+                {
+                  "type": "custom:battery-state-card",
+                  "secondary_info": "{charging}",
+                  "filter": {
+                    "include": [
+                      {
+                        "name": "attributes.device_class",
+                        "value": "battery"
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "name": "entity_id",
+                        "value": "binary_sensor.*"
+                      },
+                      {
+                        "name": "state",
+                        "value": "Unavailable"
+                      }
+                    ]
+                  },
+                  "sort": {
+                    "by": "state"
+                  },
+                  "bulk_rename": [
+                    {
+                      "from": " battery"
+                    },
+                    {
+                      "from": " Battery"
+                    },
+                    {
+                      "from": " level"
+                    },
+                    {
+                      "from": " Level"
+                    }
+                  ],
+                  "charging_state": {
+                    "attribute": [
+                      {
+                        "name": "Battery State",
+                        "value": "Charging"
+                      },
+                      {
+                        "name": "is_charging",
+                        "value": true
+                      }
+                    ],
+                    "state": [
+                      "charging",
+                      "Charging"
+                    ],
+                    "secondary_info_text": "Charging in progress"
+                  }
+                }
+              ]
+            }
+          ],
+          "max_columns": 4
+        },
+        {
+          "icon": "mdi:chip",
+          "id": "system",
+          "path": "system",
+          "title": "System",
+          "visible": [
+            {
+              "user": "b1f7809a4d5d44fb929c8b823913d9b6"
+            },
+            {
+              "user": "064a1ec096ab47cea54da536d5d29ed8"
+            },
+            {
+              "user": "cb42d2df22e34935be26a9e7bba8e8b9"
+            }
+          ],
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "NAS System Stats",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-bar-stacked",
+                  "badges": []
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.connected_clients",
+                  "hours_to_show": 72,
+                  "detail": 2,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  },
+                  "name": "connected to HomeAssistant",
+                  "icon": "mdi:home-assistant"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.grubfx_nas",
+                  "detail": 2,
+                  "name": "Plex clients",
+                  "hours_to_show": 72,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                }
+              ],
+              "column_span": 2
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "PiHole Stats",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-bar-stacked",
+                  "badges": []
+                },
+                {
+                  "type": "custom:battery-state-card",
+                  "title": "PiHole 1",
+                  "secondary_info": "{charging}",
+                  "icon": "mdi:pi-hole",
+                  "colors": {
+                    "steps": []
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "name": "entity_id",
+                        "value": "*pihole1*"
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "name": "state",
+                        "value": "Unavailable"
+                      }
+                    ]
+                  },
+                  "bulk_rename": [
+                    {
+                      "from": "PiHole1"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:battery-state-card",
+                  "title": "PiHole 2",
+                  "secondary_info": "{charging}",
+                  "icon": "mdi:pi-hole",
+                  "colors": {
+                    "steps": []
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "name": "entity_id",
+                        "value": "*pihole2*"
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "name": "state",
+                        "value": "Unavailable"
+                      }
+                    ]
+                  },
+                  "bulk_rename": [
+                    {
+                      "from": "PiHole2"
+                    }
+                  ]
+                }
+              ],
+              "column_span": 2
+            }
+          ],
+          "max_columns": 4
+        }
+      ]
+    }
+  }
+}

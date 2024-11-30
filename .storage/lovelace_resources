@@ -20,7 +20,7 @@
         "id": "f295a6a90f434a059ac32c45e5d68b73"
       },
       {
-        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620110",
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620121",
         "type": "module",
         "id": "8eb20a233d594511aa7f1a1cd6e98987"
       },
@@ -75,12 +75,7 @@
         "id": "fe2e62f06d8b4f2db87ac3638d279d0a"
       },
       {
-        "url": "/hacsfiles/ozw-network-visualization-card/ozw-network-visualization-card.js?hacstag=287840715054439",
-        "type": "module",
-        "id": "80989cf5c7cf41d78e2944a4c1f1441d"
-      },
-      {
-        "url": "/hacsfiles/battery-state-card/battery-state-card.js?hacstag=256292682211",
+        "url": "/hacsfiles/battery-state-card/battery-state-card.js?hacstag=256292682321",
         "type": "module",
         "id": "8ee7df0f63fa4be0876827dbf57add78"
       },
@@ -105,11 +100,6 @@
         "id": "f095f5b78d544d4f85b08781bca1d2e2"
       },
       {
-        "url": "/hacsfiles/google_home_timers_card/googletimers-card.js?hacstag=338779924020",
-        "type": "module",
-        "id": "b628cd736af842ada5dbc21291872c49"
-      },
-      {
         "url": "/hacsfiles/power-flow-card/power-flow-card.js?hacstag=484538222261",
         "type": "module",
         "id": "d3b948a6003343f2ad1365eefd44407e"
@@ -123,6 +113,41 @@
         "url": "/hacsfiles/upcoming-media-card/upcoming-media-card.js?hacstag=497322919044",
         "type": "module",
         "id": "aa1ef27c9dd14a2ebacd9a28ea2f2ed9"
+      },
+      {
+        "id": "bd5a378e58e848afb0bc398a7bb44d4b",
+        "url": "/hacsfiles/energy-period-selector-plus/energy-period-selector-plus.js?hacstag=639953950023",
+        "type": "module"
+      },
+      {
+        "id": "ff12bba5c95844daa3d93b7e2856decb",
+        "url": "/hacsfiles/energy-flow-card-plus/energy-flow-card-plus.js?hacstag=6382302440121",
+        "type": "module"
+      },
+      {
+        "id": "ce9f76b4eb2b45d4a1734db9d69aa451",
+        "url": "/hacsfiles/power-flow-card-plus/power-flow-card-plus.js?hacstag=618081815024",
+        "type": "module"
+      },
+      {
+        "id": "17c04cb745af4739858e0a0936fe96cb",
+        "url": "/hacsfiles/ha-energy-overview-card/energy-overview-card.js?hacstag=594389396250",
+        "type": "module"
+      },
+      {
+        "id": "175b4d0106044d4aa2f1b0a7c575f74f",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375420",
+        "type": "module"
+      },
+      {
+        "id": "97fbdf11589c4536b8852487ca26b6b5",
+        "url": "/hacsfiles/lovelace-hourly-weather/hourly-weather.js?hacstag=499270202640",
+        "type": "module"
+      },
+      {
+        "id": "4c663b80f76043dfa6a2e7537b777d5e",
+        "url": "/hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js?hacstag=614083491131",
+        "type": "module"
       }
     ]
   }

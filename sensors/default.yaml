@@ -1,82 +1,15 @@
-- platform: template
-  sensors:
-    roobert_status:
-      value_template: "{{ state_attr('vacuum.roobert', 'status') }}"
-    roobert_battery:
-      unit_of_measurement: '%'
-      friendly_name: "Battery Level"
-      value_template: "{{ state_attr('vacuum.roobert', 'battery_level') | int }}"
-      icon_template: "{{ state_attr('vacuum.roobert', 'battery_icon') }}"
-
 - platform: command_line
   name: Temperature Zone0
   command: "cat /sys/class/thermal/thermal_zone0/temp"
   unit_of_measurement: "°C"
   scan_interval: 10
-  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
-
-- platform: time_date
-  display_options:
-    - 'time'
-    - 'date'
-    - 'date_time_iso'
-    - 'beat'
-
-- platform: apcupsd
-  resources:
-    - linev
-    - bcharge
-    - battv
-    - loadpct
-    - timeleft
-
-- platform: systemmonitor
-  resources:
-    - type: processor_use
-    - type: memory_use_percent
-    - type: load_1m
-    - type: load_5m
-    - type: load_15m
-
-- platform: launch_library
-
-- platform: aftership
-  api_key: !secret aftership_api_key
+  value_template: "{{ (value | multiply(0.001)) | round(0) }}"
 
 - platform: rest
   name: Timeular
   resource: https://api.timeular.com/api/v2/tracking
-  value_template: '{{ value_json.currentTracking.activity.name }}'
+  value_template: "{{ value_json.currentTracking.activity.name }}"
   headers:
     Authorization: !secret timeular_token
 
-- platform: radarr_upcoming_media
-  api_key: !secret radarr_api_key
-  host: !secret nas_ip
-  port: 7878
-  days: 14
-  ssl: false
-  max: 10
-
-- platform: sonarr_upcoming_media
-  api_key: !secret sonarr_api_key
-  host: !secret nas_ip
-  port: 8989
-  days: 14
-  ssl: false
-  max: 10
-
-- platform: opensky
-  radius: 10
-
 - platform: websocket_api
-
-- platform: wienerlinien
-  firstnext: next
-  stops:
-    - '2041'
-    - '2018'
-    - '2039'
-    - '2020'
-
-- platform: iss

@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_sport",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Strava",
+          "path": "strava",
+          "icon": "mdi:run-fast",
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "map",
+                  "entities": [
+                    {
+                      "entity": "sensor.strava_0_0"
+                    },
+                    {
+                      "entity": "sensor.strava_1_0"
+                    },
+                    {
+                      "entity": "sensor.strava_2_0"
+                    },
+                    {
+                      "entity": "sensor.strava_3_0"
+                    },
+                    {
+                      "entity": "sensor.strava_4_0"
+                    },
+                    {
+                      "entity": "sensor.strava_5_0"
+                    },
+                    {
+                      "entity": "sensor.strava_6_0"
+                    },
+                    {
+                      "entity": "sensor.strava_7_0"
+                    },
+                    {
+                      "entity": "sensor.strava_8_0"
+                    },
+                    {
+                      "entity": "sensor.strava_9_0"
+                    }
+                  ],
+                  "title": "Strava activities",
+                  "hours_to_show": 720,
+                  "theme_mode": "auto",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 8
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "chart_type": "bar",
+                  "period": "day",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.strava_stats_summary_all_ride_distance",
+                    "sensor.strava_stats_summary_all_run_distance"
+                  ],
+                  "stat_types": [
+                    "change"
+                  ],
+                  "title": "Strava recent distances",
+                  "days_to_show": 180,
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "bar",
+                  "period": "day",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.strava_stats_summary_all_ride_elevation_gain",
+                    "sensor.strava_stats_summary_all_run_elevation_gain"
+                  ],
+                  "stat_types": [
+                    "change"
+                  ],
+                  "title": "Strava recent elevation gain",
+                  "unit": "m",
+                  "hide_legend": true,
+                  "days_to_show": 180
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "card": {
+                    "show_header_toggle": false,
+                    "title": "Strava recent stats (last 4 weeks)",
+                    "type": "entities"
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "entity_id": "*strava_stats_summary_recent*",
+                        "options": {
+                          "secondary_info": "last-changed"
+                        }
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "entity_id": "*swim*"
+                      }
+                    ]
+                  },
+                  "id": "pihole",
+                  "type": "custom:auto-entities",
+                  "show_empty": false
+                },
+                {
+                  "card": {
+                    "show_header_toggle": false,
+                    "title": "Strava current year stats",
+                    "type": "entities"
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "entity_id": "*strava_stats_summary_ytd*"
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "entity_id": "*swim*"
+                      }
+                    ]
+                  },
+                  "id": "pihole",
+                  "type": "custom:auto-entities"
+                }
+              ]
+            }
+          ],
+          "max_columns": 3,
+          "dense_section_placement": true
+        }
+      ]
+    }
+  }
+}

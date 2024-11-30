@@ -9,42 +9,71 @@
         {
           "theme": "Backend-selected",
           "icon": "mdi:printer-3d",
-          "path": "3dprinter",
+          "path": "3dprinting",
           "title": "3D Printer",
           "subview": false,
-          "badges": [],
-          "cards": [
+          "badges": [
             {
-              "type": "custom:threedy-card",
-              "base_entity": "sensor.octoprint",
-              "monitored": [
-                "Status",
-                "Hotend",
-                "Bed"
-              ],
-              "printer_type": "I3",
-              "name": "Ender 5 Pro",
-              "use_24hr": true
-            },
-            {
-              "show_state": false,
-              "show_name": true,
-              "camera_view": "auto",
-              "type": "picture-entity",
-              "entity": "camera.octoprint"
-            },
-            {
-              "show_state": false,
-              "show_name": true,
-              "camera_view": "auto",
-              "type": "picture-entity",
-              "entity": "camera.esp32_cam",
-              "name": "ESP32-CAM",
-              "hold_action": {
-                "action": "none"
-              }
+              "type": "entity",
+              "entity": "sensor.octoprint_current_state"
             }
-          ]
+          ],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Cameras",
+                  "heading_style": "title",
+                  "icon": "mdi:cctv"
+                },
+                {
+                  "show_state": false,
+                  "show_name": false,
+                  "camera_view": "auto",
+                  "type": "picture-entity",
+                  "entity": "camera.g3_instant_high_resolution_channel",
+                  "camera_image": "camera.g3_instant_high_resolution_channel"
+                },
+                {
+                  "show_state": false,
+                  "show_name": false,
+                  "camera_view": "auto",
+                  "type": "picture-entity",
+                  "entity": "camera.esp32_cam",
+                  "name": "ESP32-CAM",
+                  "hold_action": {
+                    "action": "none"
+                  }
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:threedy-card",
+                  "base_entity": "sensor.octoprint",
+                  "monitored": [
+                    "Status",
+                    "ETA",
+                    "Elapsed",
+                    "Hotend",
+                    "Bed",
+                    "Remaining"
+                  ],
+                  "printer_type": "I3",
+                  "name": "Ender 5 Pro"
+                }
+              ]
+            }
+          ],
+          "max_columns": 2,
+          "dense_section_placement": true
         }
       ]
     }

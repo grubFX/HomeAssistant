@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_weather",
+  "data": {
+    "config": {
+      "title": "Weather",
+      "views": [
+        {
+          "title": "weather",
+          "path": "weather",
+          "icon": "mdi:weather-partly-snowy-rainy",
+          "cards": [],
+          "type": "sections",
+          "max_columns": 3,
+          "dense_section_placement": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Wetterkarte"
+                },
+                {
+                  "type": "iframe",
+                  "url": "https://embed.windy.com/embed2.html?lat=48.18&lon=16.41&zoom=15&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.18&detailLon=16.41&metricWind=default&metricTemp=default&radarRange=-1",
+                  "layout_options": {
+                    "grid_columns": "full",
+                    "grid_rows": 6
+                  }
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Vorhersage"
+                },
+                {
+                  "show_current": false,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.met_no",
+                  "forecast_type": "hourly",
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                },
+                {
+                  "show_current": false,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.met_no",
+                  "forecast_type": "daily",
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Sonne",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:horizon-card",
+                  "use12hourClock": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Außentemperatur"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_balkon_temperature",
+                      "name": "Netatmo"
+                    },
+                    {
+                      "entity": "sensor.plant_sensor_2aac_temperature",
+                      "name": "Balkonbaum",
+                      "show_fill": false
+                    },
+                    {
+                      "entity": "sensor.wien_innere_stadt_temperature",
+                      "name": "ZAMG (Innere Stadt)",
+                      "color": "gray",
+                      "show_fill": false
+                    }
+                  ],
+                  "height": 188,
+                  "hours_to_show": 168,
+                  "lower_bound": "~0",
+                  "refresh_interval": 10,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~10"
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Luftfeuchtigkeit"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_balkon_humidity",
+                      "name": "Balkon"
+                    },
+                    {
+                      "entity": "sensor.wien_innere_stadt_humidity",
+                      "name": "ZAMG (Innere Stadt)",
+                      "color": "gray",
+                      "show_fill": false
+                    }
+                  ],
+                  "lower_bound": "~0",
+                  "refresh_interval": 10,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~100",
+                  "height": 188,
+                  "hours_to_show": 168,
+                  "line_width": 2,
+                  "hour24": true,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "max": true,
+                    "average": true,
+                    "labels": true
+                  }
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Windgeschwindigkeit"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_windi_wind_speed",
+                      "name": "Balkon"
+                    },
+                    {
+                      "entity": "sensor.wien_innere_stadt_wind_speed",
+                      "name": "ZAMG (Innere Stadt)",
+                      "show_fill": false,
+                      "color": "gray"
+                    }
+                  ],
+                  "icon": "mdi:weather-windy",
+                  "lower_bound": 0,
+                  "refresh_interval": 10,
+                  "height": 188,
+                  "hours_to_show": 168,
+                  "line_width": 2,
+                  "hour24": true,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "max": true,
+                    "average": true,
+                    "labels": true
+                  },
+                  "type": "custom:mini-graph-card"
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Luftdruck"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_atmospheric_pressure",
+                      "name": "Netatmo"
+                    },
+                    {
+                      "entity": "sensor.wien_innere_stadt_pressure_at_sea_level",
+                      "name": "ZAMG (Innere Stadt)",
+                      "color": "gray",
+                      "show_fill": false
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "icon": "mdi:gauge",
+                  "refresh_interval": 10,
+                  "lower_bound": "~1000",
+                  "line_width": 2,
+                  "height": 188,
+                  "hour24": true,
+                  "show": {
+                    "icon": false,
+                    "name": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "type": "custom:mini-graph-card"
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Niederschlag"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.wien_innere_stadt_precipitation",
+                      "name": "ZAMG (Innere Stadt)"
+                    }
+                  ],
+                  "refresh_interval": 10,
+                  "lower_bound": 0,
+                  "height": 230,
+                  "hours_to_show": 168,
+                  "line_width": 2,
+                  "hour24": true,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "max": true,
+                    "average": true,
+                    "labels": true
+                  },
+                  "type": "custom:mini-graph-card"
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Taupunkt"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.wien_innere_stadt_dew_point"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "refresh_interval": 10,
+                  "height": 188,
+                  "lower_bound": "~0",
+                  "upper_bound": "~5",
+                  "line_width": 2,
+                  "hour24": true,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "type": "custom:mini-graph-card"
+                }
+              ],
+              "column_span": 1
+            }
+          ]
+        },
+        {
+          "title": "Temperaturverlauf",
+          "path": "temperature-history",
+          "icon": "mdi:chart-bell-curve",
+          "type": "sections",
+          "max_columns": 10,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Temperaturverlauf"
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.h5105_6f6b_temperature",
+                    "sensor.h5104_3251_temperature",
+                    "sensor.h5105_5a0d_temperature",
+                    "sensor.h5104_367d_temperature"
+                  ],
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "days_to_show": 21,
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                }
+              ],
+              "column_span": 10
+            }
+          ],
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5105_6f6b_temperature",
+              "name": "Schlafzimmer"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5104_3251_temperature",
+              "name": "Office Desk"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5105_5a0d_temperature",
+              "name": "Wohnzimmer"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5104_367d_temperature",
+              "name": "Bad"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2009 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "Areas",
+          "path": "areas",
+          "icon": "mdi:home",
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "person.anna_2",
+              "display_type": "complete",
+              "show_entity_picture": true
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "person.grubfx",
+              "show_entity_picture": true,
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "input_select.home_mode",
+              "color": "",
+              "state_content": "state"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.udm",
+              "name": "Router",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.udm",
+                  "state_not": "on"
+                }
+              ],
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.pihole1",
+              "name": "PiHole1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.pihole1",
+                  "state_not": "on"
+                }
+              ],
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.pihole2",
+              "name": "PiHole2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.pihole2",
+                  "state_not": "on"
+                }
+              ],
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.1_1_1_1",
+              "show_entity_picture": false,
+              "display_type": "complete",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.1_1_1_1",
+                  "state_not": "on"
+                }
+              ],
+              "name": "Internet (Cloudflare)"
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.8_8_8_8",
+              "show_entity_picture": false,
+              "display_type": "complete",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.8_8_8_8",
+                  "state_not": "on"
+                }
+              ],
+              "name": "Internet (Google)"
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.9_9_9_9",
+              "show_entity_picture": false,
+              "display_type": "complete",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.9_9_9_9",
+                  "state_not": "on"
+                }
+              ],
+              "name": "Internet (Quad9)"
+            }
+          ],
+          "cards": [],
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "motion",
+                    "door"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "carbon_dioxide"
+                  ],
+                  "type": "area",
+                  "area": "living_room",
+                  "navigation_path": "/lovelace/living-room",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "kitchen",
+                  "navigation_path": "/lovelace/kitchen",
+                  "show_camera": false,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "motion",
+                    "door"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "office",
+                  "navigation_path": "/lovelace/office",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "bathroom",
+                  "navigation_path": "/lovelace/bathroom",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "balcony",
+                  "navigation_path": "/lovelace/balcony",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "bedroom",
+                  "navigation_path": "/lovelace/bedroom",
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "motion"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "closet",
+                  "navigation_path": "/lovelace/serverroom",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "klo",
+                  "navigation_path": "/lovelace/toilet",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "alert_classes": [
+                    "motion"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "gang",
+                  "navigation_path": "/lovelace/hallway",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Küche",
+          "path": "kitchen",
+          "type": "sections",
+          "max_columns": 3,
+          "icon": "mdi:silverware-variant",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_tradfribulbg125e27wsopal470lm_light",
+                  "vertical": false,
+                  "hide_state": false,
+                  "show_entity_picture": false,
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Covers"
+                },
+                {
+                  "type": "tile",
+                  "entity": "scene.covers_closed",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "scene.covers_default",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon": "mdi:window-shutter-open"
+                },
+                {
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.shellyplus2pm_3ce90e3036e0",
+                  "fill_container": false,
+                  "show_position_control": false,
+                  "show_tilt_position_control": false,
+                  "show_buttons_control": true,
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "name": "Rollo Küche"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Dishwasher"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.dishbert_door",
+                  "name": "Door",
+                  "show_entity_picture": false,
+                  "vertical": false,
+                  "hide_state": false
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.dishbert_operation_state",
+                  "name": "State"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.dishbert_duration",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.dishbert_operation_state",
+                      "state": "Run"
+                    }
+                  ],
+                  "name": "Duration"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.dishbert_program_progress",
+                  "name": "Progress",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.dishbert_operation_state",
+                      "state": "Run"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.water_sensor_water_leak_detected",
+                  "name": "Water leak"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.nesthub16a9"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.slim_multi_sensor_pir_door_temperature_illumination_air_temperature",
+              "name": "Temperature"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.slim_multi_sensor_pir_door_temperature_illumination_sensor_state_motion",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.slim_multi_sensor_pir_door_temperature_illumination_sensor_state_motion",
+                  "state": "on"
+                }
+              ],
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.kitchen_combined_power",
+              "color": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/system-info/power"
+              }
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Wohnzimmer",
+          "path": "living-room",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 3,
+          "icon": "mdi:sofa",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps",
+                  "badges": []
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.living_room_cycle_through_scenes",
+                  "hide_state": true,
+                  "icon": "mdi:recycle-variant",
+                  "vertical": true,
+                  "name": "cycle through scenes",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": "automation.living_room_cycle_through_scenes"
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 2
+                  },
+                  "show_entity_picture": false
+                },
+                {
+                  "type": "tile",
+                  "entity": "scene.living_room_all_off",
+                  "hide_state": true,
+                  "icon": "",
+                  "vertical": true,
+                  "name": "all off",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": "automation.living_room_turn_all_off"
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 2
+                  }
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_tradfri_driver_30w_light",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "name": "Couch Lighstrip",
+                  "icon": "mdi:led-strip-variant"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_tradfri_bulb_e14_w_op_ch_400lm_light",
+                  "name": "Side Lamp",
+                  "icon": "mdi:lamp",
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  }
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.silicon_labs_ezsp_gu10_lights",
+                  "name": "Main Lights",
+                  "icon": "mdi:vanity-light",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 3
+                  },
+                  "show_entity_picture": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Covers",
+                  "heading_style": "title",
+                  "icon": "mdi:window-shutter"
+                },
+                {
+                  "type": "tile",
+                  "entity": "scene.covers_closed",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "scene.covers_default",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "features": [
+                    {
+                      "type": "cover-open-close"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "cover.shellyplus2pm_ccdba7cffdb8",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "name": "Rollo Balkontür"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "cover-open-close"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "cover.shellyplus2pm_b48a0a209a78",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "name": "Rollo seitlich",
+                  "vertical": false
+                },
+                {
+                  "type": "heading",
+                  "heading": "Plants",
+                  "heading_style": "title",
+                  "icon": "mdi:sprout"
+                },
+                {
+                  "type": "plant-status",
+                  "entity": "plant.basilikum",
+                  "name": "Basilikum"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Graphs",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.h5105_5a0d_temperature",
+                      "name": "Govee"
+                    },
+                    {
+                      "entity": "sensor.luftstange_temperature",
+                      "name": "Netatmo",
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "lower_bound": "~20",
+                  "upper_bound": "~25",
+                  "height": 200,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.h5105_5a0d_humidity",
+                      "name": "Govee"
+                    },
+                    {
+                      "entity": "sensor.luftstange_humidity",
+                      "name": "Netatmo",
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "lower_bound": "~30",
+                  "height": 200,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~60"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media",
+                  "heading_style": "title",
+                  "icon": "mdi:animation-play"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.kagis_android_tv_2"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.dht_s416_6062_2"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.couch"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.main_2"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.h5105_5a0d_temperature"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.h5105_5a0d_humidity"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.luftstange_carbon_dioxide"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.luftstange_noise"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.living_room_combined_power",
+              "color": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/system-info/power"
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.ikea_of_sweden_tradfri_motion_sensor_motion_2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.ikea_of_sweden_tradfri_motion_sensor_motion_2",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.door_window_sensor_window_door_is_open_4",
+              "name": "balcony door",
+              "display_type": "complete",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.door_window_sensor_window_door_is_open",
+                  "state": "on"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Büro",
+          "path": "office",
+          "icon": "mdi:desk",
+          "type": "sections",
+          "max_columns": 3,
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps"
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.office_cycle_through_scenes",
+                  "hide_state": true,
+                  "icon": "mdi:recycle-variant",
+                  "vertical": true,
+                  "name": "cycle through scenes",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": "automation.office_cycle_through_scenes"
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 2
+                  }
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
+                    }
+                  ],
+                  "type": "tile",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "icon": "mdi:led-strip-variant",
+                  "entity": "light.paulmann_licht_gmbh_rgbw_light_light",
+                  "name": "LED Strip",
+                  "show_entity_picture": false,
+                  "hide_state": false
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_silverglans_ip44_led_driver_light",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "vertical": false,
+                  "name": "Workbench"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.silicon_labs_ezsp_hue_lamps",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  },
+                  "name": "Deckenlampe"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Graphs",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.h5104_3251_temperature",
+                      "name": "Govee"
+                    },
+                    {
+                      "entity": "sensor.multisensor_air_temperature",
+                      "name": "Multisensor"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "lower_bound": "~20",
+                  "height": 200,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~25"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.h5104_3251_humidity",
+                      "name": "Govee"
+                    },
+                    {
+                      "entity": "sensor.multisensor_humidity",
+                      "name": "Multisensor"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "lower_bound": "~30",
+                  "height": 200,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~60"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media",
+                  "heading_style": "title",
+                  "icon": "mdi:animation-play"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.office_speaker"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.h5104_3251_temperature"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.h5104_3251_humidity"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.multisensor_illuminance"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.office_combined_power",
+              "color": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/system-info/power"
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.multisensor_motion_detection",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.multisensor_motion_detection",
+                  "state": "on"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Balkon",
+          "path": "balcony",
+          "type": "sections",
+          "max_columns": 3,
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Plants",
+                  "heading_style": "title",
+                  "icon": "mdi:sprout"
+                },
+                {
+                  "type": "plant-status",
+                  "entity": "plant.balkonbaum"
+                },
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "switch.hama_outdoor_plug_socket_1",
+                  "icon": "mdi:string-lights",
+                  "name": "Weihnachtsbeleuchtung"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Graphs",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "gray",
+                      "value": 10
+                    },
+                    {
+                      "color": "green",
+                      "value": 20
+                    },
+                    {
+                      "color": "orange",
+                      "value": 30
+                    },
+                    {
+                      "color": "red",
+                      "value": 40
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_balkon_temperature",
+                      "name": "Netatmo"
+                    },
+                    {
+                      "entity": "sensor.plant_sensor_2aac_temperature",
+                      "name": "Baum",
+                      "color": "gray",
+                      "show_fill": false
+                    }
+                  ],
+                  "height": 200,
+                  "hours_to_show": 168,
+                  "lower_bound": "~0",
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~10"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "blue",
+                      "value": 90
+                    },
+                    {
+                      "color": "green",
+                      "value": 60
+                    },
+                    {
+                      "color": "green",
+                      "value": 40
+                    },
+                    {
+                      "color": "gray",
+                      "value": 20
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.luftstange_balkon_humidity"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "height": 200,
+                  "lower_threshold": "~30",
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~60"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Pizza",
+                  "heading_style": "title",
+                  "icon": "mdi:pizza"
+                },
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.ooni_temperature",
+                      "name": "Temperature",
+                      "y_axis": "primary"
+                    }
+                  ],
+                  "height": 400,
+                  "hours_to_show": 2,
+                  "line_width": 2,
+                  "name": "Ooni Temperature",
+                  "points_per_hour": 720,
+                  "lower_bound": "~0",
+                  "upper_bound": "~50",
+                  "show": {
+                    "average": true,
+                    "extrema": true,
+                    "fill": false,
+                    "labels": true,
+                    "state": true
+                  },
+                  "type": "custom:mini-graph-card",
+                  "update_interval": 1
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.ooni_temperature",
+                  "state_not": "unavailable"
+                }
+              ]
+            }
+          ],
+          "icon": "mdi:flower",
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "plant.balkonbaum",
+              "display_type": "complete",
+              "state_content": "temperature",
+              "color": "primary",
+              "icon": "mdi:thermometer"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.luftstange_balkon_temperature",
+              "name": "Netatmo"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.luftstange_balkon_humidity",
+              "name": "Netatmo"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.ooni_temperature",
+              "name": "Pizza Sensor",
+              "display_type": "complete",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.ooni_temperature",
+                  "state_not": "unavailable"
+                }
+              ]
+            }
+          ],
+          "dense_section_placement": true
+        },
+        {
+          "title": "Schlafzimmer",
+          "path": "bedroom",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_tradfri_bulb_e27_cws_opal_600lm_light",
+                  "hide_state": false,
+                  "name": "Nachttischlampe",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 2
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Graphs",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "gray",
+                      "value": 15
+                    },
+                    {
+                      "color": "green",
+                      "value": 22
+                    },
+                    {
+                      "color": "orange",
+                      "value": 27
+                    },
+                    {
+                      "color": "red",
+                      "value": 30
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.h5105_6f6b_temperature"
+                    }
+                  ],
+                  "height": 200,
+                  "hours_to_show": 168,
+                  "lower_bound": "~15",
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~25"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "blue",
+                      "value": 80
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "green",
+                      "value": 40
+                    },
+                    {
+                      "color": "gray",
+                      "value": 20
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.h5105_6f6b_humidity"
+                    }
+                  ],
+                  "lower_bound": "~30",
+                  "height": 200,
+                  "hours_to_show": 168,
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~60"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media",
+                  "heading_style": "title",
+                  "icon": "mdi:animation-play"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "media-control",
+                      "entity": "media_player.nesthub6441"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "media-control",
+                      "entity": "media_player.nesthub2a11_2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "max_columns": 3,
+          "icon": "mdi:bed",
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.h5105_6f6b_temperature"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.h5105_6f6b_humidity"
+            }
+          ],
+          "subview": true
+        },
+        {
+          "type": "sections",
+          "max_columns": 3,
+          "title": "Serverraum",
+          "path": "serverroom",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "cards": [
+                    {
+                      "card": {
+                        "show_header_toggle": false,
+                        "title": "UPS Networkrack",
+                        "type": "entities"
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "entity_id": "sensor.bx700u_status"
+                          },
+                          {
+                            "entity_id": "sensor.bx700u_battery_voltage"
+                          },
+                          {
+                            "entity_id": "sensor.bx700u_input_voltage"
+                          },
+                          {
+                            "entity_id": "sensor.bx700u_self_test_result"
+                          },
+                          {
+                            "entity_id": "sensor.bx700u_beeper_status"
+                          }
+                        ]
+                      },
+                      "type": "custom:auto-entities"
+                    },
+                    {
+                      "cards": [
+                        {
+                          "entity": "sensor.bx700u_battery_charge",
+                          "severity": {
+                            "green": 75,
+                            "red": 0,
+                            "yellow": 50
+                          },
+                          "title": "UPS Battery",
+                          "type": "gauge"
+                        },
+                        {
+                          "entity": "sensor.bx700u_load",
+                          "severity": {
+                            "green": 0,
+                            "red": 75,
+                            "yellow": 50
+                          },
+                          "title": "UPS Load",
+                          "type": "gauge"
+                        }
+                      ],
+                      "type": "horizontal-stack"
+                    }
+                  ],
+                  "id": "ups",
+                  "type": "custom:vertical-stack-in-card"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "cards": [
+                    {
+                      "card": {
+                        "show_header_toggle": false,
+                        "title": "UPS NAS",
+                        "type": "entities"
+                      },
+                      "filter": {
+                        "exclude": [
+                          {
+                            "entity_id": "sensor.ups_battery"
+                          },
+                          {
+                            "entity_id": "sensor.ups_load"
+                          }
+                        ],
+                        "include": [
+                          {
+                            "entity_id": "*sensor.ups*"
+                          }
+                        ]
+                      },
+                      "type": "custom:auto-entities"
+                    },
+                    {
+                      "cards": [
+                        {
+                          "entity": "sensor.ups_battery",
+                          "severity": {
+                            "green": 75,
+                            "red": 0,
+                            "yellow": 50
+                          },
+                          "title": "UPS Battery",
+                          "type": "gauge"
+                        },
+                        {
+                          "entity": "sensor.ups_load",
+                          "severity": {
+                            "green": 0,
+                            "red": 75,
+                            "yellow": 50
+                          },
+                          "title": "UPS Load",
+                          "type": "gauge"
+                        }
+                      ],
+                      "type": "horizontal-stack"
+                    }
+                  ],
+                  "id": "ups",
+                  "type": "custom:vertical-stack-in-card"
+                }
+              ]
+            }
+          ],
+          "icon": "mdi:server-network",
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.ikea_of_sweden_tradfri_motion_sensor_motion",
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.server_room_combined_power",
+              "color": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/system-info/power"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Badezimmer",
+          "path": "bathroom",
+          "icon": "mdi:bathtub",
+          "type": "sections",
+          "max_columns": 3,
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "icon": "mdi:heating-coil",
+                  "heading": "Thermostat"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.bathroom_thermostat",
+                  "show_current_as_primary": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 4
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power",
+                  "vertical": false,
+                  "hide_state": false,
+                  "show_entity_picture": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "icon": "mdi:fire",
+                  "color": "red",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": [
+                        "automation.bad_thermostat_set_temperatur",
+                        "automation.bathroom_turn_on_thermostat"
+                      ]
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "icon_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": [
+                        "automation.bad_thermostat_set_temperatur",
+                        "automation.bathroom_turn_on_thermostat"
+                      ]
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "name": "Heat"
+                },
+                {
+                  "type": "tile",
+                  "vertical": false,
+                  "name": "Default",
+                  "icon": "mdi:thermometer-chevron-down",
+                  "hide_state": true,
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": [
+                        "automation.bathroom_set_default_temperature",
+                        "automation.bathroom_turn_on_thermostat"
+                      ]
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "icon_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": [
+                        "automation.bathroom_set_default_temperature",
+                        "automation.bathroom_turn_on_thermostat"
+                      ]
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "entity": "automation.bathroom_set_default_temperature",
+                  "show_entity_picture": false,
+                  "color": "accent"
+                },
+                {
+                  "type": "tile",
+                  "vertical": false,
+                  "name": "Off",
+                  "icon": "mdi:power",
+                  "hide_state": true,
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": "automation.bathroom_thermostat_off_if_away"
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "icon_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "automation.trigger",
+                    "target": {
+                      "entity_id": "automation.bathroom_thermostat_off_if_away"
+                    },
+                    "data": {
+                      "skip_condition": true
+                    }
+                  },
+                  "entity": "automation.bathroom_thermostat_off_if_away",
+                  "show_entity_picture": false,
+                  "color": "light-grey"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.ikea_of_sweden_gunnarp_panel_40_40_light",
+                  "name": "Panel",
+                  "icon": "light",
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Waschmaschine",
+                  "heading_style": "title",
+                  "icon": "mdi:washing-machine"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.washing_machine_is_running",
+                  "name": "Status"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.shellyplus2pm_5443b23df748_switch_1_power",
+                  "name": "Leistung"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.water_sensor_water_leak_detected",
+                  "name": "Wasserleck"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Graphs",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "gray",
+                      "value": 15
+                    },
+                    {
+                      "color": "green",
+                      "value": 22
+                    },
+                    {
+                      "color": "orange",
+                      "value": 27
+                    },
+                    {
+                      "color": "red",
+                      "value": 30
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.h5104_367d_temperature"
+                    }
+                  ],
+                  "height": 200,
+                  "hours_to_show": 168,
+                  "lower_bound": "~20",
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~25"
+                },
+                {
+                  "color_thresholds": [
+                    {
+                      "color": "blue",
+                      "value": 80
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    },
+                    {
+                      "color": "green",
+                      "value": 40
+                    },
+                    {
+                      "color": "gray",
+                      "value": 20
+                    }
+                  ],
+                  "entities": [
+                    {
+                      "entity": "sensor.h5104_367d_humidity"
+                    }
+                  ],
+                  "height": 200,
+                  "hours_to_show": 168,
+                  "lower_bound": "~30",
+                  "show": {
+                    "name": false,
+                    "icon": false,
+                    "extrema": true,
+                    "labels": true,
+                    "average": true
+                  },
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~80"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media",
+                  "heading_style": "title",
+                  "icon": "mdi:animation-play"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "media-control",
+                      "entity": "media_player.bathroom"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.h5104_367d_temperature"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.h5104_367d_humidity"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.bathroom_combined_power"
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.washing_machine_is_running",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.washing_machine_is_running",
+                  "state": "on"
+                }
+              ],
+              "display_type": "complete"
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.water_sensor_water_leak_detected",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.water_sensor_water_leak_detected",
+                  "state": "on"
+                }
+              ],
+              "display_type": "complete"
+            }
+          ],
+          "dense_section_placement": false,
+          "cards": []
+        },
+        {
+          "theme": "Backend-selected",
+          "icon": "mdi:toilet",
+          "path": "toilet",
+          "subview": true,
+          "title": "Toilet",
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Media",
+                  "heading_style": "title",
+                  "icon": "mdi:animation-play"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.googlehome6919"
+                }
+              ]
+            }
+          ],
+          "max_columns": 3
+        },
+        {
+          "theme": "Backend-selected",
+          "icon": "mdi:coat-rack",
+          "path": "hallway",
+          "subview": true,
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.ikea_of_sweden_vallhorn_wireless_motion_sensor_occupancy",
+              "color": ""
+            }
+          ],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "title",
+                  "icon": "mdi:lamps"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.gang_licht",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "timer.hallway_light_timer",
+                  "hide_state": false,
+                  "state_content": "remaining_time",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "timer.hallway_light_timer",
+                      "state": "active"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "max_columns": 3,
+          "title": "Gang"
+        }
+      ]
+    }
+  }
+}
