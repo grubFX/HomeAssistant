@@ -48,15 +48,6 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "dashboard-sport"
-      },
-      {
-        "id": "dashboard_temp",
-        "show_in_sidebar": true,
-        "icon": "mdi:account-group",
-        "title": "temp",
-        "require_admin": true,
-        "mode": "storage",
-        "url_path": "dashboard-temp"
       }
     ]
   }

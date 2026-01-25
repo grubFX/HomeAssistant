@@ -5,29 +5,14 @@
   "data": {
     "items": [
       {
-        "url": "/hacsfiles/vacuum-card/vacuum-card.js?hacstag=261291295263",
-        "type": "module",
-        "id": "cba9a70bd8f940f9ac85766967091b0c"
-      },
-      {
-        "url": "/hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js?hacstag=178921037441",
-        "type": "module",
-        "id": "d59713806e9448f68d956cfd15cc3c76"
-      },
-      {
-        "url": "/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js?hacstag=142051833044",
+        "url": "/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js?hacstag=142051833101",
         "type": "module",
         "id": "f295a6a90f434a059ac32c45e5d68b73"
       },
       {
-        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620121",
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620130",
         "type": "module",
         "id": "8eb20a233d594511aa7f1a1cd6e98987"
-      },
-      {
-        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866244",
-        "type": "module",
-        "id": "c7d470528eb54144a92bc687be6074c5"
       },
       {
         "url": "/hacsfiles/light-entity-row/light-entity-row.js?hacstag=151318225023",
@@ -35,12 +20,7 @@
         "id": "42857faddd7943d0b648f32949e1d4f1"
       },
       {
-        "url": "/hacsfiles/lovelace-template-entity-row/template-entity-row.js?hacstag=231674882130",
-        "type": "module",
-        "id": "4fafaa02f4754d92af04245dccca9643"
-      },
-      {
-        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841101",
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841161",
         "type": "module",
         "id": "992bbf2cde5e4d39bfc6dfc675a34ce4"
       },
@@ -65,11 +45,6 @@
         "id": "7cfc10f40c5a4d12a4d2344b0ab43ed7"
       },
       {
-        "url": "/hacsfiles/lovelace-slider-entity-row/slider-entity-row.js?hacstag=1448997001721",
-        "type": "module",
-        "id": "e5049c83e6384abe906f7e67dbebb50c"
-      },
-      {
         "url": "/hacsfiles/zigbee2mqtt-networkmap/zigbee2mqtt-networkmap.js?hacstag=201292040070",
         "type": "module",
         "id": "fe2e62f06d8b4f2db87ac3638d279d0a"
@@ -78,16 +53,6 @@
         "url": "/hacsfiles/battery-state-card/battery-state-card.js?hacstag=256292682321",
         "type": "module",
         "id": "8ee7df0f63fa4be0876827dbf57add78"
-      },
-      {
-        "url": "/hacsfiles/threedy/threedy-card.js?hacstag=33288368520211125",
-        "type": "module",
-        "id": "de3a3fd20386415bb3293865d8d5a458"
-      },
-      {
-        "url": "/hacsfiles/ha-floorplan/floorplan.js?hacstag=1883234941034",
-        "type": "module",
-        "id": "8fe233ca42d445afb244ddc1c37aa372"
       },
       {
         "url": "/hacsfiles/person-entity-card/person-entity-card-bundle.js?hacstag=413430860080",
@@ -126,7 +91,7 @@
       },
       {
         "id": "ce9f76b4eb2b45d4a1734db9d69aa451",
-        "url": "/hacsfiles/power-flow-card-plus/power-flow-card-plus.js?hacstag=618081815024",
+        "url": "/hacsfiles/power-flow-card-plus/power-flow-card-plus.js?hacstag=618081815026",
         "type": "module"
       },
       {
@@ -135,18 +100,23 @@
         "type": "module"
       },
       {
-        "id": "175b4d0106044d4aa2f1b0a7c575f74f",
-        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375420",
-        "type": "module"
-      },
-      {
         "id": "97fbdf11589c4536b8852487ca26b6b5",
-        "url": "/hacsfiles/lovelace-hourly-weather/hourly-weather.js?hacstag=499270202640",
+        "url": "/hacsfiles/lovelace-hourly-weather/hourly-weather.js?hacstag=499270202680",
         "type": "module"
       },
       {
         "id": "4c663b80f76043dfa6a2e7537b777d5e",
-        "url": "/hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js?hacstag=614083491131",
+        "url": "/hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js?hacstag=614083491140",
+        "type": "module"
+      },
+      {
+        "id": "090de7d30d4241e6919256d66e835320",
+        "url": "/hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js?hacstag=193372044231",
+        "type": "module"
+      },
+      {
+        "id": "8dd99b0e8fcd4c9eb19f17e672954a33",
+        "url": "/hacsfiles/ha-threedy-card/threedy-card.js?hacstag=670396689202560",
         "type": "module"
       }
     ]

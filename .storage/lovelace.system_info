@@ -51,19 +51,19 @@
                     },
                     "home": {},
                     "individual1": {
-                      "entity": "sensor.shellyplug_s_80646f82679a_energy",
-                      "name": "NAS",
+                      "name": "NAS/network",
                       "icon": "mdi:server-network",
                       "color_value": true,
-                      "color_icon": false
+                      "color_icon": false,
+                      "calculate_flow_rate": false
                     },
                     "individual2": {
-                      "entity": "sensor.shellyplug_s_80646f814cbc_energy",
-                      "name": "Network",
-                      "icon": "mdi:router-network-wireless"
+                      "name": "Office",
+                      "icon": "mdi:desk",
+                      "color_value": true
                     },
                     "fossil_fuel_percentage": {
-                      "show": false,
+                      "show": true,
                       "entity": "sensor.electricity_maps_grid_fossil_fuel_percentage",
                       "color_value": true,
                       "color_icon": false,
@@ -196,12 +196,12 @@
                         "use_metadata": false
                       },
                       {
+                        "entity": "sensor.living_room_combined_power",
                         "secondary_info": {},
                         "name": "Living room",
                         "icon": "mdi:sofa",
                         "color_value": true,
                         "color_icon": false,
-                        "entity": "sensor.living_room_combined_power",
                         "display_zero_state": true,
                         "display_zero": true
                       },
@@ -325,123 +325,13 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "network power consumption",
+                  "heading": "kitchen",
                   "heading_style": "title",
                   "icon": "mdi:flash"
                 },
                 {
                   "type": "gauge",
-                  "entity": "sensor.shellyplug_s_80646f814cbc_power",
-                  "needle": true,
-                  "min": 0,
-                  "max": 250,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 50,
-                    "red": 100
-                  },
-                  "name": " "
-                },
-                {
-                  "chart_type": "line",
-                  "period": "hour",
-                  "days_to_show": 3,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellyplug_s_80646f814cbc_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                },
-                {
-                  "chart_type": "line",
-                  "period": "day",
-                  "days_to_show": 28,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellyplug_s_80646f814cbc_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                }
-              ],
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "NAS power consumption",
-                  "heading_style": "title",
-                  "icon": "mdi:flash"
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.shellyplug_s_80646f82679a_power",
-                  "needle": true,
-                  "min": 0,
-                  "max": 650,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 100,
-                    "red": 200
-                  },
-                  "name": " "
-                },
-                {
-                  "chart_type": "line",
-                  "period": "hour",
-                  "days_to_show": 3,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellyplug_s_80646f82679a_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                },
-                {
-                  "chart_type": "line",
-                  "period": "day",
-                  "days_to_show": 28,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellyplug_s_80646f82679a_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                }
-              ],
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "office desk sockets",
-                  "heading_style": "title",
-                  "icon": "mdi:flash"
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.shellypmminig3_ecda3bc5ef20_power",
+                  "entity": "sensor.kitchen_combined_power",
                   "needle": true,
                   "min": 0,
                   "max": 3500,
@@ -453,7 +343,106 @@
                   "days_to_show": 3,
                   "type": "statistics-graph",
                   "entities": [
-                    "sensor.shellypmminig3_ecda3bc5ef20_power"
+                    "sensor.kitchen_combined_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.kitchen_combined_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "pantry",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.server_room_combined_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 3500,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.server_room_combined_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.server_room_combined_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "office",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.office_combined_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 3500,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.office_combined_power"
                   ],
                   "stat_types": [
                     "mean",
@@ -484,13 +473,13 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "TV + soundbar sockets",
+                  "heading": "living room",
                   "heading_style": "title",
                   "icon": "mdi:flash"
                 },
                 {
                   "type": "gauge",
-                  "entity": "sensor.shellypmminig3_84fce63e9c90_power",
+                  "entity": "sensor.living_room_combined_power",
                   "needle": true,
                   "min": 0,
                   "max": 3500,
@@ -502,7 +491,7 @@
                   "days_to_show": 3,
                   "type": "statistics-graph",
                   "entities": [
-                    "sensor.shellypmminig3_84fce63e9c90_power"
+                    "sensor.living_room_combined_power"
                   ],
                   "stat_types": [
                     "mean",
@@ -517,56 +506,7 @@
                   "days_to_show": 28,
                   "type": "statistics-graph",
                   "entities": [
-                    "sensor.shellypmminig3_84fce63e9c90_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "kitchen sockets",
-                  "heading_style": "title",
-                  "icon": "mdi:flash"
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.shellypmminig3_ecda3bc32e24_power",
-                  "needle": true,
-                  "min": 0,
-                  "max": 3500,
-                  "name": " "
-                },
-                {
-                  "chart_type": "line",
-                  "period": "hour",
-                  "days_to_show": 3,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellypmminig3_ecda3bc32e24_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true
-                },
-                {
-                  "chart_type": "line",
-                  "period": "day",
-                  "days_to_show": 28,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.shellypmminig3_ecda3bc32e24_power"
+                    "sensor.living_room_combined_power"
                   ],
                   "stat_types": [
                     "mean",
@@ -584,11 +524,11 @@
                   "type": "heading",
                   "heading_style": "title",
                   "icon": "mdi:flash",
-                  "heading": "bathroom heater socket"
+                  "heading": "bathroom"
                 },
                 {
                   "type": "gauge",
-                  "entity": "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power",
+                  "entity": "sensor.bathroom_combined_power",
                   "needle": true,
                   "min": 0,
                   "max": 2200,
@@ -600,14 +540,16 @@
                   "days_to_show": 3,
                   "type": "statistics-graph",
                   "entities": [
-                    "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power"
+                    "sensor.bathroom_combined_power"
                   ],
                   "stat_types": [
                     "mean",
                     "min",
                     "max"
                   ],
-                  "hide_legend": true
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
                 },
                 {
                   "chart_type": "line",
@@ -615,7 +557,7 @@
                   "days_to_show": 28,
                   "type": "statistics-graph",
                   "entities": [
-                    "sensor.shelly1pmminig3_dcda0cb8bb6c_switch_0_power"
+                    "sensor.bathroom_combined_power"
                   ],
                   "stat_types": [
                     "mean",
@@ -627,7 +569,271 @@
               ]
             }
           ],
-          "cards": []
+          "cards": [],
+          "header": {
+            "card": {
+              "type": "markdown",
+              "content": "# ⚡️ power consumption by room",
+              "text_only": true
+            },
+            "layout": "responsive",
+            "badges_position": "bottom",
+            "badges_wrap": "scroll"
+          },
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.home_energy_meter_gen5_electric_consumption_w",
+              "name": "overall"
+            }
+          ]
+        },
+        {
+          "title": "power-homelab",
+          "path": "power-homelab",
+          "icon": "mdi:chart-multiple",
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "UDM power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plug_udm_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 200,
+                  "unit": "W",
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_udm_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_udm_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "PM16 power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plug_promax16_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 50,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_promax16_power"
+                  ],
+                  "hide_legend": true,
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_promax16_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "NAS power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.plug_nas_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 250,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_nas_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.plug_nas_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "TuringPi power consumption",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.ledvance_plug_eu_em_t_power",
+                  "needle": true,
+                  "min": 0,
+                  "max": 120,
+                  "name": " "
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "days_to_show": 3,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.ledvance_plug_eu_em_t_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                },
+                {
+                  "chart_type": "line",
+                  "period": "day",
+                  "days_to_show": 28,
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.ledvance_plug_eu_em_t_power"
+                  ],
+                  "stat_types": [
+                    "mean",
+                    "min",
+                    "max"
+                  ],
+                  "hide_legend": true,
+                  "min_y_axis": 0,
+                  "fit_y_data": true
+                }
+              ]
+            }
+          ],
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.server_room_combined_power",
+              "name": "server room"
+            }
+          ],
+          "header": {
+            "layout": "responsive",
+            "badges_position": "bottom",
+            "badges_wrap": "scroll",
+            "card": {
+              "type": "markdown",
+              "text_only": true,
+              "content": "# ⚡️ homelab power consumption"
+            }
+          }
         },
         {
           "theme": "Backend-selected",
@@ -704,136 +910,6 @@
                   }
                 }
               ]
-            }
-          ],
-          "max_columns": 4
-        },
-        {
-          "icon": "mdi:chip",
-          "id": "system",
-          "path": "system",
-          "title": "System",
-          "visible": [
-            {
-              "user": "b1f7809a4d5d44fb929c8b823913d9b6"
-            },
-            {
-              "user": "064a1ec096ab47cea54da536d5d29ed8"
-            },
-            {
-              "user": "cb42d2df22e34935be26a9e7bba8e8b9"
-            }
-          ],
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "NAS System Stats",
-                  "heading_style": "title",
-                  "icon": "mdi:chart-bar-stacked",
-                  "badges": []
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.connected_clients",
-                  "hours_to_show": 72,
-                  "detail": 2,
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 3
-                  },
-                  "name": "connected to HomeAssistant",
-                  "icon": "mdi:home-assistant"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.grubfx_nas",
-                  "detail": 2,
-                  "name": "Plex clients",
-                  "hours_to_show": 72,
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 3
-                  }
-                }
-              ],
-              "column_span": 2
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "PiHole Stats",
-                  "heading_style": "title",
-                  "icon": "mdi:chart-bar-stacked",
-                  "badges": []
-                },
-                {
-                  "type": "custom:battery-state-card",
-                  "title": "PiHole 1",
-                  "secondary_info": "{charging}",
-                  "icon": "mdi:pi-hole",
-                  "colors": {
-                    "steps": []
-                  },
-                  "filter": {
-                    "include": [
-                      {
-                        "name": "entity_id",
-                        "value": "*pihole1*"
-                      }
-                    ],
-                    "exclude": [
-                      {
-                        "name": "state",
-                        "value": "Unavailable"
-                      }
-                    ]
-                  },
-                  "bulk_rename": [
-                    {
-                      "from": "PiHole1"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:battery-state-card",
-                  "title": "PiHole 2",
-                  "secondary_info": "{charging}",
-                  "icon": "mdi:pi-hole",
-                  "colors": {
-                    "steps": []
-                  },
-                  "filter": {
-                    "include": [
-                      {
-                        "name": "entity_id",
-                        "value": "*pihole2*"
-                      }
-                    ],
-                    "exclude": [
-                      {
-                        "name": "state",
-                        "value": "Unavailable"
-                      }
-                    ]
-                  },
-                  "bulk_rename": [
-                    {
-                      "from": "PiHole2"
-                    }
-                  ]
-                }
-              ],
-              "column_span": 2
             }
           ],
           "max_columns": 4

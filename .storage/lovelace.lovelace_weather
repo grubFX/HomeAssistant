@@ -85,14 +85,41 @@
                   "heading": "Außentemperatur"
                 },
                 {
+                  "color_thresholds": [
+                    {
+                      "color": "gray",
+                      "value": -10
+                    },
+                    {
+                      "color": "lightblue",
+                      "value": 0
+                    },
+                    {
+                      "color": "green",
+                      "value": 15
+                    },
+                    {
+                      "color": "orange",
+                      "value": 25
+                    },
+                    {
+                      "color": "red",
+                      "value": 35
+                    },
+                    {
+                      "color": "purple",
+                      "value": 50
+                    }
+                  ],
                   "entities": [
                     {
-                      "entity": "sensor.luftstange_balkon_temperature",
-                      "name": "Netatmo"
+                      "entity": "sensor.indoor_outdoor_meter_432d_temperature",
+                      "name": "Switchbot Sensor"
                     },
                     {
                       "entity": "sensor.plant_sensor_2aac_temperature",
                       "name": "Balkonbaum",
+                      "color": "gray",
                       "show_fill": false
                     },
                     {
@@ -111,12 +138,12 @@
                     "icon": false,
                     "extrema": true,
                     "labels": true,
-                    "average": true
+                    "average": false
                   },
                   "hour24": true,
                   "line_width": 2,
                   "type": "custom:mini-graph-card",
-                  "upper_bound": "~10"
+                  "upper_bound": "~0"
                 }
               ],
               "column_span": 1
@@ -131,8 +158,8 @@
                 {
                   "entities": [
                     {
-                      "entity": "sensor.luftstange_balkon_humidity",
-                      "name": "Balkon"
+                      "entity": "sensor.indoor_outdoor_meter_432d_humidity",
+                      "name": "Switchbot Sensor"
                     },
                     {
                       "entity": "sensor.wien_innere_stadt_humidity",
@@ -141,101 +168,21 @@
                       "show_fill": false
                     }
                   ],
+                  "height": 188,
+                  "hours_to_show": 168,
                   "lower_bound": "~0",
                   "refresh_interval": 10,
-                  "type": "custom:mini-graph-card",
-                  "upper_bound": "~100",
-                  "height": 188,
-                  "hours_to_show": 168,
-                  "line_width": 2,
-                  "hour24": true,
                   "show": {
                     "name": false,
                     "icon": false,
-                    "extrema": true,
-                    "max": true,
-                    "average": true,
-                    "labels": true
-                  }
-                }
-              ],
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Windgeschwindigkeit"
-                },
-                {
-                  "entities": [
-                    {
-                      "entity": "sensor.luftstange_windi_wind_speed",
-                      "name": "Balkon"
-                    },
-                    {
-                      "entity": "sensor.wien_innere_stadt_wind_speed",
-                      "name": "ZAMG (Innere Stadt)",
-                      "show_fill": false,
-                      "color": "gray"
-                    }
-                  ],
-                  "icon": "mdi:weather-windy",
-                  "lower_bound": 0,
-                  "refresh_interval": 10,
-                  "height": 188,
-                  "hours_to_show": 168,
-                  "line_width": 2,
-                  "hour24": true,
-                  "show": {
-                    "name": false,
-                    "icon": false,
-                    "extrema": true,
-                    "max": true,
-                    "average": true,
-                    "labels": true
-                  },
-                  "type": "custom:mini-graph-card"
-                }
-              ],
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Luftdruck"
-                },
-                {
-                  "entities": [
-                    {
-                      "entity": "sensor.luftstange_atmospheric_pressure",
-                      "name": "Netatmo"
-                    },
-                    {
-                      "entity": "sensor.wien_innere_stadt_pressure_at_sea_level",
-                      "name": "ZAMG (Innere Stadt)",
-                      "color": "gray",
-                      "show_fill": false
-                    }
-                  ],
-                  "hours_to_show": 168,
-                  "icon": "mdi:gauge",
-                  "refresh_interval": 10,
-                  "lower_bound": "~1000",
-                  "line_width": 2,
-                  "height": 188,
-                  "hour24": true,
-                  "show": {
-                    "icon": false,
-                    "name": false,
                     "extrema": true,
                     "labels": true,
-                    "average": true
+                    "average": false
                   },
-                  "type": "custom:mini-graph-card"
+                  "hour24": true,
+                  "line_width": 2,
+                  "type": "custom:mini-graph-card",
+                  "upper_bound": "~10"
                 }
               ],
               "column_span": 1
@@ -290,7 +237,7 @@
                   "refresh_interval": 10,
                   "height": 188,
                   "lower_bound": "~0",
-                  "upper_bound": "~5",
+                  "upper_bound": "~0",
                   "line_width": 2,
                   "hour24": true,
                   "show": {
@@ -305,7 +252,34 @@
               ],
               "column_span": 1
             }
-          ]
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.indoor_outdoor_meter_432d_temperature",
+              "name": {
+                "type": "area"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.indoor_outdoor_meter_432d_humidity",
+              "name": {
+                "type": "area"
+              }
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "wrap"
+          }
         },
         {
           "title": "Temperaturverlauf",
@@ -329,14 +303,20 @@
                     "sensor.h5105_6f6b_temperature",
                     "sensor.h5104_3251_temperature",
                     "sensor.h5105_5a0d_temperature",
-                    "sensor.h5104_367d_temperature"
+                    "sensor.h5104_367d_temperature",
+                    "sensor.alpstuga_air_quality_monitor_temperature",
+                    "sensor.alpstuga_air_quality_monitor_temperature_2",
+                    "sensor.indoor_outdoor_meter_432d_temperature",
+                    "sensor.plant_sensor_2aac_temperature"
                   ],
                   "stat_types": [
                     "mean"
                   ],
                   "days_to_show": 21,
-                  "layout_options": {
-                    "grid_columns": "full"
+                  "fit_y_data": true,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 8
                   }
                 }
               ],
@@ -350,22 +330,6 @@
               "show_name": true,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.h5105_6f6b_temperature",
-              "name": "Schlafzimmer"
-            },
-            {
-              "type": "entity",
-              "show_name": true,
-              "show_state": true,
-              "show_icon": true,
-              "entity": "sensor.h5104_3251_temperature",
-              "name": "Office Desk"
-            },
-            {
-              "type": "entity",
-              "show_name": true,
-              "show_state": true,
-              "show_icon": true,
               "entity": "sensor.h5105_5a0d_temperature",
               "name": "Wohnzimmer"
             },
@@ -374,10 +338,73 @@
               "show_name": true,
               "show_state": true,
               "show_icon": true,
+              "entity": "sensor.alpstuga_air_quality_monitor_temperature",
+              "name": {
+                "type": "area"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.multisensor_air_temperature",
+              "name": {
+                "type": "area"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.alpstuga_air_quality_monitor_temperature_2",
+              "name": {
+                "type": "area"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5104_3251_temperature",
+              "name": {
+                "type": "area"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.h5105_6f6b_temperature",
+              "name": "Schlafzimmer"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
               "entity": "sensor.h5104_367d_temperature",
               "name": "Bad"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.indoor_outdoor_meter_432d_temperature",
+              "name": {
+                "type": "area"
+              }
             }
-          ]
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "wrap"
+          }
         }
       ]
     }

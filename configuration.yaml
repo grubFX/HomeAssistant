@@ -41,14 +41,8 @@ device_sun_light_trigger:
 history:
 
 recorder:
-  db_url: !secret sql_db_url
   exclude:
     entities:
-      - sensor.time
-      - sensor.internet_time
-      - sensor.owm_wind_speed # m/s
-      - sensor.owm_pressure # mbar
-      - sensor.date_time_iso
       - sensor.dishbert_remaining_program_time
     entity_globs:
       - sensor.litfassstrasse*
@@ -61,12 +55,6 @@ tts:
     service_name: google_say
 
 shopping_list:
-
-telegram_bot:
-  - platform: broadcast
-    api_key: !secret telegram_bot_api_key
-    allowed_chat_ids:
-      - !secret chat_id_0
 
 google_assistant:
   project_id: grubfx-home-assistant
@@ -82,6 +70,7 @@ http:
     - !secret router_ip
     - !secret nas_ip
     - !secret npm_ip
+    - 172.30.33.0/24
   cors_allowed_origins:
     - https://cast.home-assistant.io
 websocket_api:

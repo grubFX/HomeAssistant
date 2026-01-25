@@ -69,7 +69,9 @@
                   "type": "statistics-graph",
                   "entities": [
                     "sensor.strava_stats_summary_all_ride_distance",
-                    "sensor.strava_stats_summary_all_run_distance"
+                    "sensor.strava_stats_summary_all_run_distance",
+                    "sensor.strava_grub_fx_stats_all_ride_distance",
+                    "sensor.strava_grub_fx_stats_all_run_distance"
                   ],
                   "stat_types": [
                     "change"
@@ -83,6 +85,8 @@
                   "period": "day",
                   "type": "statistics-graph",
                   "entities": [
+                    "sensor.strava_grub_fx_stats_all_ride_elevation_gain",
+                    "sensor.strava_grub_fx_stats_all_run_elevation_gain",
                     "sensor.strava_stats_summary_all_ride_elevation_gain",
                     "sensor.strava_stats_summary_all_run_elevation_gain"
                   ],
@@ -133,16 +137,18 @@
                   "filter": {
                     "include": [
                       {
-                        "entity_id": "*strava_stats_summary_ytd*"
+                        "options": {},
+                        "entity_id": "*strava_*ytd*"
                       }
                     ],
                     "exclude": [
                       {
+                        "options": {},
                         "entity_id": "*swim*"
                       }
                     ]
                   },
-                  "id": "pihole",
+                  "id": "strava_ytd_stats",
                   "type": "custom:auto-entities"
                 }
               ]

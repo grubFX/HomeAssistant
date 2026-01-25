@@ -67,13 +67,20 @@
                     "Remaining"
                   ],
                   "printer_type": "I3",
-                  "name": "Ender 5 Pro"
+                  "name": "Ender 5 Pro",
+                  "light_entity": "light.esp32_cam_light",
+                  "camera_entity": "camera.g3_instant_high_resolution_channel"
                 }
               ]
             }
           ],
           "max_columns": 2,
-          "dense_section_placement": true
+          "dense_section_placement": true,
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "wrap"
+          }
         }
       ]
     }
