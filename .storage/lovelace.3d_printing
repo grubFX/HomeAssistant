@@ -34,20 +34,13 @@
                   "show_state": false,
                   "show_name": false,
                   "camera_view": "auto",
+                  "fit_mode": "cover",
                   "type": "picture-entity",
-                  "entity": "camera.g3_instant_high_resolution_channel",
-                  "camera_image": "camera.g3_instant_high_resolution_channel"
-                },
-                {
-                  "show_state": false,
-                  "show_name": false,
-                  "camera_view": "auto",
-                  "type": "picture-entity",
-                  "entity": "camera.esp32_cam",
-                  "name": "ESP32-CAM",
+                  "entity": "camera.g3_flex_high_resolution_channel",
                   "hold_action": {
                     "action": "none"
-                  }
+                  },
+                  "camera_image": "camera.g3_flex_high_resolution_channel"
                 }
               ],
               "column_span": 1
@@ -68,8 +61,9 @@
                   ],
                   "printer_type": "I3",
                   "name": "Ender 5 Pro",
-                  "light_entity": "light.esp32_cam_light",
-                  "camera_entity": "camera.g3_instant_high_resolution_channel"
+                  "camera_entity": "camera.g3_instant_high_resolution_channel",
+                  "switch_entity": "switch.3d_drucker",
+                  "power_entity": "switch.3d_drucker"
                 }
               ]
             }

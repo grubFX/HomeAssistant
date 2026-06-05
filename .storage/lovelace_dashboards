@@ -48,6 +48,15 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "dashboard-sport"
+      },
+      {
+        "id": "lovelace",
+        "icon": "mdi:view-dashboard",
+        "title": "Overview",
+        "url_path": "lovelace",
+        "show_in_sidebar": true,
+        "require_admin": false,
+        "mode": "storage"
       }
     ]
   }

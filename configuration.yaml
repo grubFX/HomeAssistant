@@ -44,6 +44,8 @@ recorder:
   exclude:
     entities:
       - sensor.dishbert_remaining_program_time
+      - sensor.solix_c300x_dc_remaining_time
+      - sensor.solix_c300x_dc_mqtt_time
     entity_globs:
       - sensor.litfassstrasse*
       - sensor.zippererstrasse*
@@ -53,8 +55,6 @@ logbook:
 tts:
   - platform: google_translate
     service_name: google_say
-
-shopping_list:
 
 google_assistant:
   project_id: grubfx-home-assistant

@@ -5,11 +5,4 @@
   scan_interval: 10
   value_template: "{{ (value | multiply(0.001)) | round(0) }}"
 
-- platform: rest
-  name: Timeular
-  resource: https://api.timeular.com/api/v2/tracking
-  value_template: "{{ value_json.currentTracking.activity.name }}"
-  headers:
-    Authorization: !secret timeular_token
-
 - platform: websocket_api

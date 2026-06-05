@@ -50,18 +50,6 @@
                       }
                     },
                     "home": {},
-                    "individual1": {
-                      "name": "NAS/network",
-                      "icon": "mdi:server-network",
-                      "color_value": true,
-                      "color_icon": false,
-                      "calculate_flow_rate": false
-                    },
-                    "individual2": {
-                      "name": "Office",
-                      "icon": "mdi:desk",
-                      "color_value": true
-                    },
                     "fossil_fuel_percentage": {
                       "show": true,
                       "entity": "sensor.electricity_maps_grid_fossil_fuel_percentage",
@@ -179,7 +167,9 @@
                       "entity": {
                         "consumption": "sensor.home_energy_meter_gen5_electric_consumption_w"
                       },
-                      "color_value": true
+                      "color_value": true,
+                      "secondary_info": {},
+                      "display_state": "one_way_no_zero"
                     },
                     "individual": [
                       {
@@ -225,7 +215,11 @@
                         "name": "Server room",
                         "icon": "mdi:server-network"
                       }
-                    ]
+                    ],
+                    "home": {
+                      "secondary_info": {},
+                      "subtract_individual": true
+                    }
                   },
                   "grid_options": {
                     "columns": 12,
@@ -395,11 +389,14 @@
                     "sensor.server_room_combined_power"
                   ],
                   "stat_types": [
-                    "mean",
                     "min",
-                    "max"
+                    "max",
+                    "mean"
                   ],
-                  "hide_legend": true
+                  "hide_legend": true,
+                  "energy_date_selection": false,
+                  "fit_y_data": true,
+                  "max_y_axis": -15
                 },
                 {
                   "chart_type": "line",
@@ -603,7 +600,7 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "UDM power consumption",
+                  "heading": "Network power consumption",
                   "heading_style": "title",
                   "icon": "mdi:flash"
                 },
@@ -640,59 +637,6 @@
                   "type": "statistics-graph",
                   "entities": [
                     "sensor.plug_udm_power"
-                  ],
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "hide_legend": true,
-                  "min_y_axis": 0,
-                  "fit_y_data": true
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "PM16 power consumption",
-                  "heading_style": "title",
-                  "icon": "mdi:flash"
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.plug_promax16_power",
-                  "needle": true,
-                  "min": 0,
-                  "max": 50,
-                  "name": " "
-                },
-                {
-                  "chart_type": "line",
-                  "period": "hour",
-                  "days_to_show": 3,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.plug_promax16_power"
-                  ],
-                  "hide_legend": true,
-                  "stat_types": [
-                    "mean",
-                    "min",
-                    "max"
-                  ],
-                  "min_y_axis": 0,
-                  "fit_y_data": true
-                },
-                {
-                  "chart_type": "line",
-                  "period": "day",
-                  "days_to_show": 28,
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.plug_promax16_power"
                   ],
                   "stat_types": [
                     "mean",
@@ -764,16 +708,16 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "TuringPi power consumption",
                   "heading_style": "title",
-                  "icon": "mdi:flash"
+                  "icon": "mdi:flash",
+                  "heading": "Homelab power consumption"
                 },
                 {
                   "type": "gauge",
                   "entity": "sensor.ledvance_plug_eu_em_t_power",
                   "needle": true,
                   "min": 0,
-                  "max": 120,
+                  "max": 250,
                   "name": " "
                 },
                 {
@@ -811,6 +755,234 @@
                   "fit_y_data": true
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Anker Solix UPS",
+                  "heading_style": "title",
+                  "icon": "mdi:flash"
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.solix_c300x_dc_usb_c_port_2",
+                    "sensor.solix_c300x_dc_solar_power"
+                  ],
+                  "stat_types": [
+                    "max",
+                    "min",
+                    "mean"
+                  ],
+                  "hide_legend": false,
+                  "min_y_axis": 0,
+                  "fit_y_data": true,
+                  "grid_options": {
+                    "columns": 18,
+                    "rows": "auto"
+                  },
+                  "days_to_show": 7
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "type": "statistics-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.jetkvm_e309674e66414d78_power",
+                      "name": "JetKVM DC Power Meter"
+                    },
+                    "sensor.solix_c300x_dc_usb_c_port_1",
+                    "sensor.solix_c300x_dc_usb_c_port_3",
+                    "sensor.solix_c300x_dc_usb_c_port_4",
+                    "sensor.solix_c300x_dc_usb_a_port_1",
+                    "sensor.solix_c300x_dc_usb_a_port_2"
+                  ],
+                  "´stat_types": [
+                    "min",
+                    "max",
+                    "mean"
+                  ],
+                  "hide_legend": false,
+                  "min_y_axis": 0,
+                  "fit_y_data": false,
+                  "grid_options": {
+                    "columns": 18,
+                    "rows": "auto"
+                  },
+                  "logarithmic_scale": false,
+                  "days_to_show": 7
+                },
+                {
+                  "type": "custom:power-flow-card-plus",
+                  "entities": {
+                    "grid": {
+                      "entity": "sensor.ledvance_plug_eu_em_t_power",
+                      "color_value": false,
+                      "secondary_info": {
+                        "unit_of_measurement": "%",
+                        "icon": ""
+                      },
+                      "use_metadata": false,
+                      "display_state": "one_way_no_zero",
+                      "icon": "",
+                      "invert_state": false
+                    },
+                    "individual": [
+                      {
+                        "entity": "sensor.jetkvm_e309674e66414d78_power",
+                        "name": "ASUS",
+                        "icon": "mdi:network",
+                        "calculate_flow_rate": false
+                      },
+                      {
+                        "entity": "sensor.solix_c300x_dc_usb_c_port_3",
+                        "secondary_info": {},
+                        "use_metadata": true,
+                        "calculate_flow_rate": false,
+                        "display_zero_state": true,
+                        "display_zero": true
+                      },
+                      {
+                        "entity": "sensor.solix_c300x_dc_usb_c_port_4",
+                        "secondary_info": {},
+                        "icon": "",
+                        "color_icon": true,
+                        "display_zero_state": true,
+                        "unit_white_space": true,
+                        "display_zero": true,
+                        "use_metadata": true,
+                        "calculate_flow_rate": false,
+                        "inverted_animation": false,
+                        "show_direction": false
+                      },
+                      {
+                        "entity": "sensor.solix_c300x_dc_usb_a_port_1",
+                        "secondary_info": {},
+                        "use_metadata": true
+                      },
+                      {
+                        "entity": "sensor.solix_c300x_dc_usb_a_port_2",
+                        "secondary_info": {},
+                        "use_metadata": true
+                      }
+                    ],
+                    "battery": {
+                      "state_of_charge": "sensor.solix_c300x_dc_state_of_charge",
+                      "show_state_of_charge": false,
+                      "state_of_charge_unit_white_space": false,
+                      "color_value": false,
+                      "display_state": "one_way_no_zero",
+                      "invert_state": true,
+                      "entity": {
+                        "consumption": "sensor.solix_c300x_dc_dc_output_power_total",
+                        "production": "sensor.solix_c300x_dc_dc_input_power_total"
+                      },
+                      "use_metadata": false
+                    },
+                    "fossil_fuel_percentage": {
+                      "secondary_info": {}
+                    },
+                    "home": {
+                      "secondary_info": {
+                        "accept_negative": false
+                      },
+                      "icon": "mdi:devices",
+                      "subtract_individual": false,
+                      "override_state": false,
+                      "circle_animation": false,
+                      "hide": false,
+                      "use_metadata": false
+                    },
+                    "solar": {
+                      "secondary_info": {},
+                      "display_zero": true
+                    }
+                  },
+                  "display_zero_lines": {
+                    "mode": "show",
+                    "transparency": 50,
+                    "grey_color": [
+                      189,
+                      189,
+                      189
+                    ]
+                  },
+                  "disable_dots": false,
+                  "sort_individual_devices": false,
+                  "use_new_flow_rate_model": true,
+                  "clickable_entities": true,
+                  "max_expected_power": 300,
+                  "grid_options": {
+                    "columns": 18,
+                    "rows": 6
+                  },
+                  "dashboard_link": ""
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "min": 0,
+                  "max": 140,
+                  "entity": "sensor.jetkvm_e309674e66414d78_power",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "name": "ASUS"
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "min": 0,
+                  "max": 140,
+                  "entity": "sensor.solix_c300x_dc_usb_c_port_3",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "min": 0,
+                  "max": 15,
+                  "entity": "sensor.solix_c300x_dc_usb_c_port_4",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "min": 0,
+                  "max": 10,
+                  "entity": "sensor.solix_c300x_dc_usb_a_port_1",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "name": "USB-A 1"
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "min": 0,
+                  "max": 10,
+                  "entity": "sensor.solix_c300x_dc_usb_a_port_2",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "name": "USB-A 2"
+                }
+              ],
+              "column_span": 3
             }
           ],
           "cards": [],

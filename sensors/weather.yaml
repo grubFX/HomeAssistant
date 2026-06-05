@@ -1,5 +1,0 @@
-- platform: template
-  sensors:
-    oomi_multisensor_lx:
-      unit_of_measurement: "lx"
-      value_template: "{{ states('sensor.oomi_multisensor_illuminance') }}"

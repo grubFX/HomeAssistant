@@ -24,7 +24,7 @@
                 },
                 {
                   "type": "iframe",
-                  "url": "https://embed.windy.com/embed2.html?lat=48.18&lon=16.41&zoom=15&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.18&detailLon=16.41&metricWind=default&metricTemp=default&radarRange=-1",
+                  "url": "https://embed.windy.com/embed2.html?lat=48.18&lon=16.41&zoom=15&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.18&detailLon=16.41&metricWind=default&metricTemp=°C&radarRange=-1",
                   "layout_options": {
                     "grid_columns": "full",
                     "grid_rows": 6
@@ -141,7 +141,7 @@
                     "average": false
                   },
                   "hour24": true,
-                  "line_width": 2,
+                  "line_width": 1,
                   "type": "custom:mini-graph-card",
                   "upper_bound": "~0"
                 }
@@ -180,7 +180,7 @@
                     "average": false
                   },
                   "hour24": true,
-                  "line_width": 2,
+                  "line_width": 1,
                   "type": "custom:mini-graph-card",
                   "upper_bound": "~10"
                 }
@@ -205,7 +205,7 @@
                   "lower_bound": 0,
                   "height": 230,
                   "hours_to_show": 168,
-                  "line_width": 2,
+                  "line_width": 1,
                   "hour24": true,
                   "show": {
                     "name": false,
@@ -238,7 +238,7 @@
                   "height": 188,
                   "lower_bound": "~0",
                   "upper_bound": "~0",
-                  "line_width": 2,
+                  "line_width": 1,
                   "hour24": true,
                   "show": {
                     "name": false,
