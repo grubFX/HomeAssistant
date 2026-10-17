@@ -2,6 +2,7 @@
 *
 
 # except the following
+!esphome
 !.gitignore
 !configuration.yaml
 !scenes.yaml

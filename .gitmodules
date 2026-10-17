@@ -1,0 +1,4 @@
+[submodule "esphome"]
+	path = esphome
+	url = https://github.com/grubFX/esphome-configs.git
+	branch = master
