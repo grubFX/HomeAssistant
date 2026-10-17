@@ -1,8 +1,1 @@
-- platform: command_line
-  name: Temperature Zone0
-  command: "cat /sys/class/thermal/thermal_zone0/temp"
-  unit_of_measurement: "°C"
-  scan_interval: 10
-  value_template: "{{ (value | multiply(0.001)) | round(0) }}"
-
 - platform: websocket_api

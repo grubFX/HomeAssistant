@@ -24,7 +24,7 @@
                 },
                 {
                   "type": "iframe",
-                  "url": "https://embed.windy.com/embed2.html?lat=48.18&lon=16.41&zoom=15&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=48.18&detailLon=16.41&metricWind=default&metricTemp=°C&radarRange=-1",
+                  "url": "https://embed.windy.com/embed2.html?lat=48.2&lon=16.4&zoom=13&level=surface&overlay=temp&type=map&location=coordinates&metricWind=default&metricTemp=%C2%B0C",
                   "layout_options": {
                     "grid_columns": "full",
                     "grid_rows": 6
@@ -41,24 +41,28 @@
                   "heading": "Vorhersage"
                 },
                 {
-                  "show_current": false,
+                  "show_current": true,
                   "show_forecast": true,
                   "type": "weather-forecast",
-                  "entity": "weather.met_no",
-                  "forecast_type": "hourly",
+                  "entity": "weather.google_weather",
                   "layout_options": {
                     "grid_columns": "full"
-                  }
+                  },
+                  "round_temperature": true,
+                  "forecast_type": "hourly",
+                  "forecast_slots": 10
                 },
                 {
                   "show_current": false,
                   "show_forecast": true,
                   "type": "weather-forecast",
-                  "entity": "weather.met_no",
+                  "entity": "weather.google_weather",
                   "forecast_type": "daily",
                   "layout_options": {
                     "grid_columns": "full"
-                  }
+                  },
+                  "round_temperature": true,
+                  "forecast_slots": 10
                 }
               ],
               "column_span": 1
@@ -141,7 +145,7 @@
                     "average": false
                   },
                   "hour24": true,
-                  "line_width": 1,
+                  "line_width": 2,
                   "type": "custom:mini-graph-card",
                   "upper_bound": "~0"
                 }
@@ -180,7 +184,7 @@
                     "average": false
                   },
                   "hour24": true,
-                  "line_width": 1,
+                  "line_width": 2,
                   "type": "custom:mini-graph-card",
                   "upper_bound": "~10"
                 }
@@ -205,7 +209,7 @@
                   "lower_bound": 0,
                   "height": 230,
                   "hours_to_show": 168,
-                  "line_width": 1,
+                  "line_width": 2,
                   "hour24": true,
                   "show": {
                     "name": false,
@@ -238,7 +242,7 @@
                   "height": 188,
                   "lower_bound": "~0",
                   "upper_bound": "~0",
-                  "line_width": 1,
+                  "line_width": 2,
                   "hour24": true,
                   "show": {
                     "name": false,
@@ -248,6 +252,142 @@
                     "average": true
                   },
                   "type": "custom:mini-graph-card"
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Partikel",
+                  "heading_style": "title",
+                  "icon": ""
+                },
+                {
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.a23_wehlistrasse_pm2_5",
+                    "sensor.3991_pm2_5",
+                    "sensor.32808_pm2_5",
+                    "sensor.75791_pm2_5"
+                  ],
+                  "days_to_show": 7,
+                  "period": "hour",
+                  "chart_type": "line",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "hide_legend": false,
+                  "expand_legend": false,
+                  "min_y_axis": 0
+                },
+                {
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.a23_wehlistrasse_pm10",
+                    "sensor.3991_pm10",
+                    "sensor.32808_pm10",
+                    "sensor.75791_pm10"
+                  ],
+                  "days_to_show": 7,
+                  "period": "hour",
+                  "chart_type": "line",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "hide_legend": false,
+                  "expand_legend": false,
+                  "min_y_axis": 0
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Gase",
+                  "heading_style": "title",
+                  "icon": ""
+                },
+                {
+                  "type": "statistics-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.a23_wehlistrasse_nitrogen_dioxide",
+                      "name": {
+                        "type": "device"
+                      }
+                    },
+                    {
+                      "entity": "sensor.kaiser_ebersdorf_nitrogen_dioxide",
+                      "name": {
+                        "type": "device"
+                      }
+                    }
+                  ],
+                  "title": "Stickoxide",
+                  "days_to_show": 7,
+                  "period": "hour",
+                  "chart_type": "line",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "unit": "μg/m³",
+                  "hide_legend": false,
+                  "expand_legend": false
+                },
+                {
+                  "type": "statistics-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.stephansplatz_ozone",
+                      "name": {
+                        "type": "device"
+                      }
+                    }
+                  ],
+                  "title": "Ozon",
+                  "days_to_show": 7,
+                  "period": "hour",
+                  "chart_type": "line",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "unit": "μg/m³",
+                  "hide_legend": false,
+                  "expand_legend": false
+                },
+                {
+                  "type": "statistics-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.kaiser_ebersdorf_sulfur_dioxide",
+                      "name": {
+                        "type": "device"
+                      }
+                    },
+                    {
+                      "entity": "sensor.stephansplatz_sulfur_dioxide",
+                      "name": {
+                        "type": "device"
+                      }
+                    }
+                  ],
+                  "title": "Schwefeldioxid",
+                  "days_to_show": 7,
+                  "period": "hour",
+                  "chart_type": "line",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "unit": "μg/m³",
+                  "hide_legend": false,
+                  "expand_legend": false,
+                  "min_y_axis": 0
                 }
               ],
               "column_span": 1
@@ -280,6 +420,36 @@
             "badges_position": "top",
             "badges_wrap": "wrap"
           }
+        },
+        {
+          "type": "panel",
+          "path": "helios",
+          "title": "Helios",
+          "cards": [
+            {
+              "type": "custom:helios-card",
+              "cache-id": "cmsmx196j6uthpu",
+              "camera-locked": false,
+              "auto-rotate-enabled": true,
+              "auto-hide-ui": false,
+              "show-detail-panel": true,
+              "map-theme-mode": "dark",
+              "chip-battery-visible": false,
+              "chip-grid-visible": false,
+              "monitoring-group-hidden": {
+                "1": true,
+                "2": true,
+                "3": true,
+                "4": true
+              },
+              "solar-irradiance-entity": "sensor.wien_innere_stadt_global_radiation",
+              "power-unit": "W",
+              "sun-chip-mode": "position",
+              "shadow-opacity": 0.7
+            }
+          ],
+          "icon": "mdi:sun-angle",
+          "show_icon_and_title": false
         },
         {
           "title": "Temperaturverlauf",

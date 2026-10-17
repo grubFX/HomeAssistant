@@ -1008,83 +1008,72 @@
           }
         },
         {
-          "theme": "Backend-selected",
-          "title": "Batteries",
+          "type": "panel",
           "path": "batteries",
-          "icon": "mdi:battery-charging-100",
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
+          "title": "Batteries",
+          "icon": "mdi:battery-charging-50",
+          "cards": [
             {
-              "type": "grid",
-              "cards": [
+              "type": "custom:battery-state-card",
+              "secondary_info": "{charging.text}",
+              "filter": {
+                "include": [
+                  {
+                    "name": "attributes.device_class",
+                    "value": "battery"
+                  }
+                ],
+                "exclude": [
+                  {
+                    "name": "entity_id",
+                    "value": "binary_sensor.*"
+                  },
+                  {
+                    "name": "state",
+                    "value": "unavailable"
+                  },
+                  {
+                    "name": "state",
+                    "value": "unknown"
+                  }
+                ]
+              },
+              "sort": {
+                "by": "state"
+              },
+              "bulk_rename": [
                 {
-                  "type": "heading",
-                  "heading": "Batteries",
-                  "heading_style": "title",
-                  "icon": "mdi:battery-charging"
+                  "from": " battery"
                 },
                 {
-                  "type": "custom:battery-state-card",
-                  "secondary_info": "{charging}",
-                  "filter": {
-                    "include": [
-                      {
-                        "name": "attributes.device_class",
-                        "value": "battery"
-                      }
-                    ],
-                    "exclude": [
-                      {
-                        "name": "entity_id",
-                        "value": "binary_sensor.*"
-                      },
-                      {
-                        "name": "state",
-                        "value": "Unavailable"
-                      }
-                    ]
-                  },
-                  "sort": {
-                    "by": "state"
-                  },
-                  "bulk_rename": [
-                    {
-                      "from": " battery"
-                    },
-                    {
-                      "from": " Battery"
-                    },
-                    {
-                      "from": " level"
-                    },
-                    {
-                      "from": " Level"
-                    }
-                  ],
-                  "charging_state": {
-                    "attribute": [
-                      {
-                        "name": "Battery State",
-                        "value": "Charging"
-                      },
-                      {
-                        "name": "is_charging",
-                        "value": true
-                      }
-                    ],
-                    "state": [
-                      "charging",
-                      "Charging"
-                    ],
-                    "secondary_info_text": "Charging in progress"
-                  }
+                  "from": " Battery"
+                },
+                {
+                  "from": " level"
+                },
+                {
+                  "from": " Level"
                 }
-              ]
+              ],
+              "charging_state": {
+                "attribute": [
+                  {
+                    "name": "Battery State",
+                    "value": "charging"
+                  },
+                  {
+                    "name": "is_charging",
+                    "value": true
+                  }
+                ],
+                "state": [
+                  "charging",
+                  "Charging"
+                ],
+                "secondary_info_text": "Charging in progress"
+              }
             }
-          ],
-          "max_columns": 4
+          ]
         }
       ]
     }

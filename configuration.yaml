@@ -46,9 +46,6 @@ recorder:
       - sensor.dishbert_remaining_program_time
       - sensor.solix_c300x_dc_remaining_time
       - sensor.solix_c300x_dc_mqtt_time
-    entity_globs:
-      - sensor.litfassstrasse*
-      - sensor.zippererstrasse*
 
 logbook:
 
@@ -63,16 +60,6 @@ google_assistant:
 
 wake_on_lan:
 
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 127.0.0.1
-    - !secret router_ip
-    - !secret nas_ip
-    - !secret npm_ip
-    - 172.30.33.0/24
-  cors_allowed_origins:
-    - https://cast.home-assistant.io
 websocket_api:
 
 energy:
